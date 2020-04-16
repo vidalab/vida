@@ -4,7 +4,9 @@ const HomePage = () => {
   return (
     <>
       <Header/>
-      <main>Home Page</main>
+      <div className="container p-4">
+        <main>Home Page</main>
+      </div>
     </>
   )
 }

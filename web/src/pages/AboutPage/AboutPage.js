@@ -4,7 +4,9 @@ const AboutPage = () => {
   return (
     <div>
       <Header/>
-      <main>About Page</main>
+      <div className="container p-4">
+        <main>About Page</main>
+      </div>
     </div>
   )
 }
