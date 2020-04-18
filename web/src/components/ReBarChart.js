@@ -2,6 +2,7 @@ import React from 'react';
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
 } from 'recharts';
+import { MARGIN } from './Constants';
 
 const ReBarChart = (props) => {
   let bars = props.yAxis.map((y) => {
@@ -13,7 +14,7 @@ const ReBarChart = (props) => {
       height={props.height}
       data={props.data}
       margin={{
-        top: 5, right: 30, left: 20, bottom: 5,
+        top: MARGIN.top, right: MARGIN.right, left: MARGIN.left, bottom: MARGIN.bottom,
       }}
     >
       <CartesianGrid strokeDasharray="3 3" />
