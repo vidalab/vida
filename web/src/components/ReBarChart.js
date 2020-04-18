@@ -1,14 +1,14 @@
 import React from 'react';
 import {
-  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
 } from 'recharts';
 
-const ReLineChart = (props) => {
-  let lines = props.yAxis.map((y) => {
-    return <Line key={"line-" + y["name"]} type="monotone" dataKey={y["name"]} stroke={y["color"]} />
+const ReBarChart = (props) => {
+  let bars = props.yAxis.map((y) => {
+    return <Bar key={"bar-" + y["name"]} type="monotone" dataKey={y["name"]} fill={y["color"]} />
   })
   return (
-    <LineChart
+    <BarChart
       width={props.width}
       height={props.height}
       data={props.data}
@@ -21,9 +21,9 @@ const ReLineChart = (props) => {
       <YAxis />
       <Tooltip />
       <Legend />
-      {lines}
-    </LineChart>
+      {bars}
+    </BarChart>
   )
 }
 
-export default ReLineChart
+export default ReBarChart

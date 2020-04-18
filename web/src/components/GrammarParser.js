@@ -1,4 +1,5 @@
 import ReLineChart from "./ReLineChart"
+import ReBarChart from "./ReBarChart"
 
 class GrammarParser {
   constructor(json) {
@@ -16,19 +17,28 @@ class GrammarParser {
   }
 
   parse() {
-    let el = null
-    this.json["charts"].forEach((chart) => {
+    let els = []
+    this.json["charts"].forEach((chart, index) => {
       const chartType = chart["type"]
       const dataName = chart["data"]
       const data = this.getData(dataName)
+      let el = null
       if (chartType == "line") {
         el = <ReLineChart
+                key={"line-chart-" + index}
                 data={data} width={chart["width"]} height={chart["height"]}
                 xAxis={chart["axes"]["x"]} yAxis={chart["axes"]["y"]}
               />
+      } else if (chartType == "bar") {
+        el = <ReBarChart
+                key={"bar-chart-" + index}
+                data={data} width={chart["width"]} height={chart["height"]}
+                xAxis={chart["axes"]["x"]} yAxis={chart["axes"]["y"]}
+            />
       }
+      els.push(el)
     })
-    return el
+    return els
   }
 }
 
