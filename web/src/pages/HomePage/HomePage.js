@@ -8,7 +8,7 @@ const HomePage = () => {
   return (
     <>
       <Header/>
-      <div className="container p-4">
+      <div className="container">
         {charts}
       </div>
     </>

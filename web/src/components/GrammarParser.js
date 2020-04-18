@@ -1,5 +1,6 @@
 import ReLineChart from "./ReLineChart"
 import ReBarChart from "./ReBarChart"
+import ReAreaChart from "./ReAreaChart"
 
 class GrammarParser {
   constructor(json) {
@@ -34,7 +35,13 @@ class GrammarParser {
                 key={"bar-chart-" + index}
                 data={data} width={chart["width"]} height={chart["height"]}
                 xAxis={chart["axes"]["x"]} yAxis={chart["axes"]["y"]}
-            />
+              />
+      } else if (chartType == "area") {
+        el = <ReAreaChart
+                key={"area-chart-" + index}
+                data={data} width={chart["width"]} height={chart["height"]}
+                xAxis={chart["axes"]["x"]} yAxis={chart["axes"]["y"]}
+              />
       }
       els.push(el)
     })
