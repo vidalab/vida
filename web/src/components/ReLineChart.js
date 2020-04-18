@@ -4,7 +4,9 @@ import {
 } from 'recharts';
 
 const ReLineChart = (props) => {
-  console.log(props)
+  let lines = props.yAxis.map((y) => {
+    return <Line key={y["name"]} type="monotone" dataKey={y["name"]} stroke={y["color"]} />
+  })
   return (
     <LineChart
       width={props.width}
@@ -15,12 +17,11 @@ const ReLineChart = (props) => {
       }}
     >
       <CartesianGrid strokeDasharray="3 3" />
-      <XAxis dataKey="name" />
+      <XAxis dataKey={props.xAxis} />
       <YAxis />
       <Tooltip />
       <Legend />
-      <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{ r: 8 }} />
-      <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+      {lines}
     </LineChart>
   )
 }

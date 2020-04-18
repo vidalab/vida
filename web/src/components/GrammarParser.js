@@ -22,7 +22,10 @@ class GrammarParser {
       const dataName = chart["data"]
       const data = this.getData(dataName)
       if (chartType == "line") {
-        el = <ReLineChart data={data} width={chart["width"]} height={chart["height"]} />
+        el = <ReLineChart
+                data={data} width={chart["width"]} height={chart["height"]}
+                xAxis={chart["axes"]["x"]} yAxis={chart["axes"]["y"]}
+              />
       }
     })
     return el
