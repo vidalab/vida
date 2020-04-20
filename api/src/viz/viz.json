@@ -1,6 +1,7 @@
 {
   "name": "Redwood Viz",
-  "description": "Redwood Viz",
+  "description": "Example Viz",
+  "layout": "fixed",
   "width": 500,
   "height": 500,
   "data": [

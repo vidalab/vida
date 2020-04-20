@@ -1,15 +1,13 @@
 import Header from '../Common/Header'
-import vizJson from '../../viz.json'
-import GrammarParser from '../../components/GrammarParser'
+import VizCell from '../../components/VizCell'
 
 const HomePage = () => {
-  const grammarParser = new GrammarParser(vizJson)
-  const charts = grammarParser.parse()
+  const name = 'viz'
   return (
     <>
       <Header/>
       <div className="container">
-        {charts}
+        {<VizCell name={name} />}
       </div>
     </>
   )
