@@ -6,7 +6,7 @@ const HomePage = () => {
   return (
     <>
       <Header/>
-      <div className="container">
+      <div className="container w-full mx-auto px-6 pt-6">
         {<VizCell name={name} />}
       </div>
     </>
