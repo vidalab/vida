@@ -1,3 +1,15 @@
+# Redwood Viz
+
+This application allows you to create data visualization dashboard using JSON files. The JSON file works as a description of the dashboard.
+
+See a JSON file example here: https://github.com/vidalab/redwoodviz/blob/master/api/src/viz/viz.json
+
+To run the dashboard with your own JSON file:
+
+```terminal
+VIZ_JSON=viz1.json yarn rw dev
+```
+
 # Redwood
 >**HEADS UP:** RedwoodJS is _NOT_ ready for use in Production. It relies heavily on Prisma2, which is currently in testing with an expected production release coming soon. See status at ["Is Prisma2 Ready?"](https://isprisma2ready.com)
 
