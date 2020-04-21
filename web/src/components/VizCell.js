@@ -19,8 +19,15 @@ export const Success = ({ viz }) => {
   const vizData = JSON.parse(viz.data)
   const grammarParser = new GrammarParser(vizData)
   const charts = grammarParser.parse()
+  let cssStyle = {}
+  if (vizData["layout"]["type"] == "fixed") {
+    cssStyle = {
+      width: vizData["layout"]["width"],
+      height: vizData["layout"]["height"]
+    }
+  }
   return (
-    <div>
+    <div style={cssStyle}>
       {charts}
     </div>
   )

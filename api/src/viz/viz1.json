@@ -1,9 +1,11 @@
 {
   "name": "Redwood Viz",
   "description": "Example Viz",
-  "layout": "fixed",
-  "width": 500,
-  "height": 500,
+  "layout": {
+    "type": "fixed",
+    "width": 1040,
+    "height": 1040
+  },
   "data": [
     {
       "name": "table",
