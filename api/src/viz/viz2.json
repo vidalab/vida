@@ -2,9 +2,13 @@
   "name": "Redwood Viz",
   "description": "Example Viz",
   "layout": {
-    "type": "fixed",
-    "width": 500,
-    "height": 500
+    "type": "grid",
+    "details": [
+      {
+        "cols": 2,
+        "total": 9
+      }
+    ]
   },
   "data": [
     {

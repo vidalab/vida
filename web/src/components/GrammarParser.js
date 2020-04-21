@@ -1,6 +1,7 @@
 import ReLineChart from "./ReLineChart"
 import ReBarChart from "./ReBarChart"
 import ReAreaChart from "./ReAreaChart"
+import { ResponsiveContainer } from "recharts"
 
 class GrammarParser {
   constructor(json) {
@@ -19,33 +20,69 @@ class GrammarParser {
 
   parse() {
     let els = []
+    let layout = this.json["layout"]
     this.json["charts"].forEach((chart, index) => {
       const chartType = chart["type"]
       const dataName = chart["data"]
       const data = this.getData(dataName)
       let el = null
-      if (chartType == "line") {
-        el = <ReLineChart
-                key={"line-chart-" + index}
-                data={data} width={chart["width"]} height={chart["height"]}
-                xAxis={chart["axes"]["x"]} yAxis={chart["axes"]["y"]}
-              />
-      } else if (chartType == "bar") {
-        el = <ReBarChart
-                key={"bar-chart-" + index}
-                data={data} width={chart["width"]} height={chart["height"]}
-                xAxis={chart["axes"]["x"]} yAxis={chart["axes"]["y"]}
-              />
-      } else if (chartType == "area") {
-        el = <ReAreaChart
-                key={"area-chart-" + index}
-                data={data} width={chart["width"]} height={chart["height"]}
-                xAxis={chart["axes"]["x"]} yAxis={chart["axes"]["y"]}
-              />
+      if (layout["type"] == "grid") {
+        if (chartType == "line") {
+          el = <ResponsiveContainer key={"line-chart-container-" + index} width="100%" height={chart["height"]}>
+                <ReLineChart
+                  key={"line-chart-" + index}
+                  data={data}
+                  xAxis={chart["axes"]["x"]} yAxis={chart["axes"]["y"]}
+                />
+              </ResponsiveContainer>
+        } else if (chartType == "bar") {
+          el = <ResponsiveContainer key={"bar-chart-container-" + index} width="100%" height={chart["height"]}>
+                <ReBarChart
+                  key={"bar-chart-" + index}
+                  data={data}
+                  xAxis={chart["axes"]["x"]} yAxis={chart["axes"]["y"]}
+                />
+              </ResponsiveContainer>
+        } else if (chartType == "area") {
+          el = <ResponsiveContainer key={"bar-chart-container-" + index} width="100%" height={chart["height"]}>
+                <ReAreaChart
+                  key={"area-chart-" + index}
+                  data={data}
+                  xAxis={chart["axes"]["x"]} yAxis={chart["axes"]["y"]}
+                />
+              </ResponsiveContainer>
+        }
+      } else {
+        let width = chart["width"]
+        let height = chart["height"]
+        if (chartType == "line") {
+          el = <ReLineChart
+                  key={"line-chart-" + index}
+                  data={data} width={width} height={height}
+                  xAxis={chart["axes"]["x"]} yAxis={chart["axes"]["y"]}
+                />
+        } else if (chartType == "bar") {
+          el = <ReBarChart
+                  key={"bar-chart-" + index}
+                  data={data} width={width} height={height}
+                  xAxis={chart["axes"]["x"]} yAxis={chart["axes"]["y"]}
+                />
+        } else if (chartType == "area") {
+          el = <ReAreaChart
+                  key={"area-chart-" + index}
+                  data={data} width={width} height={height}
+                  xAxis={chart["axes"]["x"]} yAxis={chart["axes"]["y"]}
+                />
+        }
       }
       els.push(el)
     })
-    return els
+    if (layout["type"] == "grid") {
+      let gridEl = <div className={"grid grid-cols-" + layout["details"][0]["cols"] + " gap-2"}>{els}</div>
+      return gridEl
+    } else {
+      return els
+    }
   }
 }
 
