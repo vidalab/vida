@@ -1,12 +1,10 @@
-import { Link, routes } from '@redwoodjs/router'
-
-const Header = () => {
+const Header = (props) => {
   return (
     <>
       <header>
         <nav className="flex items-center justify-between flex-wrap bg-teal-500 p-3">
           <div className="flex items-center flex-shrink-0 text-white mr-6">
-            <span className="font-semibold text-xl tracking-tight">Redwood Viz</span>
+            <span className="font-semibold text-xl tracking-tight">{props.name}</span>
           </div>
           <div className="block lg:hidden">
             <button className="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white">
@@ -15,12 +13,6 @@ const Header = () => {
           </div>
           <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
             <div className="text-sm lg:flex-grow">
-              <Link to={routes.home()} className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
-                Home
-              </Link>
-              <Link to={routes.about()} className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
-                About
-              </Link>
             </div>
           </div>
         </nav>

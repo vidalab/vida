@@ -33,6 +33,10 @@ class GrammarParser {
     return dataGroups
   }
 
+  getVizInfo() {
+    return {"name": this.json["name"], "description": this.json["description"]}
+  }
+
   parse() {
     let els = []
     let layout = this.json["layout"]

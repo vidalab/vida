@@ -4,7 +4,7 @@ import {
 } from 'recharts'
 
 const RePieChart = (props) => {
-  const outerRadius = 100, radiusDiff = 20, radiusSpacing = 5
+  const outerRadius = 100, radiusDiff = 20
   let pies = props.dataGroups.map((dg, index) => {
     return <Pie key={"pie-" + index} data={dg["data"]} type="monotone"
             dataKey="value" nameKey="name"

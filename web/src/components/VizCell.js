@@ -1,4 +1,6 @@
 import GrammarParser from './GrammarParser'
+import Header from '../pages/Common/Header'
+import Footer from '../pages/Common/Footer'
 
 export const QUERY = gql`
   query($name: String!) {
@@ -19,6 +21,7 @@ export const Success = ({ viz }) => {
   const vizData = JSON.parse(viz.data)
   const grammarParser = new GrammarParser(vizData)
   const charts = grammarParser.parse()
+  const vizInfo = grammarParser.getVizInfo()
   let cssStyle = {}
   if (vizData["layout"]["type"] == "fixed") {
     cssStyle = {
@@ -27,8 +30,14 @@ export const Success = ({ viz }) => {
     }
   }
   return (
-    <div style={cssStyle}>
-      {charts}
+    <div>
+      <Header name={vizInfo["name"]}/>
+      <div className="container w-full mx-auto px-6 pt-6">
+        <div style={cssStyle}>
+          {charts}
+        </div>
+      </div>
+      <Footer description={vizInfo["description"]}/>
     </div>
   )
 }
