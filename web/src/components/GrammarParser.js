@@ -1,6 +1,7 @@
 import ReLineChart from "./ReLineChart"
 import ReBarChart from "./ReBarChart"
 import ReAreaChart from "./ReAreaChart"
+import RePieChart from "./RePieChart"
 import { ResponsiveContainer } from "recharts"
 
 class GrammarParser {
@@ -18,9 +19,24 @@ class GrammarParser {
     return values
   }
 
+  groupPieData(groups, data) {
+    let dataGroups = []
+    groups.forEach((g) => {
+      let value = g["name"],
+          color = g["color"],
+          dataPoints = []
+      data.forEach((d) => {
+        dataPoints.push({"name": value, "value": d[value]})
+      })
+      dataGroups.push({"data": dataPoints, "color": color})
+    })
+    return dataGroups
+  }
+
   parse() {
     let els = []
     let layout = this.json["layout"]
+    let self = this
     this.json["charts"].forEach((chart, index) => {
       const chartType = chart["type"]
       const dataName = chart["data"]
@@ -51,6 +67,14 @@ class GrammarParser {
                   xAxis={chart["axes"]["x"]} yAxis={chart["axes"]["y"]}
                 />
               </ResponsiveContainer>
+        } else if (chartType == "pie") {
+          let dataGroups = self.groupPieData(chart["groups"], data)
+          el = <ResponsiveContainer key={"pie-chart-container-" + index} width="100%" height={chart["height"]}>
+                <RePieChart
+                  key={"pie-chart-" + index}
+                  dataGroups={dataGroups}
+                />
+              </ResponsiveContainer>
         }
       } else {
         let width = chart["width"]
@@ -72,6 +96,13 @@ class GrammarParser {
                   key={"area-chart-" + index}
                   data={data} width={width} height={height}
                   xAxis={chart["axes"]["x"]} yAxis={chart["axes"]["y"]}
+                />
+        } else if (chartType == "pie") {
+          let dataGroups = self.groupPieData(chart["groups"], data)
+          el = <RePieChart
+                  key={"pie-chart-" + index}
+                  dataGroups={dataGroups}
+                  width={width} height={height}
                 />
         }
       }

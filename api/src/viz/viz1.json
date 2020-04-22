@@ -62,14 +62,11 @@
         ]
       }
     },
-    { "type": "area", "data": "table", "width": 500, "height": 300,
-      "axes": {
-        "x": "name",
-        "y": [
-          {"name": "uv", "color": "#8884d8"},
-          {"name": "pv", "color": "#82ca9d"}
-        ]
-      }
+    { "type": "pie", "data": "table", "width": 500, "height": 300,
+      "groups": [
+        {"name": "uv", "color": "#8884d8"},
+        {"name": "pv", "color": "#82ca9d"}
+      ]
     }
   ]
 }
