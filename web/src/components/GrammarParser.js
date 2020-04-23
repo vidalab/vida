@@ -1,8 +1,3 @@
-import ReLineChart from "./ReLineChart"
-import ReBarChart from "./ReBarChart"
-import ReAreaChart from "./ReAreaChart"
-import RePieChart from "./RePieChart"
-import { ResponsiveContainer } from "recharts"
 import NivoLineChart from "./NivoLineChart"
 
 class GrammarParser {
