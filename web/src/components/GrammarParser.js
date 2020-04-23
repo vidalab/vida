@@ -1,4 +1,5 @@
 import NivoLineChart from "./NivoLineChart"
+import NivoBarChart from "./NivoBarChart"
 
 class GrammarParser {
   constructor(json) {
@@ -33,8 +34,8 @@ class GrammarParser {
     return {"name": this.json["name"], "description": this.json["description"]}
   }
 
-  getNivoData(dataArray, axes) {
-    let lineData =[]
+  getNivoLineData(dataArray, axes) {
+    let lineData = []
     axes["y"]["dataColumns"].forEach((yAxis) => {
       let lData = {id: yAxis["name"], color: yAxis["color"], data: []}
       dataArray.forEach((d) => {
@@ -42,8 +43,25 @@ class GrammarParser {
       })
       lineData.push(lData)
     })
-    console.log(lineData)
     return lineData
+  }
+
+  getNivoBarData(dataArray, axes) {
+    let barData = []
+    dataArray.forEach((d) => {
+      let dp = {}
+      axes["y"]["dataColumns"].forEach((yAxis) => {
+        dp[axes["x"]["dataColumn"]] = d[axes["x"]["dataColumn"]]
+        dp[yAxis["name"]] = d[yAxis["name"]]
+        dp[yAxis["name"] + "Color"] = yAxis["color"]
+      })
+      barData.push(dp)
+    })
+    let keys = []
+    axes["y"]["dataColumns"].forEach((yAxis) => {
+      keys.push(yAxis["name"])
+    })
+    return {data: barData, keys: keys}
   }
 
   parse() {
@@ -65,7 +83,16 @@ class GrammarParser {
                   <NivoLineChart
                     key={"line-chart-" + index}
                     axes={chart["axes"]}
-                    data={self.getNivoData(data, chart["axes"])} />
+                    data={self.getNivoLineData(data, chart["axes"])} />
+                </div>
+        } else if (chartType == "bar") {
+          const barData = self.getNivoBarData(data, chart["axes"])
+          el = <div key={"bar-chart-container-" + index} style={containerCssStyle}>
+                  <NivoBarChart
+                    key={"bar-chart-" + index}
+                    axes={chart["axes"]}
+                    keys={barData.keys}
+                    data={barData.data} />
                 </div>
         }
       }

@@ -1,48 +1,14 @@
 import { MARGIN } from './Constants';
 import { ResponsiveBar } from '@nivo/bar'
 
-const NivoBarChart = ({ data /* see data tab */ }) => (
+const NivoBarChart = (props) => (
     <ResponsiveBar
-        data={data}
-        keys={[ 'hot dog', 'burger', 'sandwich', 'kebab', 'fries', 'donut' ]}
-        indexBy="country"
+        data={props.data}
+        keys={props.keys}
+        indexBy={props.axes["x"]["dataColumn"]}
         margin={{ top: MARGIN.top, right: MARGIN.right, bottom: MARGIN.bottom, left: MARGIN.left }}
         padding={0.3}
         colors={{ scheme: 'nivo' }}
-        defs={[
-            {
-                id: 'dots',
-                type: 'patternDots',
-                background: 'inherit',
-                color: '#38bcb2',
-                size: 4,
-                padding: 1,
-                stagger: true
-            },
-            {
-                id: 'lines',
-                type: 'patternLines',
-                background: 'inherit',
-                color: '#eed312',
-                rotation: -45,
-                lineWidth: 6,
-                spacing: 10
-            }
-        ]}
-        fill={[
-            {
-                match: {
-                    id: 'fries'
-                },
-                id: 'dots'
-            },
-            {
-                match: {
-                    id: 'sandwich'
-                },
-                id: 'lines'
-            }
-        ]}
         borderColor={{ from: 'color', modifiers: [ [ 'darker', 1.6 ] ] }}
         axisTop={null}
         axisRight={null}
@@ -50,7 +16,7 @@ const NivoBarChart = ({ data /* see data tab */ }) => (
             tickSize: 5,
             tickPadding: 5,
             tickRotation: 0,
-            legend: 'country',
+            legend: props.axes["x"]["label"],
             legendPosition: 'middle',
             legendOffset: 32
         }}
@@ -58,7 +24,7 @@ const NivoBarChart = ({ data /* see data tab */ }) => (
             tickSize: 5,
             tickPadding: 5,
             tickRotation: 0,
-            legend: 'food',
+            legend: props.axes["y"]["label"],
             legendPosition: 'middle',
             legendOffset: -40
         }}
