@@ -6,7 +6,7 @@
     "details": [
       {
         "cols": 1,
-        "total": 8
+        "rows": 1
       }
     ]
   },
@@ -19,11 +19,17 @@
   "charts": [
     { "type": "bar", "data": "table", "width": 500, "height": 300,
       "axes": {
-        "x": "state",
-        "y": [
-          {"name": "positive", "color": "#8884d8"},
-          {"name": "negative", "color": "#82ca9d"}
-        ]
+        "x": {
+          "label": "state",
+          "dataColumn": "state"
+        },
+        "y": {
+          "label": "count",
+          "dataColumns": [
+            {"name": "positive", "color": "#8884d8"},
+            {"name": "negative", "color": "#82ca9d"}
+          ]
+        }
       }
     }
   ]

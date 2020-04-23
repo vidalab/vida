@@ -40,13 +40,14 @@ class GrammarParser {
 
   getNivoData(dataArray, axes) {
     let lineData =[]
-    axes["y"].forEach((yAxis) => {
+    axes["y"]["dataColumns"].forEach((yAxis) => {
       let lData = {id: yAxis["name"], color: yAxis["color"], data: []}
       dataArray.forEach((d) => {
-        lData.data.push({x: d[axes["x"]], y: d[yAxis["name"]]})
+        lData.data.push({x: d[axes["x"]["dataColumn"]], y: d[yAxis["name"]]})
       })
       lineData.push(lData)
     })
+    console.log(lineData)
     return lineData
   }
 
@@ -58,63 +59,19 @@ class GrammarParser {
       const chartType = chart["type"]
       const dataName = chart["data"]
       const data = this.getData(dataName)
+      const containerCssStyle = {
+        width: "100%",
+        height: chart["height"]
+      }
       let el = null
       if (layout["type"] == "grid") {
         if (chartType == "line") {
-          el = <NivoLineChart key={"line-chart-" + index} data={self.getNivoData(data, chart["axes"])} />
-        } else if (chartType == "bar") {
-          el = <ResponsiveContainer key={"bar-chart-container-" + index} width="100%" height={chart["height"]}>
-                <ReBarChart
-                  key={"bar-chart-" + index}
-                  data={data}
-                  xAxis={chart["axes"]["x"]} yAxis={chart["axes"]["y"]}
-                />
-              </ResponsiveContainer>
-        } else if (chartType == "area") {
-          el = <ResponsiveContainer key={"bar-chart-container-" + index} width="100%" height={chart["height"]}>
-                <ReAreaChart
-                  key={"area-chart-" + index}
-                  data={data}
-                  xAxis={chart["axes"]["x"]} yAxis={chart["axes"]["y"]}
-                />
-              </ResponsiveContainer>
-        } else if (chartType == "pie") {
-          let dataGroups = self.groupPieData(chart["groups"], data)
-          el = <ResponsiveContainer key={"pie-chart-container-" + index} width="100%" height={chart["height"]}>
-                <RePieChart
-                  key={"pie-chart-" + index}
-                  dataGroups={dataGroups}
-                />
-              </ResponsiveContainer>
-        }
-      } else {
-        let width = chart["width"]
-        let height = chart["height"]
-        if (chartType == "line") {
-          el = <ReLineChart
-                  key={"line-chart-" + index}
-                  data={data} width={width} height={height}
-                  xAxis={chart["axes"]["x"]} yAxis={chart["axes"]["y"]}
-                />
-        } else if (chartType == "bar") {
-          el = <ReBarChart
-                  key={"bar-chart-" + index}
-                  data={data} width={width} height={height}
-                  xAxis={chart["axes"]["x"]} yAxis={chart["axes"]["y"]}
-                />
-        } else if (chartType == "area") {
-          el = <ReAreaChart
-                  key={"area-chart-" + index}
-                  data={data} width={width} height={height}
-                  xAxis={chart["axes"]["x"]} yAxis={chart["axes"]["y"]}
-                />
-        } else if (chartType == "pie") {
-          let dataGroups = self.groupPieData(chart["groups"], data)
-          el = <RePieChart
-                  key={"pie-chart-" + index}
-                  dataGroups={dataGroups}
-                  width={width} height={height}
-                />
+          el = <div key={"line-chart-container-" + index} style={containerCssStyle}>
+                  <NivoLineChart
+                    key={"line-chart-" + index}
+                    axes={chart["axes"]}
+                    data={self.getNivoData(data, chart["axes"])} />
+                </div>
         }
       }
       els.push(el)
