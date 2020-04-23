@@ -3,6 +3,7 @@ import ReBarChart from "./ReBarChart"
 import ReAreaChart from "./ReAreaChart"
 import RePieChart from "./RePieChart"
 import { ResponsiveContainer } from "recharts"
+import NivoLineChart from "./NivoLineChart"
 
 class GrammarParser {
   constructor(json) {
@@ -37,6 +38,18 @@ class GrammarParser {
     return {"name": this.json["name"], "description": this.json["description"]}
   }
 
+  getNivoData(dataArray, axes) {
+    let lineData =[]
+    axes["y"].forEach((yAxis) => {
+      let lData = {id: yAxis["name"], color: yAxis["color"], data: []}
+      dataArray.forEach((d) => {
+        lData.data.push({x: d[axes["x"]], y: d[yAxis["name"]]})
+      })
+      lineData.push(lData)
+    })
+    return lineData
+  }
+
   parse() {
     let els = []
     let layout = this.json["layout"]
@@ -48,13 +61,7 @@ class GrammarParser {
       let el = null
       if (layout["type"] == "grid") {
         if (chartType == "line") {
-          el = <ResponsiveContainer key={"line-chart-container-" + index} width="100%" height={chart["height"]}>
-                <ReLineChart
-                  key={"line-chart-" + index}
-                  data={data}
-                  xAxis={chart["axes"]["x"]} yAxis={chart["axes"]["y"]}
-                />
-              </ResponsiveContainer>
+          el = <NivoLineChart key={"line-chart-" + index} data={self.getNivoData(data, chart["axes"])} />
         } else if (chartType == "bar") {
           el = <ResponsiveContainer key={"bar-chart-container-" + index} width="100%" height={chart["height"]}>
                 <ReBarChart
