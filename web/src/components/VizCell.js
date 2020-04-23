@@ -11,11 +11,13 @@ export const QUERY = gql`
   }
 `
 
-export const Loading = () => <div>Loading...</div>
+export const containerClassName = "container w-full mx-auto px-6 pt-6";
 
-export const Empty = () => <div>Empty</div>
+export const Loading = () => <div className={containerClassName + " text-center"}>Loading...</div>
 
-export const Failure = ({ error }) => <div>Error: {error.message}</div>
+export const Empty = () => <div className={containerClassName + " text-center"}>Empty</div>
+
+export const Failure = ({ error }) => <div className={containerClassName + " text-center"}>Error: {error.message}</div>
 
 export const Success = ({ viz }) => {
   const vizData = JSON.parse(viz.data)
@@ -33,7 +35,7 @@ export const Success = ({ viz }) => {
   return (
     <div>
       <Header name={vizInfo["name"]}/>
-      <div className="container w-full mx-auto px-6 pt-6">
+      <div className={containerClassName}>
         <div style={cssStyle}>
           {charts}
         </div>

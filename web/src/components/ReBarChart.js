@@ -17,7 +17,6 @@ const ReBarChart = (props) => {
         top: MARGIN.top, right: MARGIN.right, left: MARGIN.left, bottom: MARGIN.bottom,
       }}
     >
-      <CartesianGrid strokeDasharray="3 3" />
       <XAxis dataKey={props.xAxis} />
       <YAxis />
       <Tooltip />

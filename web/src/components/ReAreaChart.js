@@ -28,7 +28,6 @@ const ReAreaChart = (props) => {
       </defs>
       <XAxis dataKey="name" />
       <YAxis />
-      <CartesianGrid strokeDasharray="3 3" />
       <Tooltip />
       <Legend />
       {areaLines}
