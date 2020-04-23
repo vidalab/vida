@@ -1,0 +1,30 @@
+{
+  "name": "Covid States",
+  "description": "Example Viz",
+  "layout": {
+    "type": "grid",
+    "details": [
+      {
+        "cols": 1,
+        "total": 8
+      }
+    ]
+  },
+  "data": [
+    {
+      "name": "table",
+      "url": "https://covidtracking.com/api/v1/states/current.json"
+    }
+  ],
+  "charts": [
+    { "type": "bar", "data": "table", "width": 500, "height": 300,
+      "axes": {
+        "x": "state",
+        "y": [
+          {"name": "positive", "color": "#8884d8"},
+          {"name": "negative", "color": "#82ca9d"}
+        ]
+      }
+    }
+  ]
+}

@@ -19,6 +19,7 @@ export const Failure = ({ error }) => <div>Error: {error.message}</div>
 
 export const Success = ({ viz }) => {
   const vizData = JSON.parse(viz.data)
+  console.log(vizData)
   const grammarParser = new GrammarParser(vizData)
   const charts = grammarParser.parse()
   const vizInfo = grammarParser.getVizInfo()
