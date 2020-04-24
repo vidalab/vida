@@ -8,7 +8,7 @@ const NivoBarChart = (props) => (
         indexBy={props.axes["x"]["dataColumn"]}
         margin={{ top: MARGIN.top, right: MARGIN.right, bottom: MARGIN.bottom, left: MARGIN.left }}
         padding={0.3}
-        colors={{ scheme: 'nivo' }}
+        colors={props.colors}
         borderColor={{ from: 'color', modifiers: [ [ 'darker', 1.6 ] ] }}
         axisTop={null}
         axisRight={null}

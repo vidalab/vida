@@ -36,14 +36,16 @@ class GrammarParser {
 
   getNivoLineData(dataArray, axes) {
     let lineData = []
+    let colors = []
     axes["y"]["dataColumns"].forEach((yAxis) => {
+      colors.push(yAxis["color"])
       let lData = {id: yAxis["name"], color: yAxis["color"], data: []}
       dataArray.forEach((d) => {
         lData.data.push({x: d[axes["x"]["dataColumn"]], y: d[yAxis["name"]]})
       })
       lineData.push(lData)
     })
-    return lineData
+    return {data: lineData, colors: colors}
   }
 
   getNivoBarData(dataArray, axes) {
@@ -57,11 +59,12 @@ class GrammarParser {
       })
       barData.push(dp)
     })
-    let keys = []
+    let keys = [], colors = []
     axes["y"]["dataColumns"].forEach((yAxis) => {
       keys.push(yAxis["name"])
+      colors.push(yAxis["color"])
     })
-    return {data: barData, keys: keys}
+    return {data: barData, keys: keys, colors: colors}
   }
 
   parse() {
@@ -79,11 +82,13 @@ class GrammarParser {
       let el = null
       if (layout["type"] == "grid") {
         if (chartType == "line") {
+          const lineData = self.getNivoLineData(data, chart["axes"])
           el = <div key={"line-chart-container-" + index} style={containerCssStyle}>
                   <NivoLineChart
                     key={"line-chart-" + index}
                     axes={chart["axes"]}
-                    data={self.getNivoLineData(data, chart["axes"])} />
+                    colors={lineData.colors}
+                    data={lineData.data} />
                 </div>
         } else if (chartType == "bar") {
           const barData = self.getNivoBarData(data, chart["axes"])
@@ -92,6 +97,7 @@ class GrammarParser {
                     key={"bar-chart-" + index}
                     axes={chart["axes"]}
                     keys={barData.keys}
+                    colors={barData.colors}
                     data={barData.data} />
                 </div>
         }

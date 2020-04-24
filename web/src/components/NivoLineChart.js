@@ -28,7 +28,7 @@ const NivoLineChart = (props) => (
           legendOffset: -40,
           legendPosition: 'middle'
       }}
-      colors={{ scheme: 'nivo' }}
+      colors={props.colors}
       pointSize={10}
       pointColor={{ theme: 'background' }}
       pointBorderWidth={2}
