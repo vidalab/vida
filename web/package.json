@@ -8,6 +8,7 @@
   "dependencies": {
     "@nivo/bar": "^0.61.1",
     "@nivo/line": "^0.61.1",
+    "@nivo/scatterplot": "^0.61.1",
     "@redwoodjs/router": "^0.6.0",
     "@redwoodjs/web": "^0.6.0",
     "postcss-loader": "^3.0.0",

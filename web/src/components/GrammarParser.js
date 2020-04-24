@@ -1,5 +1,6 @@
 import NivoLineChart from "./NivoLineChart"
 import NivoBarChart from "./NivoBarChart"
+import NivoScatterChart from "./NivoScatterChart"
 
 class GrammarParser {
   constructor(json) {
@@ -67,6 +68,10 @@ class GrammarParser {
     return {data: barData, keys: keys, colors: colors}
   }
 
+  getNivoScatterData(dataArray, axes) {
+    return {data: dataArray}
+  }
+
   parse() {
     let els = []
     let layout = this.json["layout"]
@@ -99,6 +104,13 @@ class GrammarParser {
                     keys={barData.keys}
                     colors={barData.colors}
                     data={barData.data} />
+                </div>
+        } else if (chartType == "scatter") {
+          const scatterData = self.getNivoScatterData(data, chart["axes"])
+          el = <div key={"scatter-chart-container-" + index} style={containerCssStyle}>
+                  <NivoScatterChart
+                    key={"scatter-chart-" + index}
+                    data={scatterData.data} />
                 </div>
         }
       }

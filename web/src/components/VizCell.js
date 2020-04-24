@@ -1,6 +1,7 @@
 import GrammarParser from './GrammarParser'
 import Header from '../pages/Common/Header'
 import Footer from '../pages/Common/Footer'
+import NivoScatterChart from './NivoScatterChart';
 
 export const QUERY = gql`
   query($name: String!) {
@@ -39,6 +40,7 @@ export const Success = ({ viz }) => {
           {charts}
         </div>
       </div>
+      <NivoScatterChart />
       <Footer description={vizInfo["description"]}/>
     </div>
   )
