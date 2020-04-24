@@ -1,7 +1,23 @@
 import { MARGIN } from './Constants';
 import { ResponsiveScatterPlot } from '@nivo/scatterplot'
 
-const NivoScatterChart = (props) => {
+interface Axis {
+    label: string
+}
+
+interface XYAxes {
+    x: Axis,
+    y: Axis
+}
+
+interface ChartProps {
+    data: Object,
+    axes: XYAxes
+}
+
+const NivoScatterChart = (props: ChartProps) => {
+  const xLabel: string = props.axes && props.axes.x.label,
+        yLabel: string = props.axes && props.axes.y.label
   return (
     <ResponsiveScatterPlot
           data={props.data}
@@ -18,7 +34,7 @@ const NivoScatterChart = (props) => {
               tickSize: 5,
               tickPadding: 5,
               tickRotation: 0,
-              legend: 'weight',
+              legend: xLabel,
               legendPosition: 'middle',
               legendOffset: 46
           }}
@@ -27,7 +43,7 @@ const NivoScatterChart = (props) => {
               tickSize: 5,
               tickPadding: 5,
               tickRotation: 0,
-              legend: 'size',
+              legend: yLabel,
               legendPosition: 'middle',
               legendOffset: -60
           }}

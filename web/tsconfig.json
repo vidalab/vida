@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "module": "system",
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "removeComments": true,
     "preserveConstEnums": true,
     "sourceMap": true,

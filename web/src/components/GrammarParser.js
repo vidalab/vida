@@ -110,6 +110,7 @@ class GrammarParser {
           el = <div key={"scatter-chart-container-" + index} style={containerCssStyle}>
                   <NivoScatterChart
                     key={"scatter-chart-" + index}
+                    axes={chart["axes"]}
                     data={scatterData.data} />
                 </div>
         }
