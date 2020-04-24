@@ -1,10 +1,11 @@
 import { MARGIN } from './Constants'
 import { ResponsiveLine } from '@nivo/line'
-import { ChartProps } from './ChartProps'
+import { LineChartProps } from './ChartProps'
 
-const NivoLineChart = (props: ChartProps) => (
+const NivoLineChart = (props: LineChartProps) => (
     <ResponsiveLine
       data={props.data}
+      enableArea={props.enableArea}
       margin={{ top: MARGIN.top, right: MARGIN.right, bottom: MARGIN.bottom, left: MARGIN.left }}
       xScale={{ type: 'point' }}
       yScale={{ type: 'linear', min: 'auto', max: 'auto', stacked: true, reverse: false }}

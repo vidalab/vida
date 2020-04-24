@@ -15,3 +15,7 @@ export interface ChartProps {
   colors: string[],
   keys?: string[]
 }
+
+export interface LineChartProps extends ChartProps {
+  enableArea: boolean
+}

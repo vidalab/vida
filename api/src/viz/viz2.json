@@ -87,6 +87,21 @@
           ]
         }
       }
+    },
+    { "type": "area", "data": "table", "height": 300,
+      "axes": {
+        "x": {
+          "label": "name",
+          "dataColumn": "name"
+        },
+        "y": {
+          "label": "count",
+          "dataColumns": [
+            {"name": "uv", "color": "#8884d8"},
+            {"name": "pv", "color": "#82ca9d"}
+          ]
+        }
+      }
     }
   ]
 }

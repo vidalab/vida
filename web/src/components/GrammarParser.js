@@ -113,6 +113,16 @@ class GrammarParser {
                     axes={chart["axes"]}
                     data={scatterData.data} />
                 </div>
+        } else if (chartType == "area") {
+          const lineData = self.getNivoLineData(data, chart["axes"])
+          el = <div key={"line-chart-container-" + index} style={containerCssStyle}>
+                  <NivoLineChart
+                    key={"line-chart-" + index}
+                    enableArea={true}
+                    axes={chart["axes"]}
+                    colors={lineData.colors}
+                    data={lineData.data} />
+                </div>
         }
       }
       els.push(el)
