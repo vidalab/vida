@@ -1,11 +1,12 @@
 import { MARGIN } from './Constants';
 import { ResponsiveBar } from '@nivo/bar'
+import { ChartProps } from './ChartProps'
 
-const NivoBarChart = (props) => (
+const NivoBarChart = (props: ChartProps) => (
     <ResponsiveBar
         data={props.data}
         keys={props.keys}
-        indexBy={props.axes["x"]["dataColumn"]}
+        indexBy={props.axes && props.axes.x.dataColumn}
         margin={{ top: MARGIN.top, right: MARGIN.right, bottom: MARGIN.bottom, left: MARGIN.left }}
         padding={0.3}
         colors={props.colors}
@@ -16,7 +17,7 @@ const NivoBarChart = (props) => (
             tickSize: 5,
             tickPadding: 5,
             tickRotation: 0,
-            legend: props.axes["x"]["label"],
+            legend: props.axes && props.axes.x.label,
             legendPosition: 'middle',
             legendOffset: 32
         }}
@@ -24,7 +25,7 @@ const NivoBarChart = (props) => (
             tickSize: 5,
             tickPadding: 5,
             tickRotation: 0,
-            legend: props.axes["y"]["label"],
+            legend: props.axes && props.axes.y.label,
             legendPosition: 'middle',
             legendOffset: -40
         }}

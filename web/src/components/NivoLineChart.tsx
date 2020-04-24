@@ -1,8 +1,8 @@
-import { MARGIN } from './Constants';
-
+import { MARGIN } from './Constants'
 import { ResponsiveLine } from '@nivo/line'
+import { ChartProps } from './ChartProps'
 
-const NivoLineChart = (props) => (
+const NivoLineChart = (props: ChartProps) => (
     <ResponsiveLine
       data={props.data}
       margin={{ top: MARGIN.top, right: MARGIN.right, bottom: MARGIN.bottom, left: MARGIN.left }}
@@ -15,7 +15,7 @@ const NivoLineChart = (props) => (
           tickSize: 5,
           tickPadding: 5,
           tickRotation: 0,
-          legend: props.axes["x"]["label"],
+          legend: props.axes && props.axes.x.label,
           legendOffset: 36,
           legendPosition: 'middle'
       }}
@@ -24,7 +24,7 @@ const NivoLineChart = (props) => (
           tickSize: 5,
           tickPadding: 5,
           tickRotation: 0,
-          legend: props.axes["y"]["label"],
+          legend: props.axes && props.axes.y.label,
           legendOffset: -40,
           legendPosition: 'middle'
       }}
