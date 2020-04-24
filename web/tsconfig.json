@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "module": "system",
+    "noImplicitAny": false,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "sourceMap": true,
+    "allowJs": true,
+    "jsx": "preserve"
+  },
+  "include": ["src/**/*", "config"]
+}
