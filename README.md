@@ -1,4 +1,4 @@
-# Flexdata
+# Vida
 
 This application allows you to create data visualization dashboard using JSON files. The JSON file works as a description of the dashboard.
 
