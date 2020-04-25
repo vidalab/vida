@@ -1,6 +1,40 @@
 import NivoLineChart from "./NivoLineChart"
 import NivoBarChart from "./NivoBarChart"
 import NivoScatterChart from "./NivoScatterChart"
+import NivoPieChart from "./NivoPieChart"
+
+const pieTestData = [
+  {
+    "id": "css",
+    "label": "css",
+    "value": 137,
+    "color": "hsl(209, 70%, 50%)"
+  },
+  {
+    "id": "javascript",
+    "label": "javascript",
+    "value": 384,
+    "color": "hsl(147, 70%, 50%)"
+  },
+  {
+    "id": "python",
+    "label": "python",
+    "value": 549,
+    "color": "hsl(174, 70%, 50%)"
+  },
+  {
+    "id": "stylus",
+    "label": "stylus",
+    "value": 531,
+    "color": "hsl(148, 70%, 50%)"
+  },
+  {
+    "id": "c",
+    "label": "c",
+    "value": 442,
+    "color": "hsl(244, 70%, 50%)"
+  }
+]
 
 class GrammarParser {
   constructor(json) {
@@ -17,18 +51,12 @@ class GrammarParser {
     return values
   }
 
-  groupPieData(groups, data) {
-    let dataGroups = []
-    groups.forEach((g) => {
-      let value = g["name"],
-          color = g["color"],
-          dataPoints = []
-      data.forEach((d) => {
-        dataPoints.push({"name": value, "value": d[value]})
-      })
-      dataGroups.push({"data": dataPoints, "color": color})
+  getNivoPieData(data, group, value, colors) {
+    let dataPoints = []
+    data.forEach((d, index) => {
+      dataPoints.push({"id": d[group], "label": d[group], "value": d[value], "color": colors[index % colors]})
     })
-    return dataGroups
+    return dataPoints
   }
 
   getVizInfo() {
@@ -123,6 +151,13 @@ class GrammarParser {
                     colors={lineData.colors}
                     data={lineData.data} />
                 </div>
+        } else if (chartType == "pie") {
+          const pieData = self.getNivoPieData(data, chart["group"], chart["value"], chart["colors"])
+          el = <div key={"pie-chart-container-" + index} style={containerCssStyle}>
+                <NivoPieChart
+                  key={"pie-chart-" + index}
+                  data={pieData} />
+              </div>
         }
       }
       els.push(el)

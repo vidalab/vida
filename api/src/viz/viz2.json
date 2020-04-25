@@ -6,7 +6,7 @@
     "details": [
       {
         "cols": 2,
-        "rows": 2
+        "rows": 3
       }
     ]
   },
@@ -102,6 +102,11 @@
           ]
         }
       }
+    },
+    { "type": "pie", "data": "table", "height": 300,
+      "group": "name",
+      "value": "uv",
+      "colors": ["#8884d8", "#82ca9d"]
     }
   ]
 }
