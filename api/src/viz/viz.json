@@ -39,31 +39,49 @@
     }
   ],
   "charts": [
-    { "type": "line", "data": "table", "width": 500, "height": 300,
+    { "type": "line", "data": "table", "height": 300,
       "axes": {
-        "x": "name",
-        "y": [
-          {"name": "uv", "color": "#8884d8"},
-          {"name": "pv", "color": "#82ca9d"}
-        ]
+        "x": {
+          "label": "name",
+          "dataColumn": "name"
+        },
+        "y": {
+          "label": "count",
+          "dataColumns": [
+            {"name": "uv", "color": "#8884d8"},
+            {"name": "pv", "color": "#82ca9d"}
+          ]
+        }
       }
     },
-    { "type": "bar", "data": "table", "width": 500, "height": 300,
+    { "type": "bar", "data": "table", "height": 300,
       "axes": {
-        "x": "name",
-        "y": [
-          {"name": "uv", "color": "#8884d8"},
-          {"name": "pv", "color": "#82ca9d"}
-        ]
+        "x": {
+          "label": "name",
+          "dataColumn": "name"
+        },
+        "y": {
+          "label": "count",
+          "dataColumns": [
+            {"name": "uv", "color": "#8884d8"},
+            {"name": "pv", "color": "#82ca9d"}
+          ]
+        }
       }
     },
-    { "type": "area", "data": "table", "width": 500, "height": 300,
+    { "type": "area", "data": "table", "height": 300,
       "axes": {
-        "x": "name",
-        "y": [
-          {"name": "uv", "color": "#8884d8"},
-          {"name": "pv", "color": "#82ca9d"}
-        ]
+        "x": {
+          "label": "name",
+          "dataColumn": "name"
+        },
+        "y": {
+          "label": "count",
+          "dataColumns": [
+            {"name": "uv", "color": "#8884d8"},
+            {"name": "pv", "color": "#82ca9d"}
+          ]
+        }
       }
     }
   ]

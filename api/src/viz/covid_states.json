@@ -17,7 +17,7 @@
     }
   ],
   "charts": [
-    { "type": "bar", "data": "table", "width": 500, "height": 300,
+    { "type": "bar", "data": "table", "height": 300,
       "axes": {
         "x": {
           "label": "state",
