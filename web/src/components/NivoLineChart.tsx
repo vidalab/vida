@@ -1,6 +1,7 @@
 import { MARGIN } from './Constants'
 import { ResponsiveLine } from '@nivo/line'
 import { LineChartProps } from './ChartProps'
+import DisplayFormatter from './DisplayFormatter'
 
 const NivoLineChart = (props: LineChartProps) => (
     <ResponsiveLine
@@ -8,7 +9,7 @@ const NivoLineChart = (props: LineChartProps) => (
       enableArea={props.enableArea}
       margin={{ top: MARGIN.top, right: MARGIN.right, bottom: MARGIN.bottom, left: MARGIN.left }}
       xScale={{ type: 'point' }}
-      yScale={{ type: 'linear', min: 'auto', max: 'auto', stacked: true, reverse: false }}
+      yScale={{ type: 'linear', min: props.enableArea ? 0 : 'auto', max: 'auto', stacked: true, reverse: false }}
       axisTop={null}
       axisRight={null}
       axisBottom={{
@@ -27,7 +28,8 @@ const NivoLineChart = (props: LineChartProps) => (
           tickRotation: 0,
           legend: props.axes && props.axes.y.label,
           legendOffset: -40,
-          legendPosition: 'middle'
+          legendPosition: 'middle',
+          format: (e) => {return DisplayFormatter.formatKMG(e)}
       }}
       colors={props.colors}
       pointSize={10}

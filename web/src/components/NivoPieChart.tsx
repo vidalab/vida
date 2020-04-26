@@ -98,7 +98,7 @@ const NivoPieChart = (props: ChartProps) => (
           {
               anchor: 'bottom',
               direction: 'row',
-              translateY: 56,
+              translateY: 45,
               itemWidth: 100,
               itemHeight: 18,
               itemTextColor: '#999',
