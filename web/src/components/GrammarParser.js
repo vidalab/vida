@@ -102,72 +102,79 @@ class GrammarParser {
 
   parse() {
     let els = []
-    let layout = this.json["layout"]
     let self = this
     this.json["charts"].forEach((chart, index) => {
       const chartType = chart["type"]
       const dataName = chart["data"]
-      const data = this.getData(dataName)
+      const data = self.getData(dataName)
       const containerCssStyle = {
         width: "100%",
         height: chart["height"]
       }
+      const colX = chart["position"]["x"] + 1,
+            colSpan = chart["position"]["columns"],
+            colXClass = "col-start-" + colX,
+            colSpanClass = "col-span-" + colSpan
       let el = null
-      if (layout["type"] == "grid") {
-        if (chartType == "line") {
-          const lineData = self.getNivoLineData(data, chart["axes"])
-          el = <div key={"line-chart-container-" + index} style={containerCssStyle}>
-                  <NivoLineChart
-                    key={"line-chart-" + index}
-                    axes={chart["axes"]}
-                    colors={lineData.colors}
-                    data={lineData.data} />
-                </div>
-        } else if (chartType == "bar") {
-          const barData = self.getNivoBarData(data, chart["axes"])
-          el = <div key={"bar-chart-container-" + index} style={containerCssStyle}>
-                  <NivoBarChart
-                    key={"bar-chart-" + index}
-                    axes={chart["axes"]}
-                    keys={barData.keys}
-                    colors={barData.colors}
-                    data={barData.data} />
-                </div>
-        } else if (chartType == "scatter") {
-          const scatterData = self.getNivoScatterData(data, chart["axes"])
-          el = <div key={"scatter-chart-container-" + index} style={containerCssStyle}>
-                  <NivoScatterChart
-                    key={"scatter-chart-" + index}
-                    axes={chart["axes"]}
-                    data={scatterData.data} />
-                </div>
-        } else if (chartType == "area") {
-          const lineData = self.getNivoLineData(data, chart["axes"])
-          el = <div key={"line-chart-container-" + index} style={containerCssStyle}>
-                  <NivoLineChart
-                    key={"line-chart-" + index}
-                    enableArea={true}
-                    axes={chart["axes"]}
-                    colors={lineData.colors}
-                    data={lineData.data} />
-                </div>
-        } else if (chartType == "pie") {
-          const pieData = self.getNivoPieData(data, chart["group"], chart["value"], chart["colors"])
-          el = <div key={"pie-chart-container-" + index} style={containerCssStyle}>
+      if (chartType == "line") {
+        const lineData = self.getNivoLineData(data, chart["axes"])
+        el = <div key={"line-chart-container-" + index} style={containerCssStyle}
+                className={colXClass + " " + colSpanClass}
+              >
+                <NivoLineChart
+                  key={"line-chart-" + index}
+                  axes={chart["axes"]}
+                  colors={lineData.colors}
+                  data={lineData.data} />
+              </div>
+      } else if (chartType == "bar") {
+        const barData = self.getNivoBarData(data, chart["axes"])
+        el = <div key={"bar-chart-container-" + index} style={containerCssStyle}
+                className={colXClass + " " + colSpanClass}
+              >
+                <NivoBarChart
+                  key={"bar-chart-" + index}
+                  axes={chart["axes"]}
+                  keys={barData.keys}
+                  colors={barData.colors}
+                  data={barData.data} />
+              </div>
+      } else if (chartType == "scatter") {
+        const scatterData = self.getNivoScatterData(data, chart["axes"])
+        el = <div key={"scatter-chart-container-" + index} style={containerCssStyle}
+                className={colXClass + " " + colSpanClass}
+              >
+                <NivoScatterChart
+                  key={"scatter-chart-" + index}
+                  axes={chart["axes"]}
+                  data={scatterData.data} />
+              </div>
+      } else if (chartType == "area") {
+        const lineData = self.getNivoLineData(data, chart["axes"])
+        el = <div key={"line-chart-container-" + index} style={containerCssStyle}
+                className={colXClass + " " + colSpanClass}
+              >
+                <NivoLineChart
+                  key={"line-chart-" + index}
+                  enableArea={true}
+                  axes={chart["axes"]}
+                  colors={lineData.colors}
+                  data={lineData.data} />
+              </div>
+      } else if (chartType == "pie") {
+        const pieData = self.getNivoPieData(data, chart["group"], chart["value"], chart["colors"])
+        el = <div key={"pie-chart-container-" + index} style={containerCssStyle}
+                className={colXClass + " " + colSpanClass}
+              >
                 <NivoPieChart
                   key={"pie-chart-" + index}
                   data={pieData} />
-              </div>
-        }
+            </div>
       }
       els.push(el)
     })
-    if (layout["type"] == "grid") {
-      let gridEl = <div className={"grid grid-cols-" + layout["details"][0]["cols"] + " gap-2"}>{els}</div>
-      return gridEl
-    } else {
-      return els
-    }
+    let gridEl = <div className={"grid grid-cols-" + this.json["columns"] + " gap-2"}>{els}</div>
+    return gridEl
   }
 }
 

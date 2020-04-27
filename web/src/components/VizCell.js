@@ -26,12 +26,6 @@ export const Success = ({ viz }) => {
   const charts = grammarParser.parse()
   const vizInfo = grammarParser.getVizInfo()
   let cssStyle = {}
-  if (vizData["layout"]["type"] == "fixed") {
-    cssStyle = {
-      width: vizData["layout"]["width"],
-      height: vizData["layout"]["height"]
-    }
-  }
   return (
     <div>
       <Header name={vizInfo["name"]}/>

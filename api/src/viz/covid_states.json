@@ -1,15 +1,8 @@
 {
   "name": "Covid States",
   "description": "Example Viz",
-  "layout": {
-    "type": "grid",
-    "details": [
-      {
-        "cols": 1,
-        "rows": 1
-      }
-    ]
-  },
+  "columns": 1,
+  "rows": 1,
   "data": [
     {
       "name": "table",
@@ -18,6 +11,12 @@
   ],
   "charts": [
     { "type": "bar", "data": "table", "height": 300,
+      "position": {
+        "columns": 1,
+        "rows": 1,
+        "x": 0,
+        "y": 0
+      },
       "axes": {
         "x": {
           "label": "state",

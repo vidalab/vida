@@ -27,7 +27,7 @@ const NivoLineChart = (props: LineChartProps) => (
           tickPadding: 5,
           tickRotation: 0,
           legend: props.axes && props.axes.y.label,
-          legendOffset: -40,
+          legendOffset: -45,
           legendPosition: 'middle',
           format: (e) => {return DisplayFormatter.formatKMB(e)}
       }}
