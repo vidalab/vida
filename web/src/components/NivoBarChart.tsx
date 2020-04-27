@@ -30,7 +30,7 @@ const NivoBarChart = (props: ChartProps) => (
             legend: props.axes && props.axes.y.label,
             legendPosition: 'middle',
             legendOffset: -40,
-            format: (e) => {return DisplayFormatter.formatKMG(e)}
+            format: (e) => {return DisplayFormatter.formatKMB(e)}
         }}
         labelSkipWidth={12}
         labelSkipHeight={12}

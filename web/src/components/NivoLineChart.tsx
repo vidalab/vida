@@ -29,7 +29,7 @@ const NivoLineChart = (props: LineChartProps) => (
           legend: props.axes && props.axes.y.label,
           legendOffset: -40,
           legendPosition: 'middle',
-          format: (e) => {return DisplayFormatter.formatKMG(e)}
+          format: (e) => {return DisplayFormatter.formatKMB(e)}
       }}
       colors={props.colors}
       pointSize={10}
