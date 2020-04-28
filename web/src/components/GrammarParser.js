@@ -113,13 +113,15 @@ class GrammarParser {
       const data = self.getData(dataName)
       const colX = chart["position"]["x"] + 1,
             colSpan = chart["position"]["columns"],
+            rowSpan = chart["position"]["rows"],
             colXClass = "col-start-" + colX,
-            colSpanClass = "col-span-" + colSpan
+            colSpanClass = "col-span-" + colSpan,
+            rowSpanClass = "row-span-" + rowSpan
       let el = null
       if (chartType == "line") {
         const lineData = self.getNivoLineData(data, chart["axes"])
         el = <div key={"line-chart-container-" + index} style={containerCssStyle}
-                className={colXClass + " " + colSpanClass}
+                className={colXClass + " " + colSpanClass + " " + rowSpanClass}
               >
                 <NivoLineChart
                   key={"line-chart-" + index}
@@ -130,7 +132,7 @@ class GrammarParser {
       } else if (chartType == "bar") {
         const barData = self.getNivoBarData(data, chart["axes"])
         el = <div key={"bar-chart-container-" + index} style={containerCssStyle}
-                className={colXClass + " " + colSpanClass}
+                className={colXClass + " " + colSpanClass + " " + rowSpanClass}
               >
                 <NivoBarChart
                   key={"bar-chart-" + index}
@@ -142,7 +144,7 @@ class GrammarParser {
       } else if (chartType == "scatter") {
         const scatterData = self.getNivoScatterData(data, chart["axes"])
         el = <div key={"scatter-chart-container-" + index} style={containerCssStyle}
-                className={colXClass + " " + colSpanClass}
+                className={colXClass + " " + colSpanClass + " " + rowSpanClass}
               >
                 <NivoScatterChart
                   key={"scatter-chart-" + index}
@@ -152,7 +154,7 @@ class GrammarParser {
       } else if (chartType == "area") {
         const lineData = self.getNivoLineData(data, chart["axes"])
         el = <div key={"line-chart-container-" + index} style={containerCssStyle}
-                className={colXClass + " " + colSpanClass}
+                className={colXClass + " " + colSpanClass + " " + rowSpanClass}
               >
                 <NivoLineChart
                   key={"line-chart-" + index}
@@ -164,7 +166,7 @@ class GrammarParser {
       } else if (chartType == "pie") {
         const pieData = self.getNivoPieData(data, chart["group"], chart["value"], chart["colors"])
         el = <div key={"pie-chart-container-" + index} style={containerCssStyle}
-                className={colXClass + " " + colSpanClass}
+                className={colXClass + " " + colSpanClass + " " + rowSpanClass}
               >
                 <NivoPieChart
                   key={"pie-chart-" + index}
@@ -173,7 +175,9 @@ class GrammarParser {
       }
       els.push(el)
     })
-    let gridEl = <div className={"grid grid-cols-" + this.json["columns"] + " gap-2"} style={containerCssStyle}>{els}</div>
+    let gridEl = <div
+      className={"grid grid-cols-" + this.json["columns"] + " grid-rows-" + this.json["rows"] + " gap-2"}
+      style={containerCssStyle}>{els}</div>
     return gridEl
   }
 }
