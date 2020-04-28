@@ -1,6 +1,6 @@
 {
-  "name": "Covid Cases in the United States",
-  "description": "Data from covidtracking.com",
+  "name": "Covid Trend in the United States",
+  "description": "Data from covidtracking.com.",
   "columns": 3,
   "rows": 3,
   "data": [
@@ -38,7 +38,7 @@
     },
     {
       "type": "line", "data": "us-daily",
-      "title": "Total Cases Positive vs. Death",
+      "title": "Positive vs. Death Increase",
       "position": {
         "columns": 2,
         "rows": 1,
@@ -57,15 +57,15 @@
         "y": {
           "label": "count",
           "dataColumns": [
-            {"name": "positive", "color": "#8884d8"},
-            {"name": "death", "color": "#82ca9d"}
+            {"name": "positiveIncrease", "color": "#8884d8"},
+            {"name": "deathIncrease", "color": "#82ca9d"}
           ]
         }
       }
     },
     {
       "type": "line", "data": "us-daily",
-      "title": "Total Cases Positive vs. Hospitalized",
+      "title": "Positive vs. Hospitalized Increase",
       "position": {
         "columns": 2,
         "rows": 1,
@@ -84,15 +84,15 @@
         "y": {
           "label": "count",
           "dataColumns": [
-            {"name": "positive", "color": "#8884d8"},
-            {"name": "hospitalizedCumulative", "color": "#82ca9d"}
+            {"name": "positiveIncrease", "color": "#8884d8"},
+            {"name": "hospitalizedIncrease", "color": "#82ca9d"}
           ]
         }
       }
     },
     {
       "type": "line", "data": "us-daily",
-      "title": "Total Cases Positive vs. Negative",
+      "title": "Positive vs. Negative Increase",
       "position": {
         "columns": 2,
         "rows": 1,
@@ -111,8 +111,8 @@
         "y": {
           "label": "count",
           "dataColumns": [
-            {"name": "positive", "color": "#8884d8"},
-            {"name": "negative", "color": "#82ca9d"}
+            {"name": "positiveIncrease", "color": "#8884d8"},
+            {"name": "negativeIncrease", "color": "#82ca9d"}
           ]
         }
       }
