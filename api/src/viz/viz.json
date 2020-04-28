@@ -32,7 +32,7 @@
     }
   ],
   "charts": [
-    { "type": "line", "data": "table", "height": 300,
+    { "type": "line", "data": "table",
       "position": {
         "columns": 1,
         "rows": 1,
@@ -53,7 +53,7 @@
         }
       }
     },
-    { "type": "bar", "data": "table", "height": 300,
+    { "type": "bar", "data": "table",
       "position": {
         "columns": 1,
         "rows": 1,
@@ -74,7 +74,7 @@
         }
       }
     },
-    { "type": "area", "data": "table", "height": 300,
+    { "type": "area", "data": "table",
       "position": {
         "columns": 1,
         "rows": 1,

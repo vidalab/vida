@@ -1,7 +1,6 @@
 import GrammarParser from './GrammarParser'
 import Header from '../pages/Common/Header'
 import Footer from '../pages/Common/Footer'
-import NivoScatterChart from './NivoScatterChart';
 
 export const QUERY = gql`
   query($name: String!) {
@@ -12,7 +11,7 @@ export const QUERY = gql`
   }
 `
 
-export const containerClassName = "container w-full mx-auto px-6 pt-6";
+export const containerClassName = "container w-full mx-auto px-2 pt-2";
 
 export const Loading = () => <div className={containerClassName + " text-center"}>Loading...</div>
 
@@ -25,16 +24,15 @@ export const Success = ({ viz }) => {
   const grammarParser = new GrammarParser(vizData)
   const charts = grammarParser.parse()
   const vizInfo = grammarParser.getVizInfo()
-  let cssStyle = {}
+  let cssStyle = {
+    height: "calc(100% - 100px)"
+  }
   return (
-    <div>
+    <div style={{height: "100%"}}>
       <Header name={vizInfo["name"]}/>
-      <div className={containerClassName}>
-        <div style={cssStyle}>
-          {charts}
-        </div>
+      <div className={containerClassName} style={cssStyle}>
+        {charts}
       </div>
-      <NivoScatterChart />
       <Footer description={vizInfo["description"]}/>
     </div>
   )

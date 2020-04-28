@@ -10,7 +10,7 @@
     }
   ],
   "charts": [
-    { "type": "bar", "data": "table", "height": 300,
+    { "type": "bar", "data": "table",
       "position": {
         "columns": 1,
         "rows": 1,

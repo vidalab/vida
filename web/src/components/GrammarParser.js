@@ -103,14 +103,14 @@ class GrammarParser {
   parse() {
     let els = []
     let self = this
+    const containerCssStyle = {
+      width: "100%",
+      height: "100%"
+    }
     this.json["charts"].forEach((chart, index) => {
       const chartType = chart["type"]
       const dataName = chart["data"]
       const data = self.getData(dataName)
-      const containerCssStyle = {
-        width: "100%",
-        height: chart["height"]
-      }
       const colX = chart["position"]["x"] + 1,
             colSpan = chart["position"]["columns"],
             colXClass = "col-start-" + colX,
@@ -173,7 +173,7 @@ class GrammarParser {
       }
       els.push(el)
     })
-    let gridEl = <div className={"grid grid-cols-" + this.json["columns"] + " gap-2"}>{els}</div>
+    let gridEl = <div className={"grid grid-cols-" + this.json["columns"] + " gap-2"} style={containerCssStyle}>{els}</div>
     return gridEl
   }
 }
