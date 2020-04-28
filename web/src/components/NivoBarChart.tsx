@@ -1,13 +1,14 @@
 import { MARGIN } from './Constants';
 import { ResponsiveBar } from '@nivo/bar'
-import { ChartProps } from './ChartProps'
+import { BarCharProps } from './ChartProps'
 import DisplayFormatter from './DisplayFormatter';
 
-const NivoBarChart = (props: ChartProps) => (
+const NivoBarChart = (props: BarCharProps) => (
     <ResponsiveBar
         data={props.data}
         keys={props.keys}
         enableLabel={false}
+        layout={props.horizontal ? 'horizontal' : 'vertical'}
         indexBy={props.axes && props.axes.x.dataColumn}
         margin={{ top: MARGIN.top, right: MARGIN.right, bottom: MARGIN.bottom, left: MARGIN.left }}
         padding={0.1}
@@ -21,7 +22,8 @@ const NivoBarChart = (props: ChartProps) => (
             tickRotation: 0,
             legend: props.axes && props.axes.x.label,
             legendPosition: 'middle',
-            legendOffset: 32
+            legendOffset: 32,
+            format: (e) => {return (!props.horizontal ? e : DisplayFormatter.formatKMB(e))}
         }}
         axisLeft={{
             tickSize: 5,
@@ -30,7 +32,7 @@ const NivoBarChart = (props: ChartProps) => (
             legend: props.axes && props.axes.y.label,
             legendPosition: 'middle',
             legendOffset: -45,
-            format: (e) => {return DisplayFormatter.formatKMB(e)}
+            format: (e) => {return (props.horizontal ? e : DisplayFormatter.formatKMB(e))}
         }}
         labelSkipWidth={12}
         labelSkipHeight={12}

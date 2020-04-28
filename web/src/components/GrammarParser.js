@@ -141,6 +141,19 @@ class GrammarParser {
                   colors={barData.colors}
                   data={barData.data} />
               </div>
+      } else if (chartType == "horizontal-bar") {
+        const barData = self.getNivoBarData(data, chart["axes"])
+        el = <div key={"horizontal-bar-chart-container-" + index} style={containerCssStyle}
+                className={colXClass + " " + colSpanClass + " " + rowSpanClass}
+              >
+                <NivoBarChart
+                  key={"horizontal-bar-chart-" + index}
+                  horizontal={true}
+                  axes={chart["axes"]}
+                  keys={barData.keys}
+                  colors={barData.colors}
+                  data={barData.data} />
+              </div>
       } else if (chartType == "scatter") {
         const scatterData = self.getNivoScatterData(data, chart["axes"])
         el = <div key={"scatter-chart-container-" + index} style={containerCssStyle}

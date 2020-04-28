@@ -19,3 +19,7 @@ export interface ChartProps {
 export interface LineChartProps extends ChartProps {
   enableArea: boolean
 }
+
+export interface BarCharProps extends ChartProps {
+  horizontal: boolean
+}
