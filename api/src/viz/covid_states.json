@@ -1,16 +1,21 @@
 {
   "name": "Covid States",
   "description": "Example Viz",
-  "columns": 2,
+  "columns": 3,
   "rows": 3,
   "data": [
     {
-      "name": "table",
+      "name": "states-current",
       "url": "https://covidtracking.com/api/v1/states/current.json"
+    },
+    {
+      "name": "us-daily",
+      "url": "https://covidtracking.com/api/v1/us/daily.json"
     }
   ],
   "charts": [
-    { "type": "horizontal-bar", "data": "table",
+    { "type": "horizontal-bar", "data": "states-current",
+      "title": "Cases by States",
       "position": {
         "columns": 1,
         "rows": 3,
@@ -27,6 +32,31 @@
           "dataColumns": [
             {"name": "positive", "color": "#8884d8"},
             {"name": "negative", "color": "#82ca9d"}
+          ]
+        }
+      }
+    },
+    {
+      "type": "line", "data": "us-daily",
+      "position": {
+        "columns": 2,
+        "rows": 1,
+        "x": 1,
+        "y": 0
+      },
+      "axes": {
+        "x": {
+          "label": "date",
+          "dataColumn": "date",
+          "dataType": "time",
+          "dataFormat": "%Y%m%d",
+          "displayFormat": "%b %d",
+          "timePrecision": "day"
+        },
+        "y": {
+          "label": "count",
+          "dataColumns": [
+            {"name": "positive", "color": "#8884d8"}
           ]
         }
       }

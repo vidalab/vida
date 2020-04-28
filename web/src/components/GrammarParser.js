@@ -3,39 +3,6 @@ import NivoBarChart from "./NivoBarChart"
 import NivoScatterChart from "./NivoScatterChart"
 import NivoPieChart from "./NivoPieChart"
 
-const pieTestData = [
-  {
-    "id": "css",
-    "label": "css",
-    "value": 137,
-    "color": "hsl(209, 70%, 50%)"
-  },
-  {
-    "id": "javascript",
-    "label": "javascript",
-    "value": 384,
-    "color": "hsl(147, 70%, 50%)"
-  },
-  {
-    "id": "python",
-    "label": "python",
-    "value": 549,
-    "color": "hsl(174, 70%, 50%)"
-  },
-  {
-    "id": "stylus",
-    "label": "stylus",
-    "value": 531,
-    "color": "hsl(148, 70%, 50%)"
-  },
-  {
-    "id": "c",
-    "label": "c",
-    "value": 442,
-    "color": "hsl(244, 70%, 50%)"
-  }
-]
-
 class GrammarParser {
   constructor(json) {
     this.json = json
@@ -148,6 +115,7 @@ class GrammarParser {
               >
                 <NivoBarChart
                   key={"horizontal-bar-chart-" + index}
+                  chartTitle={chart["title"]}
                   horizontal={true}
                   axes={chart["axes"]}
                   keys={barData.keys}
