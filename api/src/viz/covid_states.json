@@ -1,6 +1,6 @@
 {
-  "name": "Covid States",
-  "description": "Example Viz",
+  "name": "Covid Cases in the United States",
+  "description": "Data from covidtracking.com.",
   "columns": 3,
   "rows": 3,
   "data": [
@@ -38,6 +38,7 @@
     },
     {
       "type": "line", "data": "us-daily",
+      "title": "Daily Cases Positive vs. Death",
       "position": {
         "columns": 2,
         "rows": 1,
@@ -56,7 +57,62 @@
         "y": {
           "label": "count",
           "dataColumns": [
-            {"name": "positive", "color": "#8884d8"}
+            {"name": "positive", "color": "#8884d8"},
+            {"name": "death", "color": "#82ca9d"}
+          ]
+        }
+      }
+    },
+    {
+      "type": "line", "data": "us-daily",
+      "title": "Daily Cases Positive vs. Recovered",
+      "position": {
+        "columns": 2,
+        "rows": 1,
+        "x": 1,
+        "y": 0
+      },
+      "axes": {
+        "x": {
+          "label": "date",
+          "dataColumn": "date",
+          "dataType": "time",
+          "dataFormat": "%Y%m%d",
+          "displayFormat": "%b %d",
+          "timePrecision": "day"
+        },
+        "y": {
+          "label": "count",
+          "dataColumns": [
+            {"name": "positive", "color": "#8884d8"},
+            {"name": "recovered", "color": "#82ca9d"}
+          ]
+        }
+      }
+    },
+    {
+      "type": "line", "data": "us-daily",
+      "title": "Daily Cases Positive vs. Negative",
+      "position": {
+        "columns": 2,
+        "rows": 1,
+        "x": 1,
+        "y": 0
+      },
+      "axes": {
+        "x": {
+          "label": "date",
+          "dataColumn": "date",
+          "dataType": "time",
+          "dataFormat": "%Y%m%d",
+          "displayFormat": "%b %d",
+          "timePrecision": "day"
+        },
+        "y": {
+          "label": "count",
+          "dataColumns": [
+            {"name": "positive", "color": "#8884d8"},
+            {"name": "negative", "color": "#82ca9d"}
           ]
         }
       }

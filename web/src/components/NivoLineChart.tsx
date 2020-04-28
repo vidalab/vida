@@ -4,27 +4,37 @@ import { LineChartProps } from './ChartProps'
 import DisplayFormatter from './DisplayFormatter'
 
 const NivoLineChart = (props: LineChartProps) => {
-    const xScaleOpts = {
-        type: props.axes && props.axes.x.dataType ? props.axes.x.dataType : "point",
-        format: props.axes && props.axes.x.dataFormat,
-        precision: props.axes && props.axes.x.timePrecision
-    }
-    const axisBottomOpts = {
-        format: props.axes && props.axes.x.displayFormat,
-        legend: props.axes && props.axes.x.label,
-        legendOffset: 36,
-        legendPosition: 'middle'
-    }
-    return (<ResponsiveLine
-      data={props.data}
-      enableArea={props.enableArea}
-      margin={{ top: MARGIN.top, right: MARGIN.right, bottom: MARGIN.bottom, left: MARGIN.left }}
-      xScale={xScaleOpts}
-      yScale={{ type: 'linear', min: props.enableArea ? 0 : 'auto', max: 'auto', stacked: true, reverse: false }}
-      axisTop={null}
-      axisRight={null}
-      axisBottom={axisBottomOpts}
-      axisLeft={{
+  const xScaleOpts = {
+    type: props.axes && props.axes.x.dataType ? props.axes.x.dataType : "point",
+    format: props.axes && props.axes.x.dataFormat,
+    precision: props.axes && props.axes.x.timePrecision
+  }
+  const axisBottomOpts = {
+    format: props.axes && props.axes.x.displayFormat,
+    legend: props.axes && props.axes.x.label,
+    legendOffset: 36,
+    legendPosition: 'middle'
+  }
+  return (
+    <div style={{ height: "100%" }}>
+      <div className="text-center text-gray-700 font-medium">{props.chartTitle}</div>
+      <ResponsiveLine
+        data={props.data}
+        enableArea={props.enableArea}
+        margin={{ top: MARGIN.top, right: MARGIN.right, bottom: MARGIN.bottom, left: MARGIN.left }}
+        xScale={xScaleOpts}
+        yScale={{ type: 'linear', min: props.enableArea ? 0 : 'auto', max: 'auto', stacked: false, reverse: false }}
+        axisTop={null}
+        axisRight={null}
+        axisBottom={axisBottomOpts}
+        xFormat={(d) => {
+          if (props.axes.x.dataType == "time") {
+            return "April 28"
+          } else {
+            return d.toString()
+          }
+        }}
+        axisLeft={{
           orient: 'left',
           tickSize: 5,
           tickPadding: 5,
@@ -32,14 +42,15 @@ const NivoLineChart = (props: LineChartProps) => {
           legend: props.axes && props.axes.y.label,
           legendOffset: -45,
           legendPosition: 'middle',
-          format: (e) => {return DisplayFormatter.formatKMB(e)}
-      }}
-      colors={props.colors}
-      pointColor={{ theme: 'background' }}
-      pointLabel="y"
-      pointLabelYOffset={-12}
-      legends={[
-        {
+          format: (e) => { return DisplayFormatter.formatKMB(e) }
+        }}
+        colors={props.colors}
+        pointColor={{ theme: 'background' }}
+        pointLabel="y"
+        pointLabelYOffset={-12}
+        useMesh={true}
+        legends={[
+          {
             anchor: 'bottom-right',
             direction: 'column',
             justify: false,
@@ -54,17 +65,19 @@ const NivoLineChart = (props: LineChartProps) => {
             symbolShape: 'circle',
             symbolBorderColor: 'rgba(0, 0, 0, .5)',
             effects: [
-                {
-                    on: 'hover',
-                    style: {
-                        itemBackground: 'rgba(0, 0, 0, .03)',
-                        itemOpacity: 1
-                    }
+              {
+                on: 'hover',
+                style: {
+                  itemBackground: 'rgba(0, 0, 0, .03)',
+                  itemOpacity: 1
                 }
+              }
             ]
-        }
-      ]}
-    />)
+          }
+        ]}
+      />
+    </div>
+  )
 }
 
 export default NivoLineChart

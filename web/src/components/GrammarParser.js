@@ -37,10 +37,13 @@ class GrammarParser {
       colors.push(yAxis["color"])
       let lData = {id: yAxis["name"], color: yAxis["color"], data: []}
       dataArray.forEach((d) => {
-        lData.data.push({x: d[axes["x"]["dataColumn"]], y: d[yAxis["name"]]})
+        if (!isNaN(d[yAxis["name"]])) {
+          lData.data.push({x: d[axes["x"]["dataColumn"]], y: d[yAxis["name"]]})
+        }
       })
       lineData.push(lData)
     })
+    console.log(lineData)
     return {data: lineData, colors: colors}
   }
 
@@ -92,6 +95,7 @@ class GrammarParser {
               >
                 <NivoLineChart
                   key={"line-chart-" + index}
+                  chartTitle={chart["title"]}
                   axes={chart["axes"]}
                   colors={lineData.colors}
                   data={lineData.data} />
@@ -103,6 +107,7 @@ class GrammarParser {
               >
                 <NivoBarChart
                   key={"bar-chart-" + index}
+                  chartTitle={chart["title"]}
                   axes={chart["axes"]}
                   keys={barData.keys}
                   colors={barData.colors}
@@ -139,6 +144,7 @@ class GrammarParser {
               >
                 <NivoLineChart
                   key={"line-chart-" + index}
+                  chartTitle={chart["title"]}
                   enableArea={true}
                   axes={chart["axes"]}
                   colors={lineData.colors}
@@ -157,7 +163,7 @@ class GrammarParser {
       els.push(el)
     })
     let gridEl = <div
-      className={"grid grid-cols-" + this.json["columns"] + " grid-rows-" + this.json["rows"] + " gap-2"}
+      className={"grid grid-cols-" + this.json["columns"] + " grid-rows-" + this.json["rows"] + " gap-4"}
       style={containerCssStyle}>{els}</div>
     return gridEl
   }
