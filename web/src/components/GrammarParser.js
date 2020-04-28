@@ -43,7 +43,6 @@ class GrammarParser {
       })
       lineData.push(lData)
     })
-    console.log(lineData)
     return {data: lineData, colors: colors}
   }
 

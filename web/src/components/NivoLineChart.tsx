@@ -2,6 +2,7 @@ import { MARGIN } from './Constants'
 import { ResponsiveLine } from '@nivo/line'
 import { LineChartProps } from './ChartProps'
 import DisplayFormatter from './DisplayFormatter'
+import { timeFormat } from 'd3-time-format'
 
 const NivoLineChart = (props: LineChartProps) => {
   const xScaleOpts = {
@@ -29,7 +30,7 @@ const NivoLineChart = (props: LineChartProps) => {
         axisBottom={axisBottomOpts}
         xFormat={(d) => {
           if (props.axes.x.dataType == "time") {
-            return "April 28"
+            return timeFormat(props.axes && props.axes.x.displayFormat)(d)
           } else {
             return d.toString()
           }
