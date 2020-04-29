@@ -1,12 +1,10 @@
-import GrammarParser from './GrammarParser'
-import Header from '../pages/Common/Header'
-import Footer from '../pages/Common/Footer'
+import DataLoader from "./DataLoader";
 
 export const QUERY = gql`
   query($name: String!) {
-    viz: getViz(name: $name) {
+    result: getViz(name: $name) {
       name
-      data
+      vizName
     }
   }
 `
@@ -19,21 +17,8 @@ export const Empty = () => <div className={containerClassName + " text-center"}>
 
 export const Failure = ({ error }) => <div className={containerClassName + " text-center"}>Error: {error.message}</div>
 
-export const Success = ({ viz }) => {
-  const vizData = JSON.parse(viz.data)
-  const grammarParser = new GrammarParser(vizData)
-  const charts = grammarParser.parse()
-  const vizInfo = grammarParser.getVizInfo()
-  let cssStyle = {
-    height: "calc(100% - 100px)"
-  }
+export const Success = ({ result }) => {
   return (
-    <div style={{height: "100%"}}>
-      <Header name={vizInfo["name"]}/>
-      <div className={containerClassName} style={cssStyle}>
-        {charts}
-      </div>
-      <Footer description={vizInfo["description"]}/>
-    </div>
+    <DataLoader vizName={result.vizName}/>
   )
 }

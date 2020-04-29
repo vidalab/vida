@@ -1,7 +1,7 @@
 export const schema = gql`
   type VizJson {
     name: String!
-    data: String!
+    vizName: String!
   }
 
   type Query {
