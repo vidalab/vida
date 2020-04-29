@@ -2,7 +2,7 @@
   "name": "Redwood Viz",
   "description": "Example Viz",
   "columns": 2,
-  "rows": 2,
+  "rows": 3,
   "data": [
     {
       "name": "table",
