@@ -2,7 +2,7 @@
 
 This application allows you to create data visualization dashboard using JSON files. The JSON file works as a description of the dashboard.
 
-See a JSON file example here: https://github.com/vidalab/redwoodviz/blob/master/api/src/viz/viz.json
+See a JSON file example here: https://github.com/vidalab/vida/blob/master/web/public/viz/covid_states.json
 
 To run the dashboard with your own JSON file:
 
