@@ -1,11 +1,18 @@
-import VizCell from '../../components/VizCell'
+import Header from '../Common/Header'
+import Footer from '../Common/Footer'
+import { containerClassName } from '../../components/Constants'
 
 const HomePage = () => {
-  const name = 'viz'
+  let cssStyle = {
+    height: "calc(100% - 100px)"
+  }
   return (
-    <>
-      {<VizCell name={name} />}
-    </>
+    <div style={{height: "100%"}}>
+      <Header name="Vida"/>
+      <div className={containerClassName} style={cssStyle}>
+      </div>
+      <Footer description="Flexible Data Visualization"/>
+    </div>
   )
 }
 
