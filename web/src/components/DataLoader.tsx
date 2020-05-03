@@ -7,6 +7,7 @@ export const containerClassName = "container w-full mx-auto px-2 pt-2";
 
 interface DataLoaderProps {
   vizName: string
+  vizData: any
 }
 
 interface DataLoaderState {
@@ -15,27 +16,45 @@ interface DataLoaderState {
 
 class DataLoader extends Component<DataLoaderProps, DataLoaderState> {
   private vizName: string
+  private vizData: any
 
   constructor(props: DataLoaderProps) {
     super(props)
     this.vizName = props.vizName
+    this.vizData = props.vizData
     this.state = { data: null };
   }
 
+  async getDataUrl() {
+    for (const d of this.vizData["data"]) {
+      if (d["url"]) {
+        // retrieve data from url to send to client
+        const response = await fetch(d["url"])
+        const json = await response.json()
+        d["values"] = json
+      }
+    }
+    this.setState({ data: this.vizData })
+  }
+
   componentDidMount() {
-    window.fetch('/viz/' + this.vizName)
-      .then((res) => res.json())
-      .then(async (json) => {
-        for (const d of json["data"]) {
-          if (d["url"]) {
-            // retrieve data from url to send to client
-            const response = await fetch(d["url"])
-            const json = await response.json()
-            d["values"] = json
+    if (this.vizName) {
+      window.fetch('/viz/' + this.vizName)
+        .then((res) => res.json())
+        .then(async (json) => {
+          for (const d of json["data"]) {
+            if (d["url"]) {
+              // retrieve data from url to send to client
+              const response = await fetch(d["url"])
+              const json = await response.json()
+              d["values"] = json
+            }
           }
-        }
-        this.setState({ data: json })
-      })
+          this.setState({ data: json })
+        })
+    } else {
+      this.getDataUrl()
+    }
   }
 
   render() {

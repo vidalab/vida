@@ -20,9 +20,10 @@ const truncate = (text) => {
 }
 
 const timeTag = (datetime) => {
+  const d = new Date(datetime)
   return (
     <time dateTime={datetime} title={datetime}>
-      {new Date(datetime).toUTCString()}
+      {d.getUTCFullYear() + "/" + (d.getUTCMonth() + 1) + "/"+ d.getUTCDate()}
     </time>
   )
 }
@@ -41,9 +42,7 @@ const DashboardsList = ({ dashboards }) => {
       <table className="table-auto w-full min-w-3xl text-sm">
         <thead>
           <tr className="bg-gray-300 text-gray-700">
-            <th className="font-semibold text-left p-3">id</th>
             <th className="font-semibold text-left p-3">name</th>
-            <th className="font-semibold text-left p-3">json</th>
             <th className="font-semibold text-left p-3">createdAt</th>
             <th className="font-semibold text-left p-3">updatedAt</th>
             <th className="font-semibold text-left p-3">&nbsp;</th>
@@ -55,9 +54,7 @@ const DashboardsList = ({ dashboards }) => {
               key={dashboard.id}
               className="odd:bg-gray-100 even:bg-white border-t"
             >
-              <td className="p-3">{truncate(dashboard.id)}</td>
               <td className="p-3">{truncate(dashboard.name)}</td>
-              <td className="p-3">{truncate(dashboard.json)}</td>
               <td className="p-3">{timeTag(dashboard.createdAt)}</td>
               <td className="p-3">{timeTag(dashboard.updatedAt)}</td>
               <td className="p-3 pr-4 text-right whitespace-no-wrap">

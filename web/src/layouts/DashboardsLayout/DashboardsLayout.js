@@ -1,28 +1,10 @@
-import { Link, routes } from '@redwoodjs/router'
+import Header from '../../pages/Common/Header'
 
 const DashboardsLayout = (props) => {
   return (
-    <div className="rw-scaffold">
-      <div className="bg-white font-sans">
-        <header className="flex justify-between py-4 px-8">
-          <h1 className="text-xl font-semibold">
-            <Link
-              to={routes.dashboards()}
-              className="text-gray-700 hover:text-gray-900 hover:underline"
-            >
-              Dashboards
-            </Link>
-          </h1>
-          <Link
-            to={routes.newDashboard()}
-            className="flex bg-green-500 hover:bg-green-600 text-white text-xs font-semibold px-3 py-1 uppercase tracking-wide rounded"
-          >
-            <div className="text-xl leading-none">+</div>
-            <div className="ml-1 leading-loose">New Dashboard</div>
-          </Link>
-        </header>
-        <main className="mx-4 pb-4">{props.children}</main>
-      </div>
+    <div className="rw-scaffold" style={{height: "100%"}}>
+      <Header name="Vida"/>
+      <main className="mx-4 pb-4" style={{height: "100%"}}>{props.children}</main>
     </div>
   )
 }
