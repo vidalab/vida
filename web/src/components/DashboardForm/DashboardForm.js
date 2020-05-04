@@ -4,6 +4,7 @@ import {
   FieldError,
   Label,
   TextField,
+  TextAreaField,
   Submit,
 } from '@redwoodjs/web'
 
@@ -51,7 +52,7 @@ const DashboardForm = (props) => {
           className={CSS.label}
           errorClassName={CSS.labelError}
         />
-        <TextField
+        <TextAreaField
           name="json"
           defaultValue={props.dashboard?.json}
           className={CSS.input}
