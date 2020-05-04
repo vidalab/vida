@@ -65,6 +65,10 @@ class DataLoader extends Component<DataLoaderProps, DataLoaderState> {
       const vizInfo = grammarParser.getVizInfo()
       return (
         <div style={{height: "100%"}}>
+          {vizInfo["header"] &&
+            <Header name={vizInfo["header"]["text"]}
+                    backgroundColor={vizInfo["header"]["backgroundColor"]}
+                    align={vizInfo["header"]["align"]} />}
           <div className={containerClassName} style={{height: "calc(100% - 25px)"}}>
             {charts}
           </div>

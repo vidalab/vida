@@ -27,7 +27,7 @@ class GrammarParser {
   }
 
   getVizInfo() {
-    return {"name": this.json["name"], "description": this.json["description"]}
+    return {"name": this.json["name"], "description": this.json["description"], "header": this.json["header"]}
   }
 
   getNivoLineData(dataArray, axes) {
