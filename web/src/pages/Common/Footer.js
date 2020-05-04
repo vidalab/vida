@@ -2,7 +2,7 @@ const Footer = (props) => {
   return (
     <>
       <footer>
-        <div className="w-full">
+        <div className="w-full px-2">
           <span className="text-sm text-gray-700">
             {props.description}
           </span>

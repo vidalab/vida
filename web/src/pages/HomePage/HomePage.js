@@ -5,7 +5,7 @@ import DashboardsCell from '../../components/DashboardsCell/DashboardsCell'
 
 const HomePage = () => {
   let cssStyle = {
-    height: "calc(100% - 100px)"
+    height: "calc(100% - 80px)"
   }
   return (
     <div style={{height: "100%"}}>
