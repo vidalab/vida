@@ -1,4 +1,8 @@
-const Footer = (props) => {
+export interface FooterProps {
+  description: string
+}
+
+const Footer = (props: FooterProps) => {
   return (
     <>
       <footer>

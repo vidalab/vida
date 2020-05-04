@@ -55,7 +55,7 @@ const DashboardForm = (props) => {
         <TextAreaField
           name="json"
           defaultValue={props.dashboard?.json}
-          className={CSS.input}
+          className={CSS.input + " h-56"}
           errorClassName={CSS.inputError}
           validation={{ required: true }}
         />

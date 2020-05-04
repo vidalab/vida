@@ -64,6 +64,9 @@ class DataLoader extends Component<DataLoaderProps, DataLoaderState> {
       const charts = grammarParser.parse()
       const vizInfo = grammarParser.getVizInfo()
       let headerPadding = "80"
+      if (!vizInfo["header"]) {
+        headerPadding = "30"
+      }
       return (
         <div style={{height: "100%"}}>
           {vizInfo["header"] &&
