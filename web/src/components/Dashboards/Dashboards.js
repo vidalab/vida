@@ -69,25 +69,6 @@ const DashboardsList = ({ dashboards }) => {
                         Show
                       </Link>
                     </li>
-                    <li className="inline-block">
-                      <Link
-                        to={routes.editDashboard({ id: dashboard.id })}
-                        title={'Edit dashboard ' + dashboard.id}
-                        className="text-xs bg-gray-100 text-blue-600 hover:bg-blue-600 hover:text-white rounded-sm px-2 py-1 uppercase font-semibold tracking-wide"
-                      >
-                        Edit
-                      </Link>
-                    </li>
-                    <li className="inline-block">
-                      <a
-                        href="#"
-                        title={'Delete dashboard ' + dashboard.id}
-                        className="text-xs bg-gray-100 text-red-600 hover:bg-red-600 hover:text-white rounded-sm px-2 py-1 uppercase font-semibold tracking-wide"
-                        onClick={() => onDeleteClick(dashboard.id)}
-                      >
-                        Delete
-                      </a>
-                    </li>
                   </ul>
                 </nav>
               </td>
