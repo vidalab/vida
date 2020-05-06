@@ -1,4 +1,4 @@
-import { MARGIN } from './Constants'
+import { MARGIN } from '../Constants'
 import { ResponsiveLine } from '@nivo/line'
 import { LineChartProps } from './ChartProps'
 import DisplayFormatter from './DisplayFormatter'
