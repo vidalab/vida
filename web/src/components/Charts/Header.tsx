@@ -17,19 +17,10 @@ const Header = (props: HeaderProps) => {
           <div className="text-white">
             <Link
               to={routes.start()}
-              className="font-semibold text-xl tracking-tight inline-block mr-4"
+              className="font-semibold text-xl tracking-tight"
             >
               {props.name}
             </Link>
-
-            <div className="text-sm inline-block">
-              <a href="https://docs.vida.io" className="inline-block text-teal-200 hover:text-white mr-4">
-                Docs
-              </a>
-              <a href="https://blog.vida.io" className="inline-block text-teal-200 hover:text-white mr-4">
-                Blog
-              </a>
-            </div>
           </div>
         </nav>
       </header>

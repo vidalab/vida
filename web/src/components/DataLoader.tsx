@@ -1,5 +1,5 @@
 import { Component } from "react"
-import Header from '../pages/Common/Header'
+import Header from './Charts/Header'
 import Footer from '../pages/Common/Footer'
 import GrammarParser from './GrammarParser'
 
