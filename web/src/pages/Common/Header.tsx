@@ -11,7 +11,7 @@ const Header = (props: HeaderProps) => {
     backgroundColor: props.backgroundColor,
     textAlign: props.align
   }
-  return (<>
+  return (
       <header>
         <nav className="bg-teal-500 p-3" style={cssStyle}>
           <div className="text-white">
@@ -33,7 +33,7 @@ const Header = (props: HeaderProps) => {
           </div>
         </nav>
       </header>
-    </>
+
   )
 }
 

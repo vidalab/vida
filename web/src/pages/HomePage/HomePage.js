@@ -1,21 +1,29 @@
-import Header from '../Common/Header'
-import Footer from '../Common/Footer'
-import { containerClassName } from '../../components/Constants'
-import DashboardsCell from '../../components/DashboardsCell/DashboardsCell'
+import React, { Fragment } from 'react';
+import { useStyles } from '../../components/Constants'
+import CssBaseline from '@material-ui/core/CssBaseline';
+import HeaderBar from './HeaderBar';
+import SideNav from './SideNav';
+import MainPane from './MainPane';
 
-const HomePage = () => {
-  let cssStyle = {
-    height: "calc(100% - 80px)"
-  }
+export default function HomePage() {
+  const classes = useStyles();
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
+
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
+
   return (
-    <div style={{height: "100%"}}>
-      <Header name="Vida"/>
-      <div className={containerClassName} style={cssStyle}>
-        <DashboardsCell />
-      </div>
-      <Footer description="Flexible Data Visualization"/>
+    <div className={classes.root}>
+      <CssBaseline />
+      <HeaderBar handleDrawerOpen={handleDrawerOpen} open={open} />
+      <SideNav handleDrawerClose={handleDrawerClose} open={open} />
+      <MainPane open={open}/>
     </div>
-  )
+  );
 }
-
-export default HomePage
