@@ -2,12 +2,13 @@ import { Component } from "react"
 import Header from './Charts/Header'
 import Footer from '../pages/Common/Footer'
 import GrammarParser from './GrammarParser'
+import { JSONVizData } from './VizData'
 
 export const containerClassName = "container w-full mx-auto px-2 pt-2";
 
 interface DataLoaderProps {
   vizName: string
-  vizData: any
+  vizData: JSONVizData
 }
 
 interface DataLoaderState {
@@ -16,7 +17,7 @@ interface DataLoaderState {
 
 class DataLoader extends Component<DataLoaderProps, DataLoaderState> {
   private vizName: string
-  private vizData: any
+  private vizData: JSONVizData
 
   constructor(props: DataLoaderProps) {
     super(props)
