@@ -23,10 +23,10 @@ const Header = (props: HeaderProps) => {
             </Link>
 
             <div className="text-sm inline-block">
-              <a href="https://docs.vida.io" className="inline-block text-teal-200 hover:text-white mr-4">
+              <a href="https://docs.vida.io" target="_blank" className="inline-block text-teal-200 hover:text-white mr-4">
                 Docs
               </a>
-              <a href="https://blog.vida.io" className="inline-block text-teal-200 hover:text-white mr-4">
+              <a href="https://blog.vida.io" target="_blank" className="inline-block text-teal-200 hover:text-white mr-4">
                 Blog
               </a>
             </div>
