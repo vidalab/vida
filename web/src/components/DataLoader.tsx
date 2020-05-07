@@ -7,8 +7,8 @@ import { JSONVizData } from './VizData'
 export const containerClassName = "container w-full mx-auto px-2 pt-2";
 
 interface DataLoaderProps {
-  vizName: string
-  vizData: JSONVizData
+  vizName?: string
+  vizData?: JSONVizData
 }
 
 interface DataLoaderState {

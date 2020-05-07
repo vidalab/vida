@@ -8471,10 +8471,12 @@ neo-async@^2.5.0, neo-async@^2.6.1:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.1.tgz#ac27ada66167fa8849a6addd837f6b189ad2081c"
   integrity sha512-iyam8fBuCUpWeKPGpaNMetEocMt364qkCsfL9JuhjXX6dRnguRVOfk2GZaDpPjcOKiiXCPINZC1GczQ7iTq3Zw==
 
-netlify-plugin-prisma-provider@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/netlify-plugin-prisma-provider/-/netlify-plugin-prisma-provider-0.1.0.tgz#ebd283bf74d54cb913a4e612e6a85639c37939b6"
-  integrity sha512-EnsIPl0BlpOLxn28R3dSdn2l3KOV1feS65gmfQ0iSkn1lsOk+7tcBO3HpEnTWkoBo3L9bSECMAboTQ14M1Y4Mw==
+netlify-plugin-prisma-provider@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/netlify-plugin-prisma-provider/-/netlify-plugin-prisma-provider-0.3.0.tgz#8b56ddf35c350583b6265a5579fe7921a5e13843"
+  integrity sha512-o4rnxWNHDg1yJGnpKAtMX5eGgazkuKru+Qa13+t/SIxg2wmMXvnMvkzXB5kd5LnAov0bODT7DIQrHA2k5wiMCQ==
+  dependencies:
+    glob "^7.1.6"
 
 nice-try@^1.0.4:
   version "1.0.5"
