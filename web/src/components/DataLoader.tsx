@@ -60,7 +60,7 @@ class DataLoader extends Component<DataLoaderProps, DataLoaderState> {
         headerPadding = "30"
       }
       return (
-        <div style={{height: "100%"}}>
+        <div style={{height: "100%", width: "100%"}}>
           {vizInfo["header"] &&
             <Header name={vizInfo["header"]["text"]}
                     backgroundColor={vizInfo["header"]["backgroundColor"]}
