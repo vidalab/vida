@@ -11,11 +11,11 @@ class GrammarParser {
     this.json = json
   }
 
-  private getData = (name: string): any => {
+  private getData = (name: string): object[] => {
     let values = null
-    this.json["data"].forEach((d) => {
-      if (d["name"] == name) {
-        values = d["values"]
+    this.json.data.forEach((d) => {
+      if (d.name == name) {
+        values = d.values
       }
     })
     return values
@@ -27,10 +27,6 @@ class GrammarParser {
       dataPoints.push({"id": d[group], "label": d[group], "value": d[value], "color": colors[index % colors]})
     })
     return dataPoints
-  }
-
-  private getVizInfo = (): any => {
-    return {"name": this.json["name"], "description": this.json["description"], "header": this.json["header"]}
   }
 
   private getNivoLineData = (dataArray: any, axes: any): any => {
@@ -72,26 +68,30 @@ class GrammarParser {
     return {data: dataArray}
   }
 
-  private parse = () => {
-    let els = []
+  public getVizInfo = (): any => {
+    return {"name": this.json["name"], "description": this.json["description"], "header": this.json["header"]}
+  }
+
+  public parse = () => {
+    let els: JSX.Element[] = []
     let self = this
     const containerCssStyle = {
       width: "100%",
       height: "100%"
     }
-    this.json["charts"].forEach((chart, index) => {
-      const chartType = chart["type"]
-      const dataName = chart["data"]
+    this.json.charts.forEach((chart, index) => {
+      const chartType = chart.type
+      const dataName = chart.data
       const data = self.getData(dataName)
-      const colX = chart["position"]["x"] + 1,
-            colSpan = chart["position"]["columns"],
-            rowSpan = chart["position"]["rows"],
+      const colX = chart.position.x + 1,
+            colSpan = chart.position.columns,
+            rowSpan = chart.position.rows,
             colXClass = "col-start-" + colX,
             colSpanClass = "col-span-" + colSpan,
             rowSpanClass = "row-span-" + rowSpan
-      let el = null
+      let el: JSX.Element = null
       if (chartType == "line") {
-        const lineData = self.getNivoLineData(data, chart["axes"])
+        const lineData = self.getNivoLineData(data, chart.axes)
         el = <div key={"line-chart-container-" + index} style={containerCssStyle}
                 className={colXClass + " " + colSpanClass + " " + rowSpanClass}
               >
@@ -103,7 +103,7 @@ class GrammarParser {
                   data={lineData.data} />
               </div>
       } else if (chartType == "bar") {
-        const barData = self.getNivoBarData(data, chart["axes"])
+        const barData = self.getNivoBarData(data, chart.axes)
         el = <div key={"bar-chart-container-" + index} style={containerCssStyle}
                 className={colXClass + " " + colSpanClass + " " + rowSpanClass}
               >
@@ -116,7 +116,7 @@ class GrammarParser {
                   data={barData.data} />
               </div>
       } else if (chartType == "horizontal-bar") {
-        const barData = self.getNivoBarData(data, chart["axes"])
+        const barData = self.getNivoBarData(data, chart.axes)
         el = <div key={"horizontal-bar-chart-container-" + index} style={containerCssStyle}
                 className={colXClass + " " + colSpanClass + " " + rowSpanClass}
               >
@@ -130,7 +130,7 @@ class GrammarParser {
                   data={barData.data} />
               </div>
       } else if (chartType == "scatter") {
-        const scatterData = self.getNivoScatterData(data, chart["axes"])
+        const scatterData = self.getNivoScatterData(data)
         el = <div key={"scatter-chart-container-" + index} style={containerCssStyle}
                 className={colXClass + " " + colSpanClass + " " + rowSpanClass}
               >
@@ -140,7 +140,7 @@ class GrammarParser {
                   data={scatterData.data} />
               </div>
       } else if (chartType == "area") {
-        const lineData = self.getNivoLineData(data, chart["axes"])
+        const lineData = self.getNivoLineData(data, chart.axes)
         el = <div key={"line-chart-container-" + index} style={containerCssStyle}
                 className={colXClass + " " + colSpanClass + " " + rowSpanClass}
               >
@@ -153,7 +153,7 @@ class GrammarParser {
                   data={lineData.data} />
               </div>
       } else if (chartType == "pie") {
-        const pieData = self.getNivoPieData(data, chart["group"], chart["value"], chart["colors"])
+        const pieData = self.getNivoPieData(data, chart.group, chart.value, chart.colors)
         el = <div key={"pie-chart-container-" + index} style={containerCssStyle}
                 className={colXClass + " " + colSpanClass + " " + rowSpanClass}
               >
@@ -165,7 +165,7 @@ class GrammarParser {
       els.push(el)
     })
     let gridEl = <div
-      className={"grid grid-cols-" + this.json["columns"] + " grid-rows-" + this.json["rows"] + " gap-4"}
+      className={"grid grid-cols-" + this.json.columns + " grid-rows-" + this.json.rows + " gap-4"}
       style={containerCssStyle}>{els}</div>
     return gridEl
   }

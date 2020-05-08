@@ -1,24 +1,14 @@
-export interface Axis {
-  label: string
-  dataColumn?: string
-  dataColumns?: string[]
-  dataType?: string
-  dataFormat?: string
-  displayFormat?: string
-  timePrecision?: string
-}
-
-export interface XYAxes {
-  x: Axis,
-  y: Axis
-}
+import { XYAxes } from '../VizData'
 
 export interface ChartProps {
-  data: Object,
-  axes: XYAxes,
-  colors: string[],
-  keys?: string[],
+  data: Object
+  axes: XYAxes
+  colors: string[]
+  keys?: string[]
   chartTitle: string
+  // pie chart
+  group?: string
+  value?: string
 }
 
 export interface LineChartProps extends ChartProps {

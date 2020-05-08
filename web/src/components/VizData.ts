@@ -1,13 +1,41 @@
 export interface JSONDataset {
   name: string
   url?: string
-  values?: any[]
+  values?: object[]
+}
+
+export interface JSONChartAxis {
+  label: string
+  dataColumn?: string
+  dataColumns?: object[]
+  dataType?: string
+  dataFormat?: string
+  displayFormat?: string
+  timePrecision?: string
+}
+
+export interface XYAxes {
+  x: JSONChartAxis,
+  y: JSONChartAxis
+}
+
+export interface JSONChartPosition {
+  columns: number
+  rows: number
+  x: number
+  y: number
 }
 
 export interface JSONChart {
   type: string
   data: string
   title: string
+  position: JSONChartPosition
+  axes?: XYAxes
+  colors: string[]
+  // pie chart
+  group?: string
+  value?: string
 }
 
 export interface JSONVizHeader {
