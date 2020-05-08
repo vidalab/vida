@@ -2,13 +2,16 @@ import NivoLineChart from "./Charts/NivoLineChart"
 import NivoBarChart from "./Charts/NivoBarChart"
 import NivoScatterChart from "./Charts/NivoScatterChart"
 import NivoPieChart from "./Charts/NivoPieChart"
+import { JSONVizData } from "./VizData"
 
 class GrammarParser {
-  constructor(json) {
+  private json: JSONVizData
+
+  constructor(json: JSONVizData) {
     this.json = json
   }
 
-  getData(name) {
+  private getData = (name: string): any => {
     let values = null
     this.json["data"].forEach((d) => {
       if (d["name"] == name) {
@@ -18,22 +21,22 @@ class GrammarParser {
     return values
   }
 
-  getNivoPieData(data, group, value, colors) {
-    let dataPoints = []
-    data.forEach((d, index) => {
+  private getNivoPieData = (data: any, group: any, value: any, colors: any): any => {
+    let dataPoints: any = []
+    data.forEach((d: any, index: any) => {
       dataPoints.push({"id": d[group], "label": d[group], "value": d[value], "color": colors[index % colors]})
     })
     return dataPoints
   }
 
-  getVizInfo() {
+  private getVizInfo = (): any => {
     return {"name": this.json["name"], "description": this.json["description"], "header": this.json["header"]}
   }
 
-  getNivoLineData(dataArray, axes) {
-    let lineData = []
-    let colors = []
-    axes["y"]["dataColumns"].forEach((yAxis) => {
+  private getNivoLineData = (dataArray: any, axes: any): any => {
+    let lineData: any = []
+    let colors: any = []
+    axes["y"]["dataColumns"].forEach((yAxis: any) => {
       colors.push(yAxis["color"])
       let lData = {id: yAxis["name"], color: yAxis["color"], data: []}
       dataArray.forEach((d) => {
@@ -46,9 +49,9 @@ class GrammarParser {
     return {data: lineData, colors: colors}
   }
 
-  getNivoBarData(dataArray, axes) {
-    let barData = []
-    dataArray.forEach((d) => {
+  private getNivoBarData = (dataArray: any, axes: any): any => {
+    let barData: any = []
+    dataArray.forEach((d: any) => {
       let dp = {}
       axes["y"]["dataColumns"].forEach((yAxis) => {
         dp[axes["x"]["dataColumn"]] = d[axes["x"]["dataColumn"]]
@@ -65,11 +68,11 @@ class GrammarParser {
     return {data: barData, keys: keys, colors: colors}
   }
 
-  getNivoScatterData(dataArray, axes) {
+  private getNivoScatterData = (dataArray: any): any => {
     return {data: dataArray}
   }
 
-  parse() {
+  private parse = () => {
     let els = []
     let self = this
     const containerCssStyle = {
