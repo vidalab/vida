@@ -2,7 +2,7 @@ import NivoLineChart from "./Charts/NivoLineChart"
 import NivoBarChart from "./Charts/NivoBarChart"
 import NivoScatterChart from "./Charts/NivoScatterChart"
 import NivoPieChart from "./Charts/NivoPieChart"
-import { JSONVizData } from "./VizData"
+import { JSONVizData, XYAxes } from "./VizData"
 
 class GrammarParser {
   private json: JSONVizData
@@ -45,11 +45,11 @@ class GrammarParser {
     return {data: lineData, colors: colors}
   }
 
-  private getNivoBarData = (dataArray: any, axes: any): any => {
+  private getNivoBarData = (dataArray: object[], axes: XYAxes): any => {
     let barData: any = []
-    dataArray.forEach((d: any) => {
+    dataArray.forEach((d: object) => {
       let dp = {}
-      axes["y"]["dataColumns"].forEach((yAxis) => {
+      axes.y.dataColumns.forEach((yAxis) => {
         dp[axes["x"]["dataColumn"]] = d[axes["x"]["dataColumn"]]
         dp[yAxis["name"]] = d[yAxis["name"]]
         dp[yAxis["name"] + "Color"] = yAxis["color"]

@@ -1,39 +1,23 @@
-import { Link, routes } from '@redwoodjs/router'
+import React, { Fragment } from 'react';
+import { useStyles } from '../../components/Constants'
+import CssBaseline from '@material-ui/core/CssBaseline';
+import HeaderBar from './HeaderBar';
+import SideNav from './SideNav';
+import MainPane from './MainPane';
 
-export interface HeaderProps {
-  name: string,
-  backgroundColor: string,
-  align: string
+interface HeaderProps {
+  handleDrawerOpen: () => void
+  handleDrawerClose: () => void
+  open: boolean
 }
 
 const Header = (props: HeaderProps) => {
-  const cssStyle = {
-    backgroundColor: props.backgroundColor,
-    textAlign: props.align
-  }
   return (
-      <header>
-        <nav className="bg-teal-500 p-3" style={cssStyle}>
-          <div className="text-white">
-            <Link
-              to={routes.start()}
-              className="font-semibold text-xl tracking-tight inline-block mr-4"
-            >
-              {props.name}
-            </Link>
-
-            <div className="text-sm inline-block">
-              <a href="https://docs.vida.io" target="_blank" className="inline-block text-teal-200 hover:text-white mr-4">
-                Docs
-              </a>
-              <a href="https://blog.vida.io" target="_blank" className="inline-block text-teal-200 hover:text-white mr-4">
-                Blog
-              </a>
-            </div>
-          </div>
-        </nav>
-      </header>
-
+    <div className="flex">
+      <CssBaseline />
+      <HeaderBar handleDrawerOpen={props.handleDrawerOpen} open={props.open} />
+      <SideNav handleDrawerClose={props.handleDrawerClose} open={props.open} />
+    </div>
   )
 }
 

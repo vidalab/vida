@@ -1,13 +1,8 @@
-import React, { Fragment } from 'react';
-import { useStyles } from '../../components/Constants'
-import CssBaseline from '@material-ui/core/CssBaseline';
-import HeaderBar from './HeaderBar';
-import SideNav from './SideNav';
-import MainPane from './MainPane';
+import React from 'react';
+import Header from '../Common/Header'
+import MainPane from '../Common/MainPane'
 
 export default function HomePage() {
-  const classes = useStyles();
-
   const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
@@ -19,10 +14,8 @@ export default function HomePage() {
   };
 
   return (
-    <div className={classes.root}>
-      <CssBaseline />
-      <HeaderBar handleDrawerOpen={handleDrawerOpen} open={open} />
-      <SideNav handleDrawerClose={handleDrawerClose} open={open} />
+    <div className="flex w-full">
+      <Header handleDrawerOpen={handleDrawerOpen} handleDrawerClose={handleDrawerClose} open={open} />
       <MainPane open={open}/>
     </div>
   );

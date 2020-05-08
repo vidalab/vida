@@ -1,10 +1,15 @@
 import VizCell from '../../components/VizCell'
+import { useStyles } from '../../components/Constants'
 
 const StartPage = () => {
   const name = 'viz'
+  const classes = useStyles()
+
   return (
     <>
-      {<VizCell name={name} />}
+      <div className={classes.root}>
+        {<VizCell name={name} />}
+      </div>
     </>
   )
 }
