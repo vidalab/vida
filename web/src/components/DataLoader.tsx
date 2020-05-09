@@ -10,14 +10,14 @@ class DataLoader extends Component<DataLoaderProps, DataLoaderState> {
   private vizName: string
   private vizData: JSONVizData
 
-  constructor(props: DataLoaderProps) {
+  public constructor(props: DataLoaderProps) {
     super(props)
     this.vizName = props.vizName
     this.vizData = props.vizData
     this.state = { data: null };
   }
 
-  async getDataUrl() {
+  private getDataUrl = async () => {
     for (const d of this.vizData["data"]) {
       if (d["url"]) {
         // retrieve data from url to send to client
@@ -29,7 +29,7 @@ class DataLoader extends Component<DataLoaderProps, DataLoaderState> {
     this.setState({ data: this.vizData })
   }
 
-  componentDidMount() {
+  public componentDidMount = () => {
     if (this.vizName) {
       window.fetch('/viz/' + this.vizName)
         .then((res) => res.json())
@@ -49,7 +49,7 @@ class DataLoader extends Component<DataLoaderProps, DataLoaderState> {
     }
   }
 
-  render() {
+  public render = () => {
     if (this.state.data) {
       const vizData = this.state.data
       const grammarParser = new GrammarParser(vizData)

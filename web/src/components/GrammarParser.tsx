@@ -2,7 +2,7 @@ import NivoLineChart from "./Charts/NivoLineChart"
 import NivoBarChart from "./Charts/NivoBarChart"
 import NivoScatterChart from "./Charts/NivoScatterChart"
 import NivoPieChart from "./Charts/NivoPieChart"
-import { JSONVizData, XYAxes } from "./VizData"
+import { JSONVizData, XYAxes, JSONChartDataColumn, IHash } from "./VizData"
 
 class GrammarParser {
   private json: JSONVizData
@@ -29,15 +29,16 @@ class GrammarParser {
     return dataPoints
   }
 
-  private getNivoLineData = (dataArray: any, axes: any): any => {
+  private getNivoLineData = (dataArray: any, axes: XYAxes): any => {
     let lineData: any = []
     let colors: any = []
-    axes["y"]["dataColumns"].forEach((yAxis: any) => {
-      colors.push(yAxis["color"])
-      let lData = {id: yAxis["name"], color: yAxis["color"], data: []}
-      dataArray.forEach((d) => {
-        if (!isNaN(d[yAxis["name"]])) {
-          lData.data.push({x: d[axes["x"]["dataColumn"]], y: d[yAxis["name"]]})
+    axes.y.dataColumns.forEach((yAxis: JSONChartDataColumn) => {
+      colors.push(yAxis.color)
+      let data: any = []
+      let lData = {id: yAxis.name, color: yAxis.color, data: data}
+      dataArray.forEach((d: IHash) => {
+        if (!isNaN(d[yAxis.name])) {
+          lData.data.push({x: d[axes.x.dataColumn], y: d[yAxis.name]})
         }
       })
       lineData.push(lData)
@@ -47,19 +48,19 @@ class GrammarParser {
 
   private getNivoBarData = (dataArray: object[], axes: XYAxes): any => {
     let barData: any = []
-    dataArray.forEach((d: object) => {
-      let dp = {}
+    dataArray.forEach((d: IHash) => {
+      let dp: IHash = {}
       axes.y.dataColumns.forEach((yAxis) => {
-        dp[axes["x"]["dataColumn"]] = d[axes["x"]["dataColumn"]]
-        dp[yAxis["name"]] = d[yAxis["name"]]
-        dp[yAxis["name"] + "Color"] = yAxis["color"]
+        dp[axes.x.dataColumn] = d[axes.x.dataColumn]
+        dp[yAxis.name] = d[yAxis.name]
+        dp[yAxis.name + "Color"] = yAxis.color
       })
       barData.push(dp)
     })
-    let keys = [], colors = []
-    axes["y"]["dataColumns"].forEach((yAxis) => {
-      keys.push(yAxis["name"])
-      colors.push(yAxis["color"])
+    let keys: string[] = [], colors: string[] = []
+    axes.y.dataColumns.forEach((yAxis: JSONChartDataColumn) => {
+      keys.push(yAxis.name)
+      colors.push(yAxis.color)
     })
     return {data: barData, keys: keys, colors: colors}
   }

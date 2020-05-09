@@ -4,10 +4,15 @@ export interface JSONDataset {
   values?: object[]
 }
 
+export interface JSONChartDataColumn {
+  name: string
+  color: string
+}
+
 export interface JSONChartAxis {
   label: string
   dataColumn?: string
-  dataColumns?: object[]
+  dataColumns?: JSONChartDataColumn[]
   dataType?: string
   dataFormat?: string
   displayFormat?: string
@@ -60,5 +65,9 @@ export interface DataLoaderProps {
 }
 
 export interface DataLoaderState {
-  data: object
+  data: JSONVizData
+}
+
+export interface IHash {
+  [details: string] : any;
 }
