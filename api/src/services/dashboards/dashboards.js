@@ -5,6 +5,7 @@ export const dashboards = () => {
 }
 
 export const dashboard = ({ id }) => {
+  console.log(id)
   return db.dashboard.findOne({
     where: { id },
   })
