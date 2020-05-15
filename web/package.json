@@ -6,8 +6,6 @@
     "defaults"
   ],
   "dependencies": {
-    "@material-ui/core": "^4.9.13",
-    "@material-ui/icons": "^4.9.1",
     "@nivo/bar": "^0.61.1",
     "@nivo/line": "^0.61.1",
     "@nivo/pie": "^0.61.1",
