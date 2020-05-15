@@ -7,3 +7,5 @@ export const editDashboardStyles = () => {
 }
 
 const drawerWidth = 240;
+
+export const containerClassName = "container w-full mx-auto px-2 pt-2";

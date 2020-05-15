@@ -4,7 +4,7 @@ import Footer from '../pages/Common/Footer'
 import GrammarParser from './GrammarParser'
 import { JSONVizData, DataLoaderProps, DataLoaderState } from './VizData'
 
-export const containerClassName = "container w-full mx-auto px-2 pt-2";
+import { containerClassName } from './Constants'
 
 class DataLoader extends Component<DataLoaderProps, DataLoaderState> {
   private vizName: string
@@ -13,7 +13,8 @@ class DataLoader extends Component<DataLoaderProps, DataLoaderState> {
   public constructor(props: DataLoaderProps) {
     super(props)
     this.vizName = props.vizName
-    this.vizData = props.vizData
+    // serialize vizData so it won't change props
+    this.vizData = JSON.parse(JSON.stringify(props.vizData))
     this.state = { data: null };
   }
 
