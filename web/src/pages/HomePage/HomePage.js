@@ -1,5 +1,4 @@
 import React from 'react'
-import MonacoEditor from 'react-monaco-editor'
 
 import Header from '../Common/Header'
 import Footer from '../Common/Footer'
@@ -8,9 +7,6 @@ import DashboardsCell from '../../components/DashboardsCell/DashboardsCell'
 
 const HomePage = () => {
   let cssStyle = {
-  }
-  const options = {
-    selectOnLineNumbers: true
   }
   return (
     <>
@@ -36,14 +32,6 @@ const HomePage = () => {
           <img src="/images/HomePageLogo.png" />
         </div>
       </div>
-      <MonacoEditor
-        width="800"
-        height="600"
-        language="javascript"
-        theme="vs-dark"
-        value={"console.log('Hello')"}
-        options={options}
-      />
       <div className={containerClassName} style={cssStyle}>
         <DashboardsCell />
       </div>

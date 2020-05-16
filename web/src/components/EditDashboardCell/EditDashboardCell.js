@@ -3,6 +3,7 @@ import { navigate, routes } from '@redwoodjs/router'
 import DashboardForm from 'src/components/DashboardForm'
 import DashboardsLayout from 'src/layouts/DashboardsLayout'
 import DashboardCell from 'src/components/DashboardCell'
+import MonacoEditor from 'react-monaco-editor'
 
 export const QUERY = gql`
   query FIND_DASHBOARD_BY_ID($id: String!) {
@@ -42,6 +43,10 @@ export const Success = ({ dashboard }) => {
     updateDashboard({ variables: { id, input } })
   }
 
+  const options = {
+    selectOnLineNumbers: true
+  }
+
   return (
     <div className="bg-white border rounded-lg overflow-hidden">
       <header className="bg-gray-300 text-gray-700 py-3 px-4">
@@ -57,6 +62,15 @@ export const Success = ({ dashboard }) => {
         </DashboardsLayout>
         </div>
       </div>
+
+      <MonacoEditor
+        width="800"
+        height="600"
+        language="javascript"
+        theme="vs-dark"
+        value={"console.log('Hello')"}
+        options={options}
+      />
     </div>
   )
 }
