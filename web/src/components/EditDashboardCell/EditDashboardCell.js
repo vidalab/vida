@@ -57,9 +57,7 @@ export const Success = ({ dashboard }) => {
           <DashboardForm dashboard={dashboard} onSave={onSave.bind(this)} error={error} loading={loading} />
         </div>
         <div className="col-span-1 ">
-        <DashboardsLayout>
           <DashboardCell id={dashboard.id} />
-        </DashboardsLayout>
         </div>
       </div>
 
