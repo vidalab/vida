@@ -13,6 +13,7 @@
     "@redwoodjs/router": "^0.6.0",
     "@redwoodjs/web": "^0.6.0",
     "graphql-tag": "^2.10.3",
+    "monaco-editor-webpack-plugin": "^1.9.0",
     "postcss-loader": "^3.0.0",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",

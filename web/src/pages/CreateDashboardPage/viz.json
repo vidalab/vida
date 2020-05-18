@@ -1,0 +1,99 @@
+{
+  "name": "Example Viz",
+  "description": "Example Viz",
+  "columns": 2,
+  "rows": 2,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "name": "Page A", "uv": 4000, "pv": 2400, "amt": 2400
+        },
+        {
+          "name": "Page B", "uv": 3000, "pv": 1398, "amt": 2210
+        },
+        {
+          "name": "Page C", "uv": 2000, "pv": 9800, "amt": 2290
+        },
+        {
+          "name": "Page D", "uv": 2780, "pv": 3908, "amt": 2000
+        },
+        {
+          "name": "Page E", "uv": 1890, "pv": 4800, "amt": 2181
+        },
+        {
+          "name": "Page F", "uv": 2390, "pv": 3800, "amt": 2500
+        },
+        {
+          "name": "Page G", "uv": 3490, "pv": 4300, "amt": 2100
+        }
+      ]
+    }
+  ],
+  "charts": [
+    { "type": "line", "data": "table",
+      "position": {
+        "columns": 1,
+        "rows": 1,
+        "x": 0,
+        "y": 0
+      },
+      "axes": {
+        "x": {
+          "label": "name",
+          "dataColumn": "name"
+        },
+        "y": {
+          "label": "count",
+          "dataColumns": [
+            {"name": "uv", "color": "#8884d8"},
+            {"name": "pv", "color": "#82ca9d"}
+          ]
+        }
+      }
+    },
+    { "type": "bar", "data": "table",
+      "position": {
+        "columns": 1,
+        "rows": 1,
+        "x": 1,
+        "y": 0
+      },
+      "axes": {
+        "x": {
+          "label": "name",
+          "dataColumn": "name"
+        },
+        "y": {
+          "label": "count",
+          "dataColumns": [
+            {"name": "uv", "color": "#8884d8"},
+            {"name": "pv", "color": "#82ca9d"}
+          ]
+        }
+      }
+    },
+    { "type": "area", "data": "table",
+      "position": {
+        "columns": 1,
+        "rows": 1,
+        "x": 0,
+        "y": 1
+      },
+      "axes": {
+        "x": {
+          "label": "name",
+          "dataColumn": "name"
+        },
+        "y": {
+          "label": "count",
+          "dataColumns": [
+            {"name": "uv", "color": "#8884d8"},
+            {"name": "pv", "color": "#82ca9d"}
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -1,4 +1,5 @@
 const configDir = __dirname
+const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
 module.exports = (config) => {
   config.module.rules[0].oneOf[5] = {
@@ -17,6 +18,13 @@ module.exports = (config) => {
       },
     ],
   }
+
+  config.plugins.push(
+    new MonacoWebpackPlugin({
+      // available options are documented at https://github.com/Microsoft/monaco-editor-webpack-plugin#options
+      languages: ['json']
+    })
+  )
 
   return config
 }
