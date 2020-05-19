@@ -18,5 +18,5 @@ export const Loading = () => <div className={containerClassName + " text-center"
 export const Empty = () => <div>Dashboard not found</div>
 
 export const Success = ({ dashboard }) => {
-  return <Dashboard dashboard={dashboard} />
+  return <Dashboard dashboard={JSON.parse(dashboard.json)} />
 }

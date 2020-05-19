@@ -1,5 +1,5 @@
 import DashboardsLayout from 'src/layouts/DashboardsLayout'
-import DashboardForm from 'src/components/DashboardForm'
+import Dashboard from 'src/components/Dashboard'
 import MonacoEditor from 'react-monaco-editor'
 import vizJson from './viz.json'
 
@@ -32,7 +32,7 @@ const CreateDashboardPage = () => {
             />
           </div>
           <div className="col-span-1 ">
-            Dashboard View
+            <Dashboard dashboard={vizJson} />
           </div>
         </div>
       </div>

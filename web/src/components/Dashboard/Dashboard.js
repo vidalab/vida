@@ -1,7 +1,7 @@
 import DataLoader from '../DataLoader'
 
-const Dashboard = ({ dashboard }) => {
-  const vizData = JSON.parse(dashboard.json)
+const Dashboard = ({ dashboard: dashboardJson }) => {
+  const vizData = dashboardJson
   return (
     <DataLoader vizData={vizData} />
   )
