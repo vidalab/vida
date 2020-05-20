@@ -14,7 +14,9 @@ class DataLoader extends Component<DataLoaderProps, DataLoaderState> {
     super(props)
     this.vizName = props.vizName
     // serialize vizData so it won't change props
-    this.vizData = JSON.parse(JSON.stringify(props.vizData))
+    if (props.vizData) {
+      this.vizData = JSON.parse(JSON.stringify(props.vizData))
+    }
     this.state = { data: null };
   }
 
@@ -32,7 +34,13 @@ class DataLoader extends Component<DataLoaderProps, DataLoaderState> {
 
   public componentDidMount = () => {
     if (this.vizName) {
-      window.fetch('/viz/' + this.vizName)
+      let url = ''
+      if (this.vizName.indexOf('https://') == 0) {
+        url = this.vizName
+      } else {
+        url = '/viz/' + this.vizName
+      }
+      window.fetch(url)
         .then((res) => res.json())
         .then(async (json) => {
           for (const d of json["data"]) {
