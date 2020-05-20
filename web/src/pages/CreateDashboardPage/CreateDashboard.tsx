@@ -1,12 +1,40 @@
-import { Component } from "react"
+import { Component, MouseEvent } from "react"
 import { Submit } from '@redwoodjs/web'
 import DashboardsLayout from 'src/layouts/DashboardsLayout'
 import Dashboard from 'src/components/Dashboard'
 import MonacoEditor from 'react-monaco-editor'
 import vizJson from './viz.json'
 
-class CreateDashboardPage extends Component {
-  private createEditorMounted = () => {
+interface CreateDashboardProps {
+
+}
+
+interface CreateDashboardState {
+  vizData: object
+}
+
+class CreateDashboard extends Component<CreateDashboardProps, CreateDashboardState> {
+  private editor: MonacoEditor
+  private vizData: object
+
+  constructor(props: CreateDashboardProps) {
+    super(props)
+    this.vizData = vizJson
+    this.state = {
+      vizData: this.vizData
+    }
+  }
+
+  private createEditorMounted = (editor: MonacoEditor) => {
+    this.editor = editor
+  }
+
+  private onSaveClicked = (e: MouseEvent) => {
+    console.log(this.editor.getValue())
+
+    this.setState({
+      vizData: JSON.parse(this.editor.getValue())
+    })
   }
 
   public render = () => {
@@ -29,20 +57,21 @@ class CreateDashboardPage extends Component {
                 height="calc(100% - 35px)"
                 language="json"
                 theme="vs-dark"
-                value={JSON.stringify(vizJson, null, '  ')}
+                value={JSON.stringify(this.state.vizData, null, '  ')}
                 options={options}
                 editorDidMount={this.createEditorMounted}
               />
               <div className="mt-1 text-center">
                 <Submit
                   className="bg-blue-600 text-white hover:bg-blue-700 text-xs rounded px-4 py-2 uppercase font-semibold tracking-wide"
+                  onClick={this.onSaveClicked}
                 >
                   Save
                 </Submit>
               </div>
             </div>
             <div className="col-span-1 ">
-              <Dashboard dashboard={vizJson} />
+              <Dashboard dashboard={this.state.vizData} />
             </div>
           </div>
         </div>
@@ -51,4 +80,4 @@ class CreateDashboardPage extends Component {
   }
 }
 
-export default CreateDashboardPage
+export default CreateDashboard
