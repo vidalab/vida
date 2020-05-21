@@ -60,15 +60,6 @@ export const Success = ({ dashboard }) => {
           <DashboardCell id={dashboard.id} />
         </div>
       </div>
-
-      <MonacoEditor
-        width="800"
-        height="600"
-        language="javascript"
-        theme="vs-dark"
-        value={"console.log('Hello')"}
-        options={options}
-      />
     </div>
   )
 }

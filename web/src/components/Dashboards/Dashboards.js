@@ -38,13 +38,13 @@ const DashboardsList = ({ dashboards }) => {
   }
 
   return (
-    <div className="bg-white text-gray-900 border rounded-lg overflow-x-scroll">
+    <div className="bg-white text-gray-900 border overflow-x-scroll">
       <table className="table-auto w-full min-w-3xl text-sm">
         <thead>
           <tr className="bg-gray-300 text-gray-700">
-            <th className="font-semibold text-left p-3">name</th>
-            <th className="font-semibold text-left p-3">createdAt</th>
-            <th className="font-semibold text-left p-3">updatedAt</th>
+            <th className="font-semibold text-left p-3">Name</th>
+            <th className="font-semibold text-left p-3">Created At</th>
+            <th className="font-semibold text-left p-3">Updated At</th>
             <th className="font-semibold text-left p-3">&nbsp;</th>
           </tr>
         </thead>

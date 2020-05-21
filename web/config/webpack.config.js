@@ -1,5 +1,6 @@
 const configDir = __dirname
-const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
+const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = (config) => {
   config.module.rules[0].oneOf[5] = {
