@@ -1,4 +1,5 @@
 import { Link, routes } from '@redwoodjs/router'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export interface HeaderProps {
   name: string,
@@ -24,10 +25,16 @@ const Header = (props: HeaderProps) => {
 
             <div className="text-sm inline-block">
               <a href="https://docs.vida.io" target="_blank" className="inline-block text-teal-200 hover:text-white mr-4">
-                Docs
+                <FontAwesomeIcon icon="book" />
+                <span className="ml-2">Docs</span>
               </a>
               <a href="https://blog.vida.io" target="_blank" className="inline-block text-teal-200 hover:text-white mr-4">
-                Blog
+                <FontAwesomeIcon icon="pen-nib" />
+                <span className="ml-2">Blog</span>
+              </a>
+              <a href="https://github.com/vidalab/vida" target="_blank" className="inline-block text-teal-200 hover:text-white mr-4">
+                <FontAwesomeIcon icon={["fab", "github"]} />
+                <span className="ml-2">Code</span>
               </a>
             </div>
           </div>
