@@ -8,6 +8,9 @@ const NewDashboardPage = () => {
   useEffect(() => {
     GAPageView()
     setPageTitle('New Dashboard')
+    if (process.env.LOCK_EDIT == "true") {
+      document.location.href = "/"
+    }
   }, [])
   return (
     <DashboardsLayout>

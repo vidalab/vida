@@ -1,7 +1,7 @@
 [web]
   port = 8910
   apiProxyPath = "/.netlify/functions"
-  includeEnvironmentVariables = ['GA_ID']
+  includeEnvironmentVariables = ['GA_ID', 'LOCK_EDIT']
 [api]
   port = 8911
 [browser]
