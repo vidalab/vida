@@ -9,6 +9,7 @@ import './index.css'
 import './fontawesome.js'
 
 ReactGA.initialize(process.env.GA_ID)
+ReactGA.pageview(window.location.pathname + window.location.search)
 
 ReactDOM.render(
   <FatalErrorBoundary page={FatalErrorPage}>
