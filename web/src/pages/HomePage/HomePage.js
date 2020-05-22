@@ -39,9 +39,12 @@ const HomePage = () => {
           <img src="/images/HomePageLogo.png" />
         </div>
       </div>
-      <div className={containerClassName + " pb-10"} style={cssStyle}>
+      <div className={containerClassName + " pb-4"} style={cssStyle}>
         <div className="font-bold text-xl mb-2">Examples</div>
         <DashboardsCell />
+      </div>
+      <div className={containerClassName+ " pb-10"}>
+        <p>Implemented with: RedwoodJS, TailwindCSS, <a href="https://fontawesome.com/license" target="_blank">FontAwesome</a>.</p>
       </div>
       <Footer description="Flexible Data Visualization"/>
     </>

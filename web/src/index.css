@@ -18,3 +18,11 @@ body {
   bottom: 0;
   left: 0;
 }
+
+a {
+  color: #4299e1;
+}
+
+header a {
+  color: inherit;
+}
