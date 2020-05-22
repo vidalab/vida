@@ -4,10 +4,10 @@ import Footer from '../Common/Footer'
 import { containerClassName } from '../../components/Constants'
 import DashboardsCell from '../../components/DashboardsCell/DashboardsCell'
 import { Link, routes } from '@redwoodjs/router'
+import { GAPageView } from '../../PageView';
 
 const HomePage = () => {
-  let cssStyle = {
-  }
+  GAPageView()
   return (
     <>
       <Header name="Vida"/>
@@ -39,7 +39,7 @@ const HomePage = () => {
           <img src="/images/HomePageLogo.png" />
         </div>
       </div>
-      <div className={containerClassName + " pb-4"} style={cssStyle}>
+      <div className={containerClassName + " pb-4"}>
         <div className="font-bold text-xl mb-2">Examples</div>
         <DashboardsCell />
       </div>

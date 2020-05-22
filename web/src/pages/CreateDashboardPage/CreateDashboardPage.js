@@ -1,6 +1,7 @@
 import CreateDashboard from './CreateDashboard'
 
 const CreateDashboardPage = () => {
+  GAPageView()
   return (
     <CreateDashboard />
   )
