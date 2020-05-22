@@ -1,5 +1,6 @@
 import Dashboard from 'src/components/Dashboard'
 import { containerClassName } from '../Constants'
+import { setPageTitle } from '../../PageHelper'
 
 export const QUERY = gql`
   query FIND_DASHBOARD_BY_ID($id: String!) {
@@ -18,5 +19,6 @@ export const Loading = () => <div className={containerClassName + " text-center"
 export const Empty = () => <div>Dashboard not found</div>
 
 export const Success = ({ dashboard }) => {
+  setPageTitle(dashboard.name)
   return <Dashboard dashboard={JSON.parse(dashboard.json)} />
 }

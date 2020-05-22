@@ -5,9 +5,12 @@ import { containerClassName } from '../../components/Constants'
 import DashboardsCell from '../../components/DashboardsCell/DashboardsCell'
 import { Link, routes } from '@redwoodjs/router'
 import { GAPageView } from '../../PageView'
+import { useEffect } from 'react'
 
 const HomePage = () => {
-  GAPageView()
+  useEffect(() => {
+    GAPageView()
+  }, [])
   return (
     <>
       <Header name="Vida"/>
