@@ -4,7 +4,7 @@ import Footer from '../Common/Footer'
 import { containerClassName } from '../../components/Constants'
 import DashboardsCell from '../../components/DashboardsCell/DashboardsCell'
 import { Link, routes } from '@redwoodjs/router'
-import { GAPageView } from '../../PageView';
+import { GAPageView } from '../../PageView'
 
 const HomePage = () => {
   GAPageView()

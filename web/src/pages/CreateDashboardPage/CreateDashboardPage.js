@@ -1,4 +1,5 @@
 import CreateDashboard from './CreateDashboard'
+import { GAPageView } from '../../PageView'
 
 const CreateDashboardPage = () => {
   GAPageView()

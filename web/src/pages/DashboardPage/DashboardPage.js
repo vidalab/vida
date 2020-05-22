@@ -1,5 +1,6 @@
 import DashboardsLayout from 'src/layouts/DashboardsLayout'
 import DashboardCell from 'src/components/DashboardCell'
+import { GAPageView } from '../../PageView'
 
 const DashboardPage = ({ id }) => {
   GAPageView()
