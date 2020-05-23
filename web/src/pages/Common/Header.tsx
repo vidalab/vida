@@ -7,6 +7,13 @@ export interface HeaderProps {
   align: string
 }
 
+const dashboardView = (): boolean => {
+  const pathname = document.location.pathname
+  return (pathname.indexOf("/dashboards/") == 0 &&
+    pathname.indexOf("/dashboards/create") != 0 &&
+    pathname.indexOf("/dashboards/new") != 0)
+}
+
 const Header = (props: HeaderProps) => {
   const cssStyle = {
     backgroundColor: props.backgroundColor,
@@ -36,6 +43,16 @@ const Header = (props: HeaderProps) => {
                 <FontAwesomeIcon icon={["fab", "github"]} />
                 <span className="ml-2">Code</span>
               </a>
+
+              {dashboardView() &&
+                <Link
+                  to={routes.createDashboard()}
+                  className="inline-block text-teal-200 hover:text-white mr-4"
+                >
+                  <FontAwesomeIcon icon={["fas", "clone"]} />
+                  <span className="ml-2">Create</span>
+                </Link>
+              }
             </div>
           </div>
         </nav>
