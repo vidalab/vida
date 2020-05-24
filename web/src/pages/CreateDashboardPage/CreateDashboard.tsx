@@ -6,7 +6,7 @@ import MonacoEditor from 'react-monaco-editor'
 import vizJson from './viz.json'
 
 interface CreateDashboardProps {
-
+  vizData: object
 }
 
 interface CreateDashboardState {
@@ -19,7 +19,11 @@ class CreateDashboard extends Component<CreateDashboardProps, CreateDashboardSta
 
   constructor(props: CreateDashboardProps) {
     super(props)
-    this.vizData = vizJson
+    if (props.vizData) {
+      this.vizData = props.vizData
+    } else {
+      this.vizData = vizJson
+    }
     this.state = {
       vizData: this.vizData
     }

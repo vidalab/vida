@@ -14,6 +14,14 @@ const dashboardView = (): boolean => {
     pathname.indexOf("/dashboards/new") != 0)
 }
 
+const dashboardId = (): string => {
+  if (dashboardView()) {
+    return document.location.pathname.replace("/dashboards/", "")
+  } else {
+    return ""
+  }
+}
+
 const Header = (props: HeaderProps) => {
   const cssStyle = {
     backgroundColor: props.backgroundColor,
@@ -46,7 +54,7 @@ const Header = (props: HeaderProps) => {
 
               {dashboardView() &&
                 <Link
-                  to={routes.createDashboard()}
+                  to={"/dashboards/create/" + dashboardId()}
                   className="inline-block text-teal-200 hover:text-white mr-4"
                 >
                   <FontAwesomeIcon icon={["fas", "clone"]} />
