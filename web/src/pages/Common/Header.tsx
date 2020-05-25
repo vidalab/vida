@@ -58,7 +58,7 @@ const Header = (props: HeaderProps) => {
                   className="inline-block text-teal-200 hover:text-white mr-4"
                 >
                   <FontAwesomeIcon icon={["fas", "clone"]} />
-                  <span className="ml-2">Create</span>
+                  <span className="ml-2">Copy</span>
                 </Link>
               }
             </div>
