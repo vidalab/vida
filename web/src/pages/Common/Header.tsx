@@ -1,5 +1,6 @@
 import { Link, routes } from '@redwoodjs/router'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useParams } from '@redwoodjs/router'
 
 export interface HeaderProps {
   name: string,
@@ -16,7 +17,8 @@ const dashboardView = (): boolean => {
 
 const dashboardId = (): string => {
   if (dashboardView()) {
-    return document.location.pathname.replace("/dashboards/", "")
+    const params = useParams()
+    return params.id
   } else {
     return ""
   }
