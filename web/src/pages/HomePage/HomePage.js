@@ -4,10 +4,13 @@ import Footer from '../Common/Footer'
 import { containerClassName } from '../../components/Constants'
 import DashboardsCell from '../../components/DashboardsCell/DashboardsCell'
 import { Link, routes } from '@redwoodjs/router'
+import { GAPageView } from '../../PageView'
+import { useEffect } from 'react'
 
 const HomePage = () => {
-  let cssStyle = {
-  }
+  useEffect(() => {
+    GAPageView()
+  }, [])
   return (
     <>
       <Header name="Vida"/>
@@ -39,9 +42,12 @@ const HomePage = () => {
           <img src="/images/HomePageLogo.png" />
         </div>
       </div>
-      <div className={containerClassName + " pb-10"} style={cssStyle}>
+      <div className={containerClassName + " pb-4"}>
         <div className="font-bold text-xl mb-2">Examples</div>
         <DashboardsCell />
+      </div>
+      <div className={containerClassName+ " pb-10"}>
+        <p>Implemented with: <a href="https://redwoodjs.com/" target="_blank">RedwoodJS</a>, <a href="https://tailwindcss.com/" target="_blank">TailwindCSS</a>, <a href="https://fontawesome.com/license" target="_blank">FontAwesome</a>.</p>
       </div>
       <Footer description="Flexible Data Visualization"/>
     </>

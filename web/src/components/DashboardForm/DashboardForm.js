@@ -22,7 +22,7 @@ const CSS = {
 const DashboardForm = (props) => {
   let dashboard = props?.dashboard
   const onSubmit = (data) => {
-    props.onSave(dashboard, dashboard.id)
+    props.onSave(dashboard.id, dashboard)
   }
 
   const onCodeChange = (value, e) => {

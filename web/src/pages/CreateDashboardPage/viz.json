@@ -1,7 +1,7 @@
 {
   "name": "Example Viz",
   "description": "Example Viz",
-  "columns": 2,
+  "columns": 1,
   "rows": 2,
   "data": [
     {
@@ -54,27 +54,6 @@
       }
     },
     { "type": "bar", "data": "table",
-      "position": {
-        "columns": 1,
-        "rows": 1,
-        "x": 1,
-        "y": 0
-      },
-      "axes": {
-        "x": {
-          "label": "name",
-          "dataColumn": "name"
-        },
-        "y": {
-          "label": "count",
-          "dataColumns": [
-            {"name": "uv", "color": "#8884d8"},
-            {"name": "pv", "color": "#82ca9d"}
-          ]
-        }
-      }
-    },
-    { "type": "area", "data": "table",
       "position": {
         "columns": 1,
         "rows": 1,
