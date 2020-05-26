@@ -1,10 +1,27 @@
 import { Link, routes } from '@redwoodjs/router'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useParams } from '@redwoodjs/router'
 
 export interface HeaderProps {
   name: string,
   backgroundColor: string,
   align: string
+}
+
+const dashboardView = (): boolean => {
+  const pathname = document.location.pathname
+  return (pathname.indexOf("/dashboards/") == 0 &&
+    pathname.indexOf("/dashboards/create") != 0 &&
+    pathname.indexOf("/dashboards/new") != 0)
+}
+
+const dashboardId = (): string => {
+  if (dashboardView()) {
+    const params = useParams()
+    return params.id
+  } else {
+    return ""
+  }
 }
 
 const Header = (props: HeaderProps) => {
@@ -36,6 +53,16 @@ const Header = (props: HeaderProps) => {
                 <FontAwesomeIcon icon={["fab", "github"]} />
                 <span className="ml-2">Code</span>
               </a>
+
+              {dashboardView() &&
+                <Link
+                  to={"/dashboards/create/" + dashboardId()}
+                  className="inline-block text-teal-200 hover:text-white mr-4"
+                >
+                  <FontAwesomeIcon icon={["fas", "clone"]} />
+                  <span className="ml-2">Copy</span>
+                </Link>
+              }
             </div>
           </div>
         </nav>
