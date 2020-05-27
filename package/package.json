@@ -1,0 +1,32 @@
+{
+  "name": "vidajs",
+  "version": "0.0.1",
+  "description": "Make data dashboards with JSON files",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "./node_modules/.bin/babel src --out-file index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vidalab/vida.git"
+  },
+  "author": "Vida Lab",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vidalab/vida/issues"
+  },
+  "homepage": "https://github.com/vidalab/vida#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.10.0",
+    "@babel/core": "^7.10.0",
+    "@babel/preset-env": "^7.10.0",
+    "@babel/preset-react": "^7.10.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "peerDependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}
