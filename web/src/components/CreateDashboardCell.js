@@ -1,4 +1,4 @@
-import { containerClassName } from './Constants'
+import { containerClassName } from './Charts/Constants'
 import CreateDashboard from '../pages/CreateDashboardPage/CreateDashboard'
 
 export const QUERY = gql`

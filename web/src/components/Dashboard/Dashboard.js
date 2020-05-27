@@ -1,4 +1,4 @@
-import DataLoader from '../DataLoader'
+import DataLoader from '../Charts/DataLoader'
 
 const Dashboard = ({ dashboard: dashboardJson }) => {
   const vizData = dashboardJson

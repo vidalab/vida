@@ -1,6 +1,6 @@
 import { Component } from "react"
-import Header from './Charts/Header'
-import Footer from '../pages/Common/Footer'
+import Header from './Header'
+import Footer from './Footer'
 import GrammarParser from './GrammarParser'
 import { JSONVizData, DataLoaderProps, DataLoaderState } from './VizData'
 

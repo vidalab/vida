@@ -1,7 +1,7 @@
-import NivoLineChart from "./Charts/NivoLineChart"
-import NivoBarChart from "./Charts/NivoBarChart"
-import NivoScatterChart from "./Charts/NivoScatterChart"
-import NivoPieChart from "./Charts/NivoPieChart"
+import NivoLineChart from "./NivoLineChart"
+import NivoBarChart from "./NivoBarChart"
+import NivoScatterChart from "./NivoScatterChart"
+import NivoPieChart from "./NivoPieChart"
 import { JSONVizData, XYAxes, JSONChartDataColumn, IHash } from "./VizData"
 
 class GrammarParser {
