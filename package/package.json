@@ -2,10 +2,10 @@
   "name": "vidajs",
   "version": "0.0.1",
   "description": "Make data dashboards with JSON files",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "./node_modules/.bin/babel src --out-file index.js"
+    "build": "./node_modules/.bin/babel src -d dist --extensions \".js,.ts,.tsx\""
   },
   "repository": {
     "type": "git",
@@ -20,13 +20,19 @@
   "devDependencies": {
     "@babel/cli": "^7.10.0",
     "@babel/core": "^7.10.0",
+    "@babel/plugin-proposal-class-properties": "^7.10.1",
     "@babel/preset-env": "^7.10.0",
     "@babel/preset-react": "^7.10.0",
+    "@babel/preset-typescript": "^7.10.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   },
   "peerDependencies": {
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "@nivo/bar": "^0.61.1",
+    "@nivo/line": "^0.61.1",
+    "@nivo/pie": "^0.61.1",
+    "@nivo/scatterplot": "^0.61.1"
   }
 }

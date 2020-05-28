@@ -1,4 +1,4 @@
-import { Link, routes } from '@redwoodjs/router'
+import React from "react"
 
 export interface HeaderProps {
   name: string,
@@ -15,12 +15,12 @@ const Header = (props: HeaderProps) => {
       <header>
         <nav className="bg-teal-500 p-3" style={cssStyle}>
           <div className="text-white">
-            <Link
-              to={routes.start()}
+            <a
+              href="/"
               className="font-semibold text-xl tracking-tight"
             >
               {props.name}
-            </Link>
+            </a>
           </div>
         </nav>
       </header>

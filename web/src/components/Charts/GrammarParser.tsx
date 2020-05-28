@@ -1,3 +1,4 @@
+import React from "react"
 import NivoLineChart from "./NivoLineChart"
 import NivoBarChart from "./NivoBarChart"
 import NivoScatterChart from "./NivoScatterChart"
