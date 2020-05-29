@@ -20,9 +20,12 @@ const CSS = {
 }
 
 const DashboardForm = (props) => {
-  let dashboard = props?.dashboard
+
+  let dashboard = props?.dashboard || {}
+
   const onSubmit = (data) => {
-    props.onSave(dashboard.id, dashboard)
+    data.json = dashboard.json
+    props.onSave(dashboard.id, data)
   }
 
   const onCodeChange = (value, e) => {

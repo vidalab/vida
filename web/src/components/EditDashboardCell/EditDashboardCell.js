@@ -35,8 +35,8 @@ export const Success = ({ dashboard }) => {
   })
 
   const onSave = (id, input) => {
-    newJson = input
-    updateDashboard({ variables: { input }})
+    newJson = input.json
+    updateDashboard({ variables: { id, input }})
   }
 
   const options = {
