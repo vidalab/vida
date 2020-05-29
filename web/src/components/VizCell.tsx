@@ -1,6 +1,6 @@
-import DataLoader from "./DataLoader"
+import DataLoader from "./Charts/DataLoader"
 import HomePage from '../pages/HomePage/HomePage'
-import { containerClassName } from './Constants'
+import { containerClassName } from './Charts/Constants'
 import gql from 'graphql-tag'
 
 export const QUERY = gql`

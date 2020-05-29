@@ -1,5 +1,5 @@
 import Dashboard from 'src/components/Dashboard'
-import { containerClassName } from '../Constants'
+import { containerClassName } from '../Charts/Constants'
 import { setPageTitle } from '../../PageHelper'
 
 export const QUERY = gql`
