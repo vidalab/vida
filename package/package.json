@@ -1,11 +1,16 @@
 {
   "name": "vidajs",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Make data dashboards with JSON files",
   "main": "dist/index.js",
+  "browser": "./lib/index.js",
+  "module": "./module/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "cp -r ../web/src/components/Charts src/ && ./node_modules/.bin/babel src -d dist --extensions \".js,.ts,.tsx\" && rm -rf src/Charts"
+    "build-browser": "BABEL_ENV=browser babel ./src --out-dir ./lib --extensions \".js,.ts,.tsx\" --source-maps --copy-files",
+    "build-module": "BABEL_ENV=module babel ./src --out-dir ./module --extensions \".js,.ts,.tsx\" --source-maps --copy-files",
+    "build-node": "babel ./src --out-dir ./dist --extensions \".js,.ts,.tsx\" --source-maps --copy-files",
+    "build": "cp -r ../web/src/components/Charts src/ && yarn build-node && yarn build-module && yarn build-browser && rm -rf src/Charts"
   },
   "repository": {
     "type": "git",
