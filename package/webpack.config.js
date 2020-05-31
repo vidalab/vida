@@ -16,12 +16,12 @@ module.exports = {
     path: __dirname + '/dist',
     publicPath: '/',
     filename: 'index.js',
-    libraryTarget: 'commonjs2'
+    libraryTarget: 'umd'
   },
   devServer: {
     contentBase: './dist'
   },
   externals: {
-    'react': 'commonjs react' // this line is just to use the React dependency of our parent-testing-project instead of using our own React.
+    'react': 'react' // this line is just to use the React dependency of our parent-testing-project instead of using our own React.
   }
 };
