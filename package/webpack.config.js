@@ -1,3 +1,5 @@
+var webpack = require('webpack');
+
 module.exports = {
   entry: './src/index.tsx',
   module: {
@@ -23,5 +25,11 @@ module.exports = {
   },
   externals: {
     'react': 'react' // this line is just to use the React dependency of our parent-testing-project instead of using our own React.
-  }
+  },
+  mode: 'production',
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': 'production'
+    })
+  ]
 };

@@ -2,7 +2,7 @@ import React from 'react'
 import Header from './Charts/Header'
 import Footer from './Charts/Footer'
 import GrammarParser from './Charts/GrammarParser'
-import JSONVizData from './Charts/VizData'
+import { JSONVizData } from './Charts/VizData'
 import { containerClassName } from './Charts/Constants'
 
 export interface VidaProps {
