@@ -1,11 +1,11 @@
 {
   "name": "vidajs",
-  "version": "0.0.10",
+  "version": "0.0.12",
   "description": "Make data dashboards with JSON files",
   "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "cp -r ../web/src/components/Charts src/ && webpack && rm -rf src/Charts"
+    "build": "cp -r ../web/src/components/Charts src/ && NODE_ENV=production webpack && rm -rf src/Charts"
   },
   "repository": {
     "type": "git",
@@ -30,9 +30,7 @@
     "@nivo/bar": "^0.61.1",
     "@nivo/line": "^0.61.1",
     "@nivo/pie": "^0.61.1",
-    "@nivo/scatterplot": "^0.61.1",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "@nivo/scatterplot": "^0.61.1"
   },
   "dependencies": {
     "@babel/plugin-proposal-export-default-from": "^7.10.1"

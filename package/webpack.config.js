@@ -12,7 +12,11 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['*', '.js', '.ts', '.tsx']
+    extensions: ['*', '.js', '.ts', '.tsx'],
+    alias: {
+      'react': path.resolve(__dirname, './node_modules/react'),
+      'react-dom': path.resolve(__dirname, './node_modules/react-dom'),
+    }
   },
   output: {
     path: __dirname + '/dist',
@@ -23,7 +27,13 @@ module.exports = {
   devServer: {
     contentBase: './dist'
   },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('production')
+    })
+  ],
   externals: {
-    'react': 'react'
+    'react': 'react',
+    'react-dom': 'react-dom'
   }
 };
