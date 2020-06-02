@@ -22,13 +22,5 @@ module.exports = {
   },
   devServer: {
     contentBase: './dist'
-  },
-  mode: 'production',
-  plugins: [
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify('production')
-      }
-    })
-  ]
+  }
 };

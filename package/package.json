@@ -1,11 +1,11 @@
 {
   "name": "vidajs",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Make data dashboards with JSON files",
   "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "cp -r ../web/src/components/Charts src/ && NODE_ENV=production webpack && rm -rf src/Charts"
+    "build": "cp -r ../web/src/components/Charts src/ && webpack && rm -rf src/Charts"
   },
   "repository": {
     "type": "git",
