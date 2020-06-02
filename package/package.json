@@ -1,6 +1,6 @@
 {
   "name": "vidajs",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "Make data dashboards with JSON files",
   "main": "dist/index.js",
   "scripts": {
@@ -27,10 +27,6 @@
     "webpack": "^4.43.0"
   },
   "peerDependencies": {
-    "@nivo/bar": "^0.61.1",
-    "@nivo/line": "^0.61.1",
-    "@nivo/pie": "^0.61.1",
-    "@nivo/scatterplot": "^0.61.1"
   },
   "dependencies": {
     "@babel/plugin-proposal-export-default-from": "^7.10.1"
