@@ -1,6 +1,6 @@
 {
   "name": "vidajs",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "Make data dashboards with JSON files",
   "main": "dist/index.js",
   "scripts": {
