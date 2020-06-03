@@ -1,5 +1,4 @@
 const webpack = require('webpack');
-const path = require('path');
 
 module.exports = {
   entry: './src/index.tsx',
@@ -13,11 +12,7 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['*', '.js', '.ts', '.tsx'],
-    alias: {
-      'react': path.resolve(__dirname, './node_modules/react'),
-      'react-dom': path.resolve(__dirname, './node_modules/react-dom'),
-    }
+    extensions: ['*', '.js', '.ts', '.tsx']
   },
   output: {
     path: __dirname + '/dist',
