@@ -1,4 +1,4 @@
-var webpack = require('webpack');
+const webpack = require('webpack');
 
 module.exports = {
   entry: './src/index.tsx',
@@ -20,10 +20,17 @@ module.exports = {
     filename: 'index.js',
     libraryTarget: 'umd'
   },
+  mode: 'production',
   devServer: {
     contentBase: './dist'
   },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('production')
+    })
+  ],
   externals: {
-    'react': 'react'
+    'react': 'react',
+    'react-dom': 'react-dom'
   }
 };
