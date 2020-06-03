@@ -24,6 +24,7 @@ module.exports = {
     filename: 'index.js',
     libraryTarget: 'umd'
   },
+  mode: 'production',
   devServer: {
     contentBase: './dist'
   },
