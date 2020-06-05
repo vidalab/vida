@@ -51,7 +51,6 @@ const HomePage = () => {
       <div className={containerClassName+ " pb-10"}>
         <p>Implemented with: <a href="https://redwoodjs.com/" target="_blank">RedwoodJS</a>, <a href="https://tailwindcss.com/" target="_blank">TailwindCSS</a>, <a href="https://fontawesome.com/license" target="_blank">FontAwesome</a>.</p>
       </div>
-      <Footer description="Flexible Data Visualization"/>
     </>
   )
 }
