@@ -1,3 +1,4 @@
 # Prisma Migrate lockfile v1
 
 20200605142752-create-dashboards
+20200612154843-add-owner-fields
