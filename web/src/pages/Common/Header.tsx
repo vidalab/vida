@@ -32,8 +32,6 @@ const Header = (props: HeaderProps) => {
   }
   const { logIn, logOut, isAuthenticated, currentUser } = useAuth()
 
-  console.log(currentUser)
-
   return (<>
       <header>
         <nav className="bg-teal-500 p-3" style={cssStyle}>
