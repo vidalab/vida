@@ -30,14 +30,17 @@ const Header = (props: HeaderProps) => {
     backgroundColor: props.backgroundColor,
     textAlign: props.align
   }
-  const { logIn, logOut, isAuthenticated } = useAuth()
+  const { logIn, logOut, isAuthenticated, currentUser } = useAuth()
+
+  console.log(currentUser)
+
   return (<>
       <header>
         <nav className="bg-teal-500 p-3" style={cssStyle}>
           <div className="text-white">
             <Link
               to={routes.start()}
-              className="font-semibold text-xl tracking-tight inline-block mr-4"
+              className="font-semibold text-xl tracking-tight inline-block mr-4 leading-none"
             >
               {props.name}
             </Link>
@@ -65,14 +68,16 @@ const Header = (props: HeaderProps) => {
                   <span className="ml-2">Copy</span>
                 </Link>
               }
-
-              <a href="#" onClick={ async () => {
-                  isAuthenticated ?
-                    await logOut({returnTo: process.env.AUTH0_DOMAIN}) :
-                    await logIn()}
-                } className="inline-block text-teal-200 hover:text-white mr-4">
-                <span className="ml-2">{isAuthenticated ? 'Log Out' : 'Log In'}</span>
-              </a>
+            </div>
+            <div className="text-sm inline-block float-right">
+                <span>{isAuthenticated ? 'Hi ' + (currentUser.name ? currentUser.name : currentUser.email) : ''}</span>
+                <a href="#" onClick={ async () => {
+                    isAuthenticated ?
+                      await logOut({returnTo: process.env.AUTH0_DOMAIN}) :
+                      await logIn()}
+                  } className="inline-block text-teal-200 hover:text-white mr-4">
+                  <span className="ml-2">{isAuthenticated ? 'Log Out' : 'Log In'}</span>
+                </a>
             </div>
           </div>
         </nav>
