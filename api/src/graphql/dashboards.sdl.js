@@ -5,6 +5,8 @@ export const schema = gql`
     json: String!
     createdAt: DateTime!
     updatedAt: DateTime!
+    ownerId: String!
+    ownerEmail: String!
   }
 
   type Query {

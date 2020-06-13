@@ -10,6 +10,8 @@ export const QUERY = gql`
       json
       createdAt
       updatedAt
+      ownerId
+      ownerEmail
     }
   }
 `
