@@ -10,7 +10,7 @@ export const schema = gql`
   }
 
   type Query {
-    dashboards: [Dashboard!]!
+    dashboards(ownerId: String!): [Dashboard!]!
     dashboard(id: String!): Dashboard!
   }
 

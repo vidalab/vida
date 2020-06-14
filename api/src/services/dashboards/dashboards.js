@@ -1,7 +1,14 @@
 import { db } from 'src/lib/db'
+import { getCurrentUser } from 'src/lib/auth'
 
-export const dashboards = () => {
-  return db.dashboard.findMany()
+export const dashboards = async ({ ownerId }) => {
+  if (ownerId) {
+    return db.dashboard.findMany({
+      where: { ownerId: ownerId },
+    })
+  } else {
+    return db.dashboard.findMany()
+  }
 }
 
 export const dashboard = ({ id }) => {
@@ -11,6 +18,7 @@ export const dashboard = ({ id }) => {
 }
 
 export const createDashboard = ({ input }) => {
+  input.ownerId = context.currentUser.sub
   return db.dashboard.create({
     data: input,
   })
