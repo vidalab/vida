@@ -2,9 +2,10 @@ import { db } from 'src/lib/db'
 import { requireAuth } from 'src/lib/auth'
 
 export const dashboards = async ({ ownerId }) => {
-  if (ownerId) {
+  const user = await db.user.findOne({ where: { auth0Id: ownerId } })
+  if (user) {
     return db.dashboard.findMany({
-      where: { ownerId: ownerId },
+      where: { userId: user.id },
     })
   } else {
     return db.dashboard.findMany()

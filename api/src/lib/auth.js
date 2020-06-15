@@ -5,10 +5,20 @@
 //     return await db.user.findOne({ where: { email } })
 //   }
 
+import { db } from 'src/lib/db'
 import { AuthenticationError } from '@redwoodjs/api'
 
 export const getCurrentUser = async (jwt) => {
-  return jwt
+  const email = jwt[process.env.AUTH0_NAMESPACE + 'email']
+  if (!email) {
+    throw new AuthenticationError('Authentication fails.')
+  }
+
+  let user = await db.user.findOne({ where: { email } })
+  if (!user) {
+    user = await db.user.create({ data: { email: email, auth0Id: jwt.sub } })
+  }
+  return user
 }
 
 // Use this function in your services to check that a user is logged in, and
