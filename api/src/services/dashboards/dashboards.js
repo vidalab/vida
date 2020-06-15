@@ -1,5 +1,5 @@
 import { db } from 'src/lib/db'
-import { getCurrentUser } from 'src/lib/auth'
+import { requireAuth } from 'src/lib/auth'
 
 export const dashboards = async ({ ownerId }) => {
   if (ownerId) {
@@ -18,13 +18,16 @@ export const dashboard = ({ id }) => {
 }
 
 export const createDashboard = ({ input }) => {
+  requireAuth()
   input.ownerId = context.currentUser.sub
+  input.ownerEmail = context.currentUser[process.env.AUTH0_NAMESPACE + 'email']
   return db.dashboard.create({
     data: input,
   })
 }
 
 export const updateDashboard = ({ id, input }) => {
+  requireAuth()
   input.updatedAt = new Date()
   return db.dashboard.update({
     data: input,
@@ -33,6 +36,7 @@ export const updateDashboard = ({ id, input }) => {
 }
 
 export const deleteDashboard = ({ id }) => {
+  requireAuth()
   return db.dashboard.delete({
     where: { id },
   })
