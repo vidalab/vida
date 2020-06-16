@@ -7,6 +7,9 @@ export const QUERY = gql`
     dashboards(ownerId: $ownerId) {
       id
       name
+      user {
+        auth0Id
+      }
       createdAt
       updatedAt
     }

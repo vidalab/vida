@@ -1,5 +1,6 @@
 import { useMutation } from '@redwoodjs/web'
 import { Link, routes } from '@redwoodjs/router'
+import { useAuth } from '@redwoodjs/auth'
 
 const DELETE_DASHBOARD_MUTATION = gql`
   mutation DeleteDashboardMutation($id: String!) {
@@ -26,6 +27,15 @@ const timeTag = (datetime) => {
       {d.getUTCFullYear() + "/" + (d.getUTCMonth() + 1) + "/"+ d.getUTCDate()}
     </time>
   )
+}
+
+const dashboardOwner = (dashboard) => {
+  const { currentUser } = useAuth()
+  if (currentUser && currentUser.auth0Id == dashboard.user.auth0Id) {
+    return true
+  } else {
+    return false
+  }
 }
 
 const DashboardsList = ({ dashboards }) => {
@@ -63,12 +73,31 @@ const DashboardsList = ({ dashboards }) => {
                     <li className="inline-block">
                       <Link
                         to={routes.dashboard({ id: dashboard.id })}
-                        title={'Show dashboard ' + dashboard.id + ' detail'}
+                        title={'Show dashboard ' + dashboard.name + ' detail'}
                         className="text-xs bg-gray-100 text-gray-600 hover:bg-gray-600 hover:text-white rounded-sm px-2 py-1 uppercase font-semibold tracking-wide"
                       >
                         Show
                       </Link>
                     </li>
+                    {dashboardOwner(dashboard) && <li className="inline-block">
+                      <Link
+                        to={routes.editDashboard({ id: dashboard.id })}
+                        title={'Edit dashboard ' + dashboard.name}
+                        className="text-xs bg-gray-100 text-blue-600 hover:bg-blue-600 hover:text-white rounded-sm px-2 py-1 uppercase font-semibold tracking-wide"
+                      >
+                        Edit
+                      </Link>
+                    </li>}
+                    {dashboardOwner(dashboard) && <li className="inline-block">
+                      <a
+                        href="#"
+                        title={'Delete dashboard ' + dashboard.name}
+                        className="text-xs bg-gray-100 text-red-600 hover:bg-red-600 hover:text-white rounded-sm px-2 py-1 uppercase font-semibold tracking-wide"
+                        onClick={() => onDeleteClick(dashboard.id)}
+                      >
+                        Delete
+                      </a>
+                    </li>}
                   </ul>
                 </nav>
               </td>

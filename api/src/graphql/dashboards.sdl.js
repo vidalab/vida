@@ -1,11 +1,17 @@
 export const schema = gql`
+  type User {
+    id: Int!
+    email: String!
+    auth0Id: String!
+  }
+
   type Dashboard {
     id: String!
     name: String!
     json: String!
     createdAt: DateTime!
     updatedAt: DateTime!
-    ownerId: String!
+    user: User!
     ownerEmail: String!
   }
 
