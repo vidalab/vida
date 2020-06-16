@@ -3,11 +3,13 @@ import { Link, routes } from '@redwoodjs/router'
 import Dashboards from 'src/components/Dashboards'
 
 export const QUERY = gql`
-  query DASHBOARDS {
-    dashboards {
+  query DASHBOARDS($ownerId: String!) {
+    dashboards(ownerId: $ownerId) {
       id
       name
-      json
+      user {
+        auth0Id
+      }
       createdAt
       updatedAt
     }

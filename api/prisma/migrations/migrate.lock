@@ -1,6 +1,5 @@
-# IF THERE'S A GIT CONFLICT IN THIS FILE, DON'T SOLVE IT MANUALLY!
-# INSTEAD EXECUTE `prisma migrate fix`
 # Prisma Migrate lockfile v1
-# Read more about conflict resolution here: TODO
 
-20200501170357-create-dashboards
+20200605142752-create-dashboards
+20200612154843-add-owner-fields
+20200615150532-add-user-table

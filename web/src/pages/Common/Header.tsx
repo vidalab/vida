@@ -1,6 +1,7 @@
 import { Link, routes } from '@redwoodjs/router'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useParams } from '@redwoodjs/router'
+import { useAuth } from '@redwoodjs/auth'
 
 export interface HeaderProps {
   name: string,
@@ -29,13 +30,15 @@ const Header = (props: HeaderProps) => {
     backgroundColor: props.backgroundColor,
     textAlign: props.align
   }
+  const { logIn, logOut, isAuthenticated, currentUser } = useAuth()
+
   return (<>
       <header>
         <nav className="bg-teal-500 p-3" style={cssStyle}>
           <div className="text-white">
             <Link
               to={routes.start()}
-              className="font-semibold text-xl tracking-tight inline-block mr-4"
+              className="font-semibold text-xl tracking-tight inline-block mr-4 leading-none"
             >
               {props.name}
             </Link>
@@ -63,6 +66,16 @@ const Header = (props: HeaderProps) => {
                   <span className="ml-2">Copy</span>
                 </Link>
               }
+            </div>
+            <div className="text-sm inline-block float-right">
+                <span>{isAuthenticated ? 'Hi ' + (currentUser.name ? currentUser.name : currentUser.email) : ''}</span>
+                <a href="#" onClick={ async () => {
+                    isAuthenticated ?
+                      await logOut({returnTo: 'http://localhost:8910/'}) :
+                      await logIn()}
+                  } className="inline-block text-teal-200 hover:text-white mr-4">
+                  <span className="ml-2">{isAuthenticated ? 'Log Out' : 'Log In'}</span>
+                </a>
             </div>
           </div>
         </nav>

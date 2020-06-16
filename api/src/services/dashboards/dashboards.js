@@ -1,7 +1,20 @@
 import { db } from 'src/lib/db'
+import { requireAuth } from 'src/lib/auth'
 
-export const dashboards = () => {
-  return db.dashboard.findMany()
+export const dashboards = async ({ ownerId }) => {
+  if (ownerId) {
+    const user = await db.user.findOne({ where: { auth0Id: ownerId } })
+    if (user) {
+      return db.dashboard.findMany({
+        where: { userId: user.id },
+        include: { user: true }
+      })
+    } else {
+      return db.dashboard.findMany({include: { user: true }})
+    }
+  } else {
+    return db.dashboard.findMany({include: { user: true }})
+  }
 }
 
 export const dashboard = ({ id }) => {
@@ -11,12 +24,16 @@ export const dashboard = ({ id }) => {
 }
 
 export const createDashboard = ({ input }) => {
+  requireAuth()
+  input.ownerId = context.currentUser.sub
+  input.ownerEmail = context.currentUser[process.env.AUTH0_NAMESPACE + 'email']
   return db.dashboard.create({
     data: input,
   })
 }
 
 export const updateDashboard = ({ id, input }) => {
+  requireAuth()
   input.updatedAt = new Date()
   return db.dashboard.update({
     data: input,
@@ -25,6 +42,7 @@ export const updateDashboard = ({ id, input }) => {
 }
 
 export const deleteDashboard = ({ id }) => {
+  requireAuth()
   return db.dashboard.delete({
     where: { id },
   })
