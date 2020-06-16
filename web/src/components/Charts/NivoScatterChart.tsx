@@ -1,4 +1,5 @@
-import { MARGIN } from '../Constants'
+import React from "react"
+import { MARGIN } from './Constants'
 import { ResponsiveScatterPlot } from '@nivo/scatterplot'
 import { ChartProps } from './ChartProps'
 

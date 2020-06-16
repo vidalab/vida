@@ -6,6 +6,7 @@
     "defaults"
   ],
   "dependencies": {
+    "@auth0/auth0-spa-js": "^1.9.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.28",
     "@fortawesome/free-brands-svg-icons": "^5.13.0",
     "@fortawesome/free-solid-svg-icons": "^5.13.0",
@@ -14,8 +15,9 @@
     "@nivo/line": "^0.61.1",
     "@nivo/pie": "^0.61.1",
     "@nivo/scatterplot": "^0.61.1",
-    "@redwoodjs/router": "^0.6.0",
-    "@redwoodjs/web": "^0.6.0",
+    "@redwoodjs/auth": "^0.8.2",
+    "@redwoodjs/router": "^0.8.2",
+    "@redwoodjs/web": "^0.8.2",
     "graphql-tag": "^2.10.3",
     "monaco-editor-webpack-plugin": "^1.9.0",
     "postcss-loader": "^3.0.0",
@@ -24,6 +26,7 @@
     "react-dom": "^16.13.1",
     "react-ga": "^2.7.0",
     "react-monaco-editor": "^0.36.0",
+    "react-resize-detector": "^4.2.3",
     "tailwindcss": "^1.2.0"
   }
 }

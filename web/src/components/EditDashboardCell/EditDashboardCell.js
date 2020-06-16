@@ -1,9 +1,8 @@
 import { useMutation } from '@redwoodjs/web'
 import { navigate, routes } from '@redwoodjs/router'
-import DashboardForm from 'src/components/DashboardForm'
 import DashboardsLayout from 'src/layouts/DashboardsLayout'
 import DashboardCell from 'src/components/DashboardCell'
-import MonacoEditor from 'react-monaco-editor'
+import DashboardForm from 'src/components/DashboardForm'
 
 export const QUERY = gql`
   query FIND_DASHBOARD_BY_ID($id: String!) {
@@ -32,15 +31,12 @@ export const Success = ({ dashboard }) => {
 
   const [updateDashboard, { loading, error, data }] = useMutation(UPDATE_DASHBOARD_MUTATION, {
     onCompleted: (e) => {
-      // navigate(routes.dashboards())
-      // this.forceUpdate()
-      // setVizData(newJson)
     },
   })
 
-  const onSave = (input, id) => {
-    newJson = input
-    updateDashboard({ variables: { id, input } })
+  const onSave = (id, input) => {
+    newJson = input.json
+    updateDashboard({ variables: { id, input }})
   }
 
   const options = {
@@ -52,11 +48,11 @@ export const Success = ({ dashboard }) => {
       <header className="bg-gray-300 text-gray-700 py-3 px-4">
         <h2 className="text-sm font-semibold">Edit Dashboard > <b>{dashboard.name}</b></h2>
       </header>
-      <div className="grid grid-cols-2 gap-4">
-        <div className="col-span-1 bg-gray-100 p-4">
-          <DashboardForm dashboard={dashboard} onSave={onSave.bind(this)} error={error} loading={loading} />
-        </div>
+      <div className="grid grid-cols-3 gap-4">
         <div className="col-span-1 ">
+          <DashboardForm dashboard={dashboard} onSave={onSave}/>
+        </div>
+        <div className="col-span-2 ">
           <DashboardCell id={dashboard.id} />
         </div>
       </div>

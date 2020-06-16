@@ -1,5 +1,6 @@
 import { useMutation } from '@redwoodjs/web'
 import { navigate, routes } from '@redwoodjs/router'
+import DashboardCell from 'src/components/DashboardCell'
 import DashboardForm from 'src/components/DashboardForm'
 
 const CREATE_DASHBOARD_MUTATION = gql`
@@ -12,12 +13,12 @@ const CREATE_DASHBOARD_MUTATION = gql`
 
 const NewDashboard = () => {
   const [createDashboard, { loading, error }] = useMutation(CREATE_DASHBOARD_MUTATION, {
-    onCompleted: () => {
-      navigate(routes.dashboards())
+    onCompleted: (data) => {
+      navigate(routes.editDashboard({id: data.createDashboard.id}))
     },
   })
 
-  const onSave = (input) => {
+  const onSave = (id, input) => {
     createDashboard({ variables: { input } })
   }
 
@@ -26,8 +27,11 @@ const NewDashboard = () => {
       <header className="bg-gray-300 text-gray-700 py-3 px-4">
         <h2 className="text-sm font-semibold">New Dashboard</h2>
       </header>
-      <div className="bg-gray-100 p-4">
+      <div className="grid grid-cols-2 gap-4">
         <DashboardForm onSave={onSave} loading={loading} error={error} />
+        <div className="col-span-1 ">
+          {/* <DashboardCell /> */}
+        </div>
       </div>
     </div>
   )

@@ -1,0 +1,38 @@
+{
+  "name": "vidajs",
+  "version": "0.0.19",
+  "description": "Make data dashboards with JSON files",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "cp -r ../web/src/components/Charts src/ && NODE_ENV=production webpack && rm -rf src/Charts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vidalab/vida.git"
+  },
+  "author": "Vida Lab",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vidalab/vida/issues"
+  },
+  "homepage": "https://github.com/vidalab/vida#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.10.0",
+    "@babel/core": "^7.10.0",
+    "@babel/plugin-proposal-class-properties": "^7.10.1",
+    "@babel/preset-env": "^7.10.0",
+    "@babel/preset-react": "^7.10.0",
+    "@babel/preset-typescript": "^7.10.1",
+    "webpack": "^4.43.0"
+  },
+  "peerDependencies": {
+    "@nivo/bar": "^0.61.1",
+    "@nivo/line": "^0.61.1",
+    "@nivo/pie": "^0.61.1",
+    "@nivo/scatterplot": "^0.61.1"
+  },
+  "dependencies": {
+    "@babel/plugin-proposal-export-default-from": "^7.10.1"
+  }
+}

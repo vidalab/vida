@@ -6,9 +6,6 @@ import { useEffect } from 'react'
 const EditDashboardPage = ({ id }) => {
   useEffect(() => {
     GAPageView()
-    if (process.env.LOCK_EDIT == "true") {
-      document.location.href = "/"
-    }
   }, [])
   return (
     <DashboardsLayout>

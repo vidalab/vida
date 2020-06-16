@@ -4,7 +4,7 @@ import DashboardsCell from 'src/components/DashboardsCell'
 const DashboardsPage = () => {
   return (
     <DashboardsLayout>
-      <DashboardsCell />
+      <DashboardsCell ownerId="" />
     </DashboardsLayout>
   )
 }

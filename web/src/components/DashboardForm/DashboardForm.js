@@ -1,3 +1,4 @@
+import CodeEditor from 'src/components/CodeEditor'
 import {
   Form,
   FormError,
@@ -9,7 +10,7 @@ import {
 } from '@redwoodjs/web'
 
 const CSS = {
-  label: 'block mt-6 text-gray-700 font-semibold',
+  label: 'block text-gray-700 font-semibold',
   labelError: 'block mt-6 font-semibold text-red-700',
   input:
     'block mt-2 w-full p-2 border border-gray-300 text-gray-700 rounded focus:outline-none focus:border-gray-500',
@@ -19,12 +20,20 @@ const CSS = {
 }
 
 const DashboardForm = (props) => {
+
+  let dashboard = props?.dashboard || {}
+
   const onSubmit = (data) => {
-    props.onSave(data, props?.dashboard?.id)
+    data.json = dashboard.json
+    props.onSave(dashboard.id, data)
+  }
+
+  const onCodeChange = (value, e) => {
+    dashboard.json = value
   }
 
   return (
-    <div className="box-border text-sm -mt-4">
+    <div className="box-border text-sm col-span-1 bg-gray-100 p-4">
       <Form onSubmit={onSubmit} error={props.error}>
         <FormError
           error={props.error}
@@ -37,7 +46,7 @@ const DashboardForm = (props) => {
           name="name"
           className={CSS.label}
           errorClassName={CSS.labelError}
-        />
+        >Name</Label>
         <TextField
           name="name"
           defaultValue={props.dashboard?.name}
@@ -49,16 +58,18 @@ const DashboardForm = (props) => {
 
         <Label
           name="json"
-          className={CSS.label}
+          className={CSS.label + " mt-4"}
           errorClassName={CSS.labelError}
-        />
-        <TextAreaField
+          >JSON</Label>
+        {/* <TextAreaField
           name="json"
           defaultValue={props.dashboard?.json}
           className={CSS.input + " h-56"}
           errorClassName={CSS.inputError}
           validation={{ required: true }}
-        />
+        /> */}
+        <CodeEditor jsonText={props.dashboard?.json} onChange={onCodeChange} />
+
         <FieldError name="json" className={CSS.errorMessage} />
 
         <div className="mt-8 text-center">

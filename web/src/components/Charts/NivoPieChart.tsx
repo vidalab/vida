@@ -1,4 +1,5 @@
-import { MARGIN } from '../Constants'
+import React from "react"
+import { MARGIN } from './Constants'
 import { ResponsivePie } from '@nivo/pie'
 import { ChartProps } from './ChartProps'
 

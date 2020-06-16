@@ -1,6 +1,7 @@
+import React from 'react';
 import { Component } from "react"
-import Header from './Charts/Header'
-import Footer from '../pages/Common/Footer'
+import Header from './Header'
+import Footer from './Footer'
 import GrammarParser from './GrammarParser'
 import { JSONVizData, DataLoaderProps, DataLoaderState } from './VizData'
 
@@ -68,9 +69,9 @@ class DataLoader extends Component<DataLoaderProps, DataLoaderState> {
   public render = () => {
     if (this.state.data) {
       const vizData = this.state.data
-      const grammarParser = new GrammarParser(vizData)
-      const charts = grammarParser.parse()
-      const vizInfo = grammarParser.getVizInfo()
+      const grammarParser = GrammarParser(vizData)
+      const charts = grammarParser.charts
+      const vizInfo = grammarParser.vizInfo
       let headerPadding = "80"
       if (!vizInfo["header"]) {
         headerPadding = "30"

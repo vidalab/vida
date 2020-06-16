@@ -1,6 +1,8 @@
-import DataLoader from "./DataLoader"
+import DataLoader from "./Charts/DataLoader"
 import HomePage from '../pages/HomePage/HomePage'
-import { containerClassName } from './Constants'
+import UserHomePage from '../pages/UserHomePage/UserHomePage'
+import { containerClassName } from './Charts/Constants'
+import { useAuth } from '@redwoodjs/auth'
 import gql from 'graphql-tag'
 
 export const QUERY = gql`
@@ -38,13 +40,21 @@ export const Failure = ( error: CellError ) => (
 )
 
 export const Success = ( success: CellSuccess ) => {
+  const { isAuthenticated } = useAuth()
+
   if (success.result.vizName != "") {
     return (
       <DataLoader vizName={success.result.vizName}/>
     )
   } else {
-    return (
-      <HomePage />
-    )
+    if (isAuthenticated) {
+      return (
+        <UserHomePage />
+      )
+    } else {
+      return (
+        <HomePage />
+      )
+    }
   }
 }

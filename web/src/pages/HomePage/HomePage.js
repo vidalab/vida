@@ -1,14 +1,16 @@
 import React from 'react'
 import Header from '../Common/Header'
 import Footer from '../Common/Footer'
-import { containerClassName } from '../../components/Constants'
+import { containerClassName } from '../../components/Charts/Constants'
 import DashboardsCell from '../../components/DashboardsCell/DashboardsCell'
 import { Link, routes } from '@redwoodjs/router'
 import { GAPageView } from '../../PageView'
 import { useEffect } from 'react'
+import { setPageTitle } from '../../PageHelper'
 
 const HomePage = () => {
   useEffect(() => {
+    setPageTitle()
     GAPageView()
   }, [])
   return (
@@ -44,12 +46,11 @@ const HomePage = () => {
       </div>
       <div className={containerClassName + " pb-4"}>
         <div className="font-bold text-xl mb-2">Examples</div>
-        <DashboardsCell />
+        <DashboardsCell ownerId="" />
       </div>
       <div className={containerClassName+ " pb-10"}>
         <p>Implemented with: <a href="https://redwoodjs.com/" target="_blank">RedwoodJS</a>, <a href="https://tailwindcss.com/" target="_blank">TailwindCSS</a>, <a href="https://fontawesome.com/license" target="_blank">FontAwesome</a>.</p>
       </div>
-      <Footer description="Flexible Data Visualization"/>
     </>
   )
 }
