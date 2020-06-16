@@ -71,7 +71,7 @@ const Header = (props: HeaderProps) => {
                 <span>{isAuthenticated ? 'Hi ' + (currentUser.name ? currentUser.name : currentUser.email) : ''}</span>
                 <a href="#" onClick={ async () => {
                     isAuthenticated ?
-                      await logOut({returnTo: 'http://localhost:8910/'}) :
+                      await logOut({returnTo: process.env.REDIRECT_URL || 'http://localhost:8910/'}) :
                       await logIn()}
                   } className="inline-block text-teal-200 hover:text-white mr-4">
                   <span className="ml-2">{isAuthenticated ? 'Log Out' : 'Log In'}</span>

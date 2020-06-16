@@ -15,7 +15,7 @@ ReactGA.initialize(process.env.GA_ID)
 const auth0 = new Auth0Client({
     domain: process.env.AUTH0_DOMAIN,
     client_id: process.env.AUTH0_CLIENT_ID,
-    redirect_uri: 'http://localhost:8910/',
+    redirect_uri: process.env.REDIRECT_URL || 'http://localhost:8910/',
     cacheLocation: 'localstorage',
     audience: process.env.AUTH0_AUDIENCE,
   })
