@@ -31,7 +31,7 @@ const timeTag = (datetime) => {
 
 const dashboardOwner = (dashboard) => {
   const { currentUser } = useAuth()
-  if (currentUser && currentUser.auth0Id == dashboard.user.auth0Id) {
+  if (currentUser && currentUser.sub == dashboard.user.auth0Id) {
     return true
   } else {
     return false
