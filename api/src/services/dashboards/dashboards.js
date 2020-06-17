@@ -23,10 +23,14 @@ export const dashboard = ({ id }) => {
   })
 }
 
-export const createDashboard = ({ input }) => {
+export const createDashboard = async ({ input }) => {
   requireAuth()
-  input.ownerId = context.currentUser.sub
-  input.ownerEmail = context.currentUser[process.env.AUTH0_NAMESPACE + 'email']
+  input.user = {
+    connect: {
+      id: context.currentUser.id
+    }
+  }
+  input.ownerEmail = context.currentUser.email
   return db.dashboard.create({
     data: input,
   })
