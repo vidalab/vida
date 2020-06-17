@@ -71,8 +71,8 @@ const NivoLineChart = (props: LineChartProps) => {
               <BasicTooltip
                 id={
                   <span>
-                    {xLabel}: <strong>{point.data.xFormatted}</strong>, {point.serieId}:{' '}
-                    <strong>{point.data.yFormatted}</strong>
+                    {xLabel}: <strong>{point.data.xFormatted}</strong><br/>
+                    {point.serieId}: <strong>{point.data.yFormatted}</strong>
                   </span>
                 }
                 enableChip={true}
