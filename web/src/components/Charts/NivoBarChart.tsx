@@ -15,7 +15,11 @@ const NivoBarChart = (props: BarCharProps) => {
         enableLabel={false}
         layout={props.horizontal ? 'horizontal' : 'vertical'}
         indexBy={props.axes && props.axes.x.dataColumn}
-        margin={{ top: MARGIN.top, right: MARGIN.right, bottom: MARGIN.bottom, left: MARGIN.left }}
+        margin={{
+          top: MARGIN.top,
+          right: (props.legend && props.legend.enabled ? MARGIN.right : MARGIN.right_no_legend),
+          bottom: MARGIN.bottom,
+          left: MARGIN.left }}
         padding={0.3}
         colors={props.colors}
         borderColor={{ from: 'color', modifiers: [['darker', 1.6]] }}
@@ -25,6 +29,7 @@ const NivoBarChart = (props: BarCharProps) => {
           tickSize: 5,
           tickPadding: 5,
           tickRotation: 0,
+          tickValues: 8,
           legend: props.axes && (props.horizontal ? props.axes.y.label : props.axes.x.label),
           legendPosition: 'middle',
           legendOffset: 32,
