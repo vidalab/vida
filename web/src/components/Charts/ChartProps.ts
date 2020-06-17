@@ -1,4 +1,4 @@
-import { XYAxes } from '../VizData'
+import { XYAxes, LegendProps } from '../VizData'
 
 export interface ChartProps {
   data: Object
@@ -9,6 +9,7 @@ export interface ChartProps {
   // pie chart
   group?: string
   value?: string
+  legend?: LegendProps
 }
 
 export interface LineChartProps extends ChartProps {

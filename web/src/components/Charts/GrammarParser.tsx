@@ -92,8 +92,9 @@ const GrammarParser = (jsonData: JSONVizData) => {
             >
               <NivoLineChart
                 key={"line-chart-" + index}
-                chartTitle={chart["title"]}
-                axes={chart["axes"]}
+                chartTitle={chart.title}
+                axes={chart.axes}
+                legend={chart.legend}
                 colors={lineData.colors}
                 data={lineData.data} />
             </div>
@@ -104,9 +105,10 @@ const GrammarParser = (jsonData: JSONVizData) => {
             >
               <NivoBarChart
                 key={"bar-chart-" + index}
-                chartTitle={chart["title"]}
-                axes={chart["axes"]}
+                chartTitle={chart.title}
+                axes={chart.axes}
                 keys={barData.keys}
+                legend={chart.legend}
                 colors={barData.colors}
                 data={barData.data} />
             </div>
@@ -117,10 +119,11 @@ const GrammarParser = (jsonData: JSONVizData) => {
             >
               <NivoBarChart
                 key={"horizontal-bar-chart-" + index}
-                chartTitle={chart["title"]}
+                chartTitle={chart.title}
                 horizontal={true}
-                axes={chart["axes"]}
+                axes={chart.axes}
                 keys={barData.keys}
+                legend={chart.legend}
                 colors={barData.colors}
                 data={barData.data} />
             </div>
@@ -131,7 +134,7 @@ const GrammarParser = (jsonData: JSONVizData) => {
             >
               <NivoScatterChart
                 key={"scatter-chart-" + index}
-                axes={chart["axes"]}
+                axes={chart.axes}
                 data={scatterData.data} />
             </div>
     } else if (chartType == "area") {
@@ -141,9 +144,9 @@ const GrammarParser = (jsonData: JSONVizData) => {
             >
               <NivoLineChart
                 key={"line-chart-" + index}
-                chartTitle={chart["title"]}
+                chartTitle={chart.title}
                 enableArea={true}
-                axes={chart["axes"]}
+                axes={chart.axes}
                 colors={lineData.colors}
                 data={lineData.data} />
             </div>

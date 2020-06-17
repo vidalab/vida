@@ -38,6 +38,7 @@ export interface JSONChart {
   position: JSONChartPosition
   axes?: XYAxes
   colors: string[]
+  legend?: LegendProps
   // pie chart
   group?: string
   value?: string
@@ -47,6 +48,10 @@ export interface JSONVizHeader {
   align: string
   text: string
   backgroundColor: string
+}
+
+export interface LegendProps {
+  enabled: boolean
 }
 
 export interface JSONVizData {
