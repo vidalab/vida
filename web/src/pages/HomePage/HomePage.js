@@ -1,6 +1,5 @@
 import React from 'react'
 import Header from '../Common/Header'
-import Footer from '../Common/Footer'
 import { containerClassName } from '../../components/Charts/Constants'
 import DashboardsCell from '../../components/DashboardsCell/DashboardsCell'
 import { Link, routes } from '@redwoodjs/router'

@@ -57,6 +57,19 @@ const Header = (props: HeaderProps) => {
                 <span className="ml-2">Code</span>
               </a>
 
+              <a href="https://github.com/vidalab/vida/issues" target="_blank" className="inline-block text-teal-200 hover:text-white mr-4">
+                <FontAwesomeIcon icon={["fas", "exclamation-circle"]} />
+                <span className="ml-2">Issues</span>
+              </a>
+
+              <Link
+                to={"/about"}
+                className="inline-block text-teal-200 hover:text-white mr-4"
+              >
+                <FontAwesomeIcon icon={["fas", "question-circle"]} />
+                <span className="ml-2">About</span>
+              </Link>
+
               {dashboardView() &&
                 <Link
                   to={"/dashboards/create/" + dashboardId()}
