@@ -44,12 +44,12 @@ export const Success = ({ dashboard }) => {
   }
 
   return (
-    <div className="bg-white border rounded-lg overflow-hidden">
+    <div className="bg-white border rounded-lg overflow-hidden" style={{height: "100%"}}>
       <header className="bg-gray-300 text-gray-700 py-3 px-4">
         <h2 className="text-sm font-semibold">Edit Dashboard > <b>{dashboard.name}</b></h2>
       </header>
-      <div className="grid grid-cols-3 gap-4">
-        <div className="col-span-1 ">
+      <div className="grid grid-cols-3 gap-4" style={{height: "calc(100% - 45px)"}}>
+        <div className="col-span-1" style={{height: "calc(100% - 40px)"}}>
           <DashboardForm dashboard={dashboard} onSave={onSave}/>
         </div>
         <div className="col-span-2 ">
