@@ -74,6 +74,7 @@ const DashboardForm = (props) => {
         <div className="text-center">
           <Submit
             disabled={props.loading}
+            type="submit"
             className="bg-blue-600 text-white hover:bg-blue-700 text-xs rounded px-4 py-2 uppercase font-semibold tracking-wide"
           >
             Save
@@ -82,6 +83,7 @@ const DashboardForm = (props) => {
           <button
             className="ml-2 bg-green-600 text-white hover:bg-green-700 text-xs rounded px-4 py-2 uppercase font-semibold tracking-wide"
             title="Ctrl+Enter"
+            type="button"
             onClick={onPreview}
           >
             Preview
