@@ -1,5 +1,6 @@
 import { useMutation } from '@redwoodjs/web'
 import DashboardFormCell from './DashboardFormCell'
+import { checkJSONSize } from '../../PageHelper'
 
 export const QUERY = gql`
   query FIND_DASHBOARD_BY_ID($id: String!) {
@@ -32,8 +33,10 @@ export const Success = ({ dashboard }) => {
   })
 
   const onSave = (id, input) => {
-    newJson = input.json
-    updateDashboard({ variables: { id, input }})
+    if (checkJSONSize(input.json)) {
+      newJson = input.json
+      updateDashboard({ variables: { id, input }})
+    }
   }
 
   return (

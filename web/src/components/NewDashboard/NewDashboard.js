@@ -2,6 +2,7 @@ import { useMutation } from '@redwoodjs/web'
 import { navigate, routes } from '@redwoodjs/router'
 import DashboardCell from 'src/components/DashboardCell'
 import DashboardForm from 'src/components/DashboardForm'
+import { checkJSONSize } from '../../PageHelper'
 
 const CREATE_DASHBOARD_MUTATION = gql`
   mutation CreateDashboardMutation($input: CreateDashboardInput!) {
@@ -19,7 +20,9 @@ const NewDashboard = () => {
   })
 
   const onSave = (id, input) => {
-    createDashboard({ variables: { input } })
+    if (checkJSONSize(input.json)) {
+      createDashboard({ variables: { input } })
+    }
   }
 
   return (

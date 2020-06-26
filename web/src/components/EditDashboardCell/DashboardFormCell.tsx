@@ -1,6 +1,7 @@
 import React from 'react'
 import DashboardCell from '../DashboardCell/DashboardCell'
 import DashboardForm from '../DashboardForm/DashboardForm'
+import { checkJSONSize } from '../../PageHelper'
 
 interface Dashboard {
   id: number
@@ -27,7 +28,14 @@ class DashboardFormCell extends React.Component<DashboardFormCellProps, Dashboar
 
   handleKeyDown = (e: KeyboardEvent) => {
     if (e.ctrlKey && e.key == "Enter") {
-      const dashboard = this.state.dashboard
+      this.setDashboardState()
+    }
+  }
+
+  setDashboardState = () => {
+    const dashboard = this.state.dashboard
+    const json = dashboard.json
+    if (checkJSONSize(json)) {
       this.setState({
         dashboard: dashboard
       })
@@ -42,11 +50,8 @@ class DashboardFormCell extends React.Component<DashboardFormCellProps, Dashboar
   }
 
   onPreview = (id: number, json: object) => {
-    const dashboard = this.state.dashboard
-    dashboard.json = json
-    this.setState({
-      dashboard: dashboard
-    })
+    this.state.dashboard.json = json
+    this.setDashboardState()
   }
 
   render() {
