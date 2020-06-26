@@ -25,6 +25,22 @@ class DashboardFormCell extends React.Component<DashboardFormCellProps, Dashboar
     }
   }
 
+  handleKeyDown = (e: KeyboardEvent) => {
+    if (e.ctrlKey && e.key == "Enter") {
+      const dashboard = this.state.dashboard
+      this.setState({
+        dashboard: dashboard
+      })
+    }
+  }
+
+  componentDidMount(){
+    document.addEventListener("keydown", this.handleKeyDown, false);
+  }
+  componentWillUnmount(){
+    document.removeEventListener("keydown", this.handleKeyDown, false);
+  }
+
   onPreview = (id: number, json: object) => {
     const dashboard = this.state.dashboard
     dashboard.json = json

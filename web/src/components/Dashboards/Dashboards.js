@@ -64,7 +64,11 @@ const DashboardsList = ({ dashboards }) => {
               key={dashboard.id}
               className="odd:bg-gray-100 even:bg-white border-t"
             >
-              <td className="p-3">{truncate(dashboard.name)}</td>
+              <td className="p-3">
+                <Link to={routes.dashboard({ id: dashboard.id })}>
+                  {truncate(dashboard.name)}
+                </Link>
+              </td>
               <td className="p-3">{timeTag(dashboard.createdAt)}</td>
               <td className="p-3">{timeTag(dashboard.updatedAt)}</td>
               <td className="p-3 pr-4 text-right whitespace-no-wrap">
