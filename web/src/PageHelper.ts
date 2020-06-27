@@ -1,3 +1,5 @@
+import { useAlert } from 'react-alert'
+
 export const setPageTitle = (title: string) => {
   if (title) {
     document.title = title + " - Vida"
@@ -6,10 +8,10 @@ export const setPageTitle = (title: string) => {
   }
 }
 
-export const checkJSONSize = (json: object) => {
+export const checkJSONSize = (alert: useAlert, json: object) => {
   // limit json length to 50k
-  console.log(JSON.stringify(json).length)
   if (JSON.stringify(json).length > 50000) {
+    alert.show('JSON size is above the limit of 50k.')
     return false
   } else {
     return true

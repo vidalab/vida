@@ -3,6 +3,8 @@ import { Auth0Client } from '@auth0/auth0-spa-js'
 import ReactDOM from 'react-dom'
 import { RedwoodProvider, FatalErrorBoundary } from '@redwoodjs/web'
 import FatalErrorPage from 'src/pages/FatalErrorPage'
+import { transitions, positions, Provider as AlertProvider } from 'react-alert'
+import AlertTemplate from 'react-alert-template-basic'
 import ReactGA from 'react-ga'
 
 import Routes from 'src/Routes'
@@ -20,12 +22,24 @@ const auth0 = new Auth0Client({
     audience: process.env.AUTH0_AUDIENCE,
   })
 
+// optional configuration
+const alertOptions = {
+  // you can also just use 'bottom center'
+  position: positions.BOTTOM_CENTER,
+  timeout: 5000,
+  offset: '30px',
+  // you can also just use 'scale'
+  transition: transitions.SCALE
+}
+
 ReactDOM.render(
   <FatalErrorBoundary page={FatalErrorPage}>
     <AuthProvider client={auth0} type="auth0">
-      <RedwoodProvider>
-        <Routes />
-      </RedwoodProvider>
+      <AlertProvider template={AlertTemplate} {...alertOptions}>
+        <RedwoodProvider>
+          <Routes />
+        </RedwoodProvider>
+      </AlertProvider>
     </AuthProvider>
   </FatalErrorBoundary>,
   document.getElementById('redwood-app')

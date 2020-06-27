@@ -23,6 +23,8 @@
     "postcss-loader": "^3.0.0",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
+    "react-alert": "^7.0.1",
+    "react-alert-template-basic": "^1.0.0",
     "react-dom": "^16.13.1",
     "react-ga": "^2.7.0",
     "react-monaco-editor": "^0.36.0",

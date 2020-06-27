@@ -1,6 +1,7 @@
 import React from 'react'
 import DashboardCell from '../DashboardCell/DashboardCell'
 import DashboardForm from '../DashboardForm/DashboardForm'
+import { withAlert, useAlert } from "react-alert"
 import { checkJSONSize } from '../../PageHelper'
 
 interface Dashboard {
@@ -10,6 +11,7 @@ interface Dashboard {
 
 interface DashboardFormCellProps {
   dashboard: Dashboard
+  alert: useAlert
   onSave: (id: number, input: Dashboard) => void
 }
 
@@ -35,7 +37,7 @@ class DashboardFormCell extends React.Component<DashboardFormCellProps, Dashboar
   setDashboardState = () => {
     const dashboard = this.state.dashboard
     const json = dashboard.json
-    if (checkJSONSize(json)) {
+    if (checkJSONSize(this.props.alert, json)) {
       this.setState({
         dashboard: dashboard
       })
@@ -54,6 +56,10 @@ class DashboardFormCell extends React.Component<DashboardFormCellProps, Dashboar
     this.setDashboardState()
   }
 
+  onSave = (id: number, json: object) => {
+    this.props.onSave(id, json)
+  }
+
   render() {
     return (
       <div className="grid grid-cols-3 gap-4" style={{height: "calc(100% - 45px)"}}>
@@ -68,4 +74,4 @@ class DashboardFormCell extends React.Component<DashboardFormCellProps, Dashboar
   }
 }
 
-export default DashboardFormCell
+export default withAlert()(DashboardFormCell)
