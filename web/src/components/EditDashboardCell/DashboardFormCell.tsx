@@ -57,14 +57,16 @@ class DashboardFormCell extends React.Component<DashboardFormCellProps, Dashboar
   }
 
   onSave = (id: number, json: object) => {
-    this.props.onSave(id, json)
+    if (checkJSONSize(this.props.alert, json)) {
+      this.props.onSave(id, json)
+    }
   }
 
   render() {
     return (
       <div className="grid grid-cols-3 gap-4" style={{height: "calc(100% - 45px)"}}>
         <div className="col-span-1" style={{height: "calc(100% - 40px)"}}>
-          <DashboardForm dashboard={this.props.dashboard} onSave={this.props.onSave} onPreview={this.onPreview}/>
+          <DashboardForm dashboard={this.props.dashboard} onSave={this.onSave} onPreview={this.onPreview}/>
         </div>
         <div className="col-span-2 ">
           {this.state.dashboard && <DashboardCell id={this.props.dashboard.id} />}
