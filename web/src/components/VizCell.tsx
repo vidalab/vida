@@ -1,6 +1,7 @@
 import DataLoader from "./Charts/DataLoader"
 import HomePage from '../pages/HomePage/HomePage'
 import UserHomePage from '../pages/UserHomePage/UserHomePage'
+import ErrorBoundary from './ErrorBoundary'
 import { containerClassName } from './Charts/Constants'
 import { useAuth } from '@redwoodjs/auth'
 import gql from 'graphql-tag'
@@ -44,7 +45,9 @@ export const Success = ( success: CellSuccess ) => {
 
   if (success.result.vizName != "") {
     return (
-      <DataLoader vizName={success.result.vizName}/>
+      <ErrorBoundary>
+        <DataLoader vizName={success.result.vizName}/>
+      </ErrorBoundary>
     )
   } else {
     if (isAuthenticated) {

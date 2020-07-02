@@ -22,15 +22,17 @@ class DataLoader extends Component<DataLoaderProps, DataLoaderState> {
   }
 
   private getDataUrl = async () => {
-    for (const d of this.vizData["data"]) {
-      if (d["url"]) {
-        // retrieve data from url to send to client
-        const response = await fetch(d["url"])
-        const json = await response.json()
-        d["values"] = json
+    if (this.vizData["data"]) {
+      for (const d of this.vizData["data"]) {
+        if (d["url"]) {
+          // retrieve data from url to send to client
+          const response = await fetch(d["url"])
+          const json = await response.json()
+          d["values"] = json
+        }
       }
+      this.setState({ data: this.vizData })
     }
-    this.setState({ data: this.vizData })
   }
 
   public componentDidMount = () => {
