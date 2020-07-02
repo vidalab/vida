@@ -5,7 +5,6 @@ import {
   FieldError,
   Label,
   TextField,
-  TextAreaField,
   Submit,
 } from '@redwoodjs/web'
 
@@ -32,9 +31,13 @@ const DashboardForm = (props) => {
     dashboard.json = value
   }
 
+  const onPreview = () => {
+    props.onPreview(dashboard.id, dashboard.json)
+  }
+
   return (
-    <div className="box-border text-sm col-span-1 bg-gray-100 p-4">
-      <Form onSubmit={onSubmit} error={props.error}>
+    <div className="box-border text-sm col-span-1 bg-gray-100 p-2" style={{height: "100%"}}>
+      <Form onSubmit={onSubmit} error={props.error} style={{height: "100%"}}>
         <FormError
           error={props.error}
           wrapperClassName="p-4 bg-red-100 text-red-700 border border-red-300 rounded mt-4 mb-4"
@@ -61,24 +64,30 @@ const DashboardForm = (props) => {
           className={CSS.label + " mt-4"}
           errorClassName={CSS.labelError}
           >JSON</Label>
-        {/* <TextAreaField
-          name="json"
-          defaultValue={props.dashboard?.json}
-          className={CSS.input + " h-56"}
-          errorClassName={CSS.inputError}
-          validation={{ required: true }}
-        /> */}
-        <CodeEditor jsonText={props.dashboard?.json} onChange={onCodeChange} />
+
+        <div style={{height: "calc(100% - 95px)"}}>
+          <CodeEditor jsonText={props.dashboard?.json} onChange={onCodeChange} />
+        </div>
 
         <FieldError name="json" className={CSS.errorMessage} />
 
-        <div className="mt-8 text-center">
+        <div className="text-center">
           <Submit
             disabled={props.loading}
+            type="submit"
             className="bg-blue-600 text-white hover:bg-blue-700 text-xs rounded px-4 py-2 uppercase font-semibold tracking-wide"
           >
             Save
           </Submit>
+
+          <button
+            className="ml-2 bg-green-600 text-white hover:bg-green-700 text-xs rounded px-4 py-2 uppercase font-semibold tracking-wide"
+            title="Ctrl+Enter"
+            type="button"
+            onClick={onPreview}
+          >
+            Preview
+          </button>
         </div>
       </Form>
     </div>

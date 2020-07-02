@@ -39,7 +39,7 @@ const CodeEditor = (props) => {
   return (
     <MonacoEditor
       width="auto"
-      height="600"
+      height="100%"
       language="json"
       theme="vs-dark"
       value={props.jsonText}

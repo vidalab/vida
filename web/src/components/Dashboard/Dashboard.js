@@ -1,9 +1,12 @@
 import DataLoader from '../Charts/DataLoader'
+import ErrorBoundary from '../ErrorBoundary'
 
 const Dashboard = ({ dashboard: dashboardJson }) => {
   const vizData = dashboardJson
   return (
-    <DataLoader vizData={vizData} />
+    <ErrorBoundary>
+      <DataLoader vizData={vizData} />
+    </ErrorBoundary>
   )
 }
 

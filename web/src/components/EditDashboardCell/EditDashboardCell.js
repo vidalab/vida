@@ -1,8 +1,5 @@
 import { useMutation } from '@redwoodjs/web'
-import { navigate, routes } from '@redwoodjs/router'
-import DashboardsLayout from 'src/layouts/DashboardsLayout'
-import DashboardCell from 'src/components/DashboardCell'
-import DashboardForm from 'src/components/DashboardForm'
+import DashboardFormCell from './DashboardFormCell'
 
 export const QUERY = gql`
   query FIND_DASHBOARD_BY_ID($id: String!) {
@@ -39,23 +36,12 @@ export const Success = ({ dashboard }) => {
     updateDashboard({ variables: { id, input }})
   }
 
-  const options = {
-    selectOnLineNumbers: true
-  }
-
   return (
-    <div className="bg-white border rounded-lg overflow-hidden">
+    <div className="bg-white border rounded-lg overflow-hidden" style={{height: "100%"}}>
       <header className="bg-gray-300 text-gray-700 py-3 px-4">
         <h2 className="text-sm font-semibold">Edit Dashboard > <b>{dashboard.name}</b></h2>
       </header>
-      <div className="grid grid-cols-3 gap-4">
-        <div className="col-span-1 ">
-          <DashboardForm dashboard={dashboard} onSave={onSave}/>
-        </div>
-        <div className="col-span-2 ">
-          <DashboardCell id={dashboard.id} />
-        </div>
-      </div>
+      <DashboardFormCell dashboard={dashboard} onSave={onSave} />
     </div>
   )
 }
