@@ -80,3 +80,41 @@ export const CSVToArray = ( strData, strDelimiter ) => {
   // Return the parsed data.
   return( arrData );
 }
+
+export const arrayToJSON = (array) => {
+    var json = {};
+
+    if (array.length > 0) {
+      // first line is column names
+      var cols = [];
+      for (var i = 0; i < array[0].length; i++) {
+        var col_str = array[0][i];
+        cols.push(col_str);
+      }
+      json['columns'] = cols;
+      var data = [];
+      for (var i = 1; i < array.length; i++) {
+        var row = {};
+        for (var j = 0; j < cols.length; j++) {
+          row[cols[j]] = array[i][j];
+        }
+        data.push(row);
+      }
+      json['data'] = data;
+    }
+
+    return json;
+  }
+
+  export const CSVToJSON = (strData, strDelimiter) => {
+    if (strData.indexOf(strDelimiter) === -1) return null
+    var array = CSVToArray(strData, strDelimiter)
+    var newArray = []
+    for (var i = 0; i < array.length; i++) {
+      if (array[i].length >= 1) {
+        newArray.push(array[i])
+      }
+    }
+    var json = arrayToJSON(newArray)
+    return json;
+  }

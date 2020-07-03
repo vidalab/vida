@@ -5,7 +5,7 @@ import Footer from './Footer'
 import GrammarParser from './GrammarParser'
 import { JSONVizData, DataLoaderProps, DataLoaderState } from './VizData'
 import { containerClassName } from './Constants'
-import { CSVToArray } from '../../Utility'
+import { CSVToJSON } from '../../Utility'
 
 class DataLoader extends Component<DataLoaderProps, DataLoaderState> {
   private vizName: string
@@ -33,8 +33,8 @@ class DataLoader extends Component<DataLoaderProps, DataLoaderState> {
           } else if (d["url"].indexOf(".csv") != -1) {
             const response = await fetch(d["url"])
             const body = await response.text()
-            const values = CSVToArray(body, ',')
-            d["values"] = values
+            const values = CSVToJSON(body, ',')
+            d["values"] = values["data"]
           }
         }
       }
@@ -63,8 +63,8 @@ class DataLoader extends Component<DataLoaderProps, DataLoaderState> {
               } else if (d["url"].indexOf(".csv")) {
                 const response = await fetch(d["url"])
                 const body = await response.text()
-                const values = CSVToArray(body, ',')
-                d["values"] = values
+                const values = CSVToJSON(body, ',')
+                d["values"] = values["data"]
               }
             }
           }
