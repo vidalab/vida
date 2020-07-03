@@ -8,7 +8,7 @@ export const setPageTitle = (title: string) => {
   }
 }
 
-export const checkJSONSize = (alert: useAlert, json: object) => {
+export const checkJSONSize = (alert: useAlert, json: object): boolean => {
   // limit json length to 50k
   if (JSON.stringify(json).length > 50000) {
     alert.show('JSON size is above the limit of 50k.')

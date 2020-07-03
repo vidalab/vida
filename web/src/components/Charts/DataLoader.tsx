@@ -4,8 +4,8 @@ import Header from './Header'
 import Footer from './Footer'
 import GrammarParser from './GrammarParser'
 import { JSONVizData, DataLoaderProps, DataLoaderState } from './VizData'
-
 import { containerClassName } from './Constants'
+import { CSVToArray } from '../../Utility'
 
 class DataLoader extends Component<DataLoaderProps, DataLoaderState> {
   private vizName: string
@@ -26,9 +26,16 @@ class DataLoader extends Component<DataLoaderProps, DataLoaderState> {
       for (const d of this.vizData["data"]) {
         if (d["url"]) {
           // retrieve data from url to send to client
-          const response = await fetch(d["url"])
-          const json = await response.json()
-          d["values"] = json
+          if (d["url"].indexOf(".json") != -1) {
+            const response = await fetch(d["url"])
+            const json = await response.json()
+            d["values"] = json
+          } else if (d["url"].indexOf(".csv") != -1) {
+            const response = await fetch(d["url"])
+            const body = await response.text()
+            const values = CSVToArray(body, ',')
+            d["values"] = values
+          }
         }
       }
       this.setState({ data: this.vizData })
@@ -49,9 +56,16 @@ class DataLoader extends Component<DataLoaderProps, DataLoaderState> {
           for (const d of json["data"]) {
             if (d["url"]) {
               // retrieve data from url to send to client
-              const response = await fetch(d["url"])
-              const json = await response.json()
-              d["values"] = json
+              if (d["url"].indexOf(".json")) {
+                const response = await fetch(d["url"])
+                const json = await response.json()
+                d["values"] = json
+              } else if (d["url"].indexOf(".csv")) {
+                const response = await fetch(d["url"])
+                const body = await response.text()
+                const values = CSVToArray(body, ',')
+                d["values"] = values
+              }
             }
           }
           this.setState({ data: json })
