@@ -3,13 +3,19 @@ import { Component } from "react"
 import Header from './Header'
 import Footer from './Footer'
 import GrammarParser from './GrammarParser'
-import { JSONVizData, DataLoaderProps, DataLoaderState } from './VizData'
+import { JSONVizData, DataLoaderProps, DataLoaderState, JSONDataTransform, JSONDataset } from './VizData'
 import { containerClassName } from './Constants'
 import { CSVToJSON } from '../../Utility'
+import { group as d3group } from 'd3-array'
+
+interface UrlData {
+  [url: string]: object[]
+}
 
 class DataLoader extends Component<DataLoaderProps, DataLoaderState> {
   private vizName: string
   private vizData: JSONVizData
+  private urlData: UrlData
 
   public constructor(props: DataLoaderProps) {
     super(props)
@@ -18,25 +24,53 @@ class DataLoader extends Component<DataLoaderProps, DataLoaderState> {
     if (props.vizData) {
       this.vizData = JSON.parse(JSON.stringify(props.vizData))
     }
-    this.state = { data: null };
+    this.state = { data: null }
+    this.urlData = {}
+  }
+
+  private transformData = (data: object, transform: JSONDataTransform) => {
+    // copy data to transform
+    let tData = JSON.parse(JSON.stringify(data))
+    for (const t in transform) {
+      if (t == "groupBy") {
+        tData = d3group(data, (d: any) => d[transform.groupBy])
+      } else if (t == "select") {
+        tData = tData.get(transform.select)
+      }
+    }
+    return tData
+  }
+
+  private getDatumUrl = async (d: JSONDataset) => {
+    if (d["url"]) {
+      // retrieve data from url to send to client
+      if (d["url"].indexOf(".json") != -1) {
+        if (!this.urlData[d["url"]]) {
+          const response = await fetch(d["url"])
+          const json = await response.json()
+          this.urlData[d["url"]] = json
+        }
+        d["values"] = this.urlData[d["url"]]
+      } else if (d["url"].indexOf(".csv") != -1) {
+        if (!this.urlData[d["url"]]) {
+          const response = await fetch(d["url"])
+          const body = await response.text()
+          const jsonData = CSVToJSON(body, ',')
+          this.urlData[d["url"]] = jsonData["data"]
+        }
+        let values = this.urlData[d["url"]]
+        if (d["transform"]) {
+          values = this.transformData(this.urlData[d["url"]], d["transform"])
+        }
+        d["values"] = values
+      }
+    }
   }
 
   private getDataUrl = async () => {
     if (this.vizData["data"]) {
       for (const d of this.vizData["data"]) {
-        if (d["url"]) {
-          // retrieve data from url to send to client
-          if (d["url"].indexOf(".json") != -1) {
-            const response = await fetch(d["url"])
-            const json = await response.json()
-            d["values"] = json
-          } else if (d["url"].indexOf(".csv") != -1) {
-            const response = await fetch(d["url"])
-            const body = await response.text()
-            const values = CSVToJSON(body, ',')
-            d["values"] = values["data"]
-          }
-        }
+        await this.getDatumUrl(d)
       }
       this.setState({ data: this.vizData })
     }
@@ -54,19 +88,7 @@ class DataLoader extends Component<DataLoaderProps, DataLoaderState> {
         .then((res) => res.json())
         .then(async (json) => {
           for (const d of json["data"]) {
-            if (d["url"]) {
-              // retrieve data from url to send to client
-              if (d["url"].indexOf(".json")) {
-                const response = await fetch(d["url"])
-                const json = await response.json()
-                d["values"] = json
-              } else if (d["url"].indexOf(".csv")) {
-                const response = await fetch(d["url"])
-                const body = await response.text()
-                const values = CSVToJSON(body, ',')
-                d["values"] = values["data"]
-              }
-            }
+            await this.getDatumUrl(d)
           }
           this.setState({ data: json })
         })
