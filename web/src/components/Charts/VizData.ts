@@ -1,7 +1,13 @@
+export interface JSONDataTransform {
+  groupBy?: string
+  select?: string
+}
+
 export interface JSONDataset {
   name: string
   url?: string
-  values?: object[]
+  values?: object[],
+  transform: JSONDataTransform
 }
 
 export interface JSONChartDataColumn {
