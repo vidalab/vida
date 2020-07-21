@@ -21,10 +21,12 @@ const GrammarParser = (jsonData: JSONVizData) => {
   const getNivoBubbleColors = (dataArray: any): any => {
     // The first color is white for the outer bubble
     let colors = ["#FFFFFF"]
+    let textColors = ["#FFFFFF"]
     dataArray.forEach((d: any, index: number) => {
       colors.push(d.fill)
+      textColors.push(d.color)
     })
-    return colors
+    return {colors: colors, textColors: textColors}
   }
 
   const getNivoPieData = (data: any, group: any, value: any, colors: any): any => {
@@ -170,12 +172,14 @@ const GrammarParser = (jsonData: JSONVizData) => {
                 data={pieData} />
           </div>
     } else if (chartType == "bubble") {
+      const bubbleColorData = getNivoBubbleColors(data)
       el = <div key={"bubble-chart-container-" + index} style={containerCssStyle}
               className={colXClass + " " + colSpanClass + " " + rowSpanClass}
             >
               <NivoBubbleChart
                 key={"bubble-chart-" + index}
-                colors={getNivoBubbleColors(data)}
+                colors={bubbleColorData.colors}
+                textColors={bubbleColorData.textColors}
                 data={data} />
             </div>
     }

@@ -6,6 +6,7 @@ const NivoBubbleChart = (props: ChartProps) => {
     "name": "Total",
     "children": props.data
   }
+  let count = 0;
   return (<ResponsiveBubble
     root={root}
     margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
@@ -14,7 +15,12 @@ const NivoBubbleChart = (props: ChartProps) => {
     colors={props.colors}
     colorBy="name"
     padding={6}
-    labelTextColor={{ from: 'color', modifiers: [ [ 'darker', 0.8 ] ] }}
+    labelTextColor={(d: any) => {
+      if (count >= props.textColors.length) {
+        count = 0
+      }
+      return props.textColors[count++];
+    }}
     borderWidth={2}
     borderColor={{ from: 'color' }}
     animate={true}
