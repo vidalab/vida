@@ -23,6 +23,8 @@ export interface JSONChartAxis {
   dataFormat?: string
   displayFormat?: string
   timePrecision?: string
+  color?: string
+  textColor?: string
 }
 
 export interface XYAxes {

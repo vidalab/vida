@@ -4,6 +4,7 @@ export interface ChartProps {
   data: Object
   axes: XYAxes
   colors: string[]
+  textColors: string[]
   keys?: string[]
   chartTitle: string
   // pie chart

@@ -3,6 +3,7 @@ import NivoLineChart from "./NivoLineChart"
 import NivoBarChart from "./NivoBarChart"
 import NivoScatterChart from "./NivoScatterChart"
 import NivoPieChart from "./NivoPieChart"
+import NivoBubbleChart from "./NivoBubbleChart"
 import { JSONVizData, XYAxes, JSONChartDataColumn, IHash } from "./VizData"
 
 const GrammarParser = (jsonData: JSONVizData) => {
@@ -15,6 +16,17 @@ const GrammarParser = (jsonData: JSONVizData) => {
       }
     })
     return values
+  }
+
+  const getNivoBubbleColors = (dataArray: any, axes: XYAxes): any => {
+    // The first color is white for the outer bubble
+    let colors = ["#FFFFFF"]
+    let textColors = ["#FFFFFF"]
+    dataArray.forEach((d: any, index: number) => {
+      colors.push(d[axes.x.color])
+      textColors.push(d[axes.x.textColor])
+    })
+    return {colors: colors, textColors: textColors}
   }
 
   const getNivoPieData = (data: any, group: any, value: any, colors: any): any => {
@@ -159,6 +171,18 @@ const GrammarParser = (jsonData: JSONVizData) => {
                 key={"pie-chart-" + index}
                 data={pieData} />
           </div>
+    } else if (chartType == "bubble") {
+      const bubbleColorData = getNivoBubbleColors(data, chart.axes)
+      el = <div key={"bubble-chart-container-" + index} style={containerCssStyle}
+              className={colXClass + " " + colSpanClass + " " + rowSpanClass}
+            >
+              <NivoBubbleChart
+                key={"bubble-chart-" + index}
+                colors={bubbleColorData.colors}
+                textColors={bubbleColorData.textColors}
+                axes={chart.axes}
+                data={data} />
+            </div>
     }
     els.push(el)
   })
