@@ -10,10 +10,10 @@ const NivoBubbleChart = (props: ChartProps) => {
   return (<ResponsiveBubble
     root={root}
     margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
-    identity="name"
-    value="value"
+    identity={props.axes.x.dataColumn}
+    value={props.axes.y.dataColumn}
     colors={props.colors}
-    colorBy="name"
+    colorBy={props.axes.x.dataColumn}
     padding={6}
     labelTextColor={(d: any) => {
       if (count >= props.textColors.length) {
