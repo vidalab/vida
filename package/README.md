@@ -21,6 +21,6 @@ https://tailwindcss.com/docs/installation
 import vizJson from './viz.json'
 
 <div style={{width: "1000px", height: "500px"}}>
-  <VidaComponent vizData={vizJson} />
+  <Vida vizData={vizJson} />
 </div>
 ```
