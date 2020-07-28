@@ -50,6 +50,8 @@ export interface JSONChart {
   // pie chart
   group?: string
   value?: string
+  // markdown text
+  text?: string
 }
 
 export interface JSONVizHeader {
@@ -82,5 +84,9 @@ export interface DataLoaderState {
 }
 
 export interface IHash {
-  [details: string] : any;
+  [details: string] : any
+}
+
+export interface MarkdownTextProps {
+  text: string
 }

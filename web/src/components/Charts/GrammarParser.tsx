@@ -4,6 +4,7 @@ import NivoBarChart from "./NivoBarChart"
 import NivoScatterChart from "./NivoScatterChart"
 import NivoPieChart from "./NivoPieChart"
 import NivoBubbleChart from "./NivoBubbleChart"
+import MarkdownText from "./MarkdownText"
 import { JSONVizData, XYAxes, JSONChartDataColumn, IHash } from "./VizData"
 
 const GrammarParser = (jsonData: JSONVizData) => {
@@ -182,6 +183,12 @@ const GrammarParser = (jsonData: JSONVizData) => {
                 textColors={bubbleColorData.textColors}
                 axes={chart.axes}
                 data={data} />
+            </div>
+    } else if (chartType == "markdown") {
+      el = <div key={"markdown-container-" + index} style={containerCssStyle}
+              className={colXClass + " " + colSpanClass + " " + rowSpanClass}
+            >
+              <MarkdownText text={chart.text} />
             </div>
     }
     els.push(el)
