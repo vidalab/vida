@@ -19,6 +19,7 @@ https://tailwindcss.com/docs/installation
 
 ```javascript
 import vizJson from './viz.json'
+import Vida from 'vidajs'
 
 <div style={{width: "1000px", height: "500px"}}>
   <Vida vizData={vizJson} />
