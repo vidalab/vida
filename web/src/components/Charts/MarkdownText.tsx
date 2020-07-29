@@ -1,8 +1,9 @@
 import { MarkdownTextProps } from './VizData'
+import ReactMarkdown from 'react-markdown'
 
 const MarkdownText = (props: MarkdownTextProps) => {
   return (
-    props.text
+    <ReactMarkdown source={props.text} />
   )
 }
 
