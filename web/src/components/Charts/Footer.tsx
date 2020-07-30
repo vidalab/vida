@@ -14,7 +14,7 @@ const Footer = (props: FooterProps) => {
           </span>
 
           <span className="text-sm text-gray-700 float-right">
-            Powered by <a className="text-blue-500" href="https://github.com/vidalab/vida">vida</a> & <a className="text-blue-500" href="https://redwoodjs.com/" target="_blank">redwoodjs</a>
+            Powered by <a className="text-blue-500" href="https://github.com/vidalab/vida">vida</a>
           </span>
         </div>
       </footer>
