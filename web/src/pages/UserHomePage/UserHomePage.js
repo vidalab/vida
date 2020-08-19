@@ -6,7 +6,7 @@ import DashboardsCell from '../../components/DashboardsCell/DashboardsCell'
 import { useAuth } from '@redwoodjs/auth'
 
 const UserHomePage = () => {
-  const { currentUser } = useAuth()
+  const { userMetadata } = useAuth()
   return (
     <>
       <Header name="Vida"/>
@@ -21,7 +21,7 @@ const UserHomePage = () => {
               <span className="ml-1 leading-loose">New Dashboard</span>
           </Link>
         </div>
-        <DashboardsCell ownerId={currentUser.sub} />
+        <DashboardsCell ownerId={userMetadata.sub} />
       </div>
       <Footer description="Flexible Data Visualization"/>
     </>
