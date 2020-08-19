@@ -6,11 +6,11 @@
   "data": [
     {
       "name": "states-current",
-      "url": "https://covidtracking.com/api/v1/states/current.json"
+      "url": "https://api.covidtracking.com/api/v1/states/current.json"
     },
     {
       "name": "us-daily",
-      "url": "https://covidtracking.com/api/v1/us/daily.json"
+      "url": "https://api.covidtracking.com/api/v1/us/daily.json"
     }
   ],
   "charts": [
