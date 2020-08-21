@@ -12,7 +12,7 @@ VIZ_JSON=viz1.json yarn rw dev
 
 # Redwood
 
-Vida uses redwoodjs.
+Vida uses RedwoodJS.
 
 ## Getting Started
 - [Redwoodjs.com](https://redwoodjs.com): home to all things RedwoodJS.
@@ -41,8 +41,6 @@ Your browser should open automatically to `http://localhost:8910` to see the web
 ### Database
 
 We're using [Prisma2](https://github.com/prisma/prisma2), a modern DB toolkit to query, migrate and model your database.
-
-Prisma2 is [not ready for production](https://isprisma2ready.com) at the moment.
 
 To create a development database:
 
