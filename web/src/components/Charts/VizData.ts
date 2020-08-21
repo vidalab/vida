@@ -1,12 +1,14 @@
 export interface JSONDataTransform {
   groupBy?: string
   select?: string
+  function?: string
+  fields?: object
 }
 
 export interface JSONDataset {
   name: string
   url?: string
-  values?: object[],
+  values?: object[]
   transform: JSONDataTransform
 }
 

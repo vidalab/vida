@@ -42,7 +42,7 @@ class DataLoader extends Component<DataLoaderProps, DataLoaderState> {
         if (functionSegs.length == 1) {
           tData = window[functionSegs[0]](tData)
         } else {
-          tData = window[functionSegs[0]][functionSegs[1]](tData)
+          tData = window[functionSegs[0]][functionSegs[1]](tData, transform.fields)
         }
       }
     }
