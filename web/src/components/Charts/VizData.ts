@@ -1,12 +1,14 @@
 export interface JSONDataTransform {
   groupBy?: string
   select?: string
+  function?: string
+  fields?: object
 }
 
 export interface JSONDataset {
   name: string
   url?: string
-  values?: object[],
+  values?: object[]
   transform: JSONDataTransform
 }
 
@@ -70,6 +72,7 @@ export interface JSONVizData {
   header: JSONVizHeader
   columns: number
   rows: number
+  scripts: string[]
   data: JSONDataset[]
   charts: JSONChart[]
 }
