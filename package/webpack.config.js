@@ -15,6 +15,7 @@ module.exports = {
     extensions: ['*', '.js', '.ts', '.tsx']
   },
   output: {
+    globalObject: "this",
     path: __dirname + '/dist',
     publicPath: '/',
     filename: 'index.js',

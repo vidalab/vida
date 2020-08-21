@@ -9,7 +9,7 @@ export interface VidaProps {
   vizData: JSONVizData
 }
 
-const VidaComponent = (props: VidaProps) => {
+const Vida = (props: VidaProps) => {
   const grammarParser = GrammarParser(props.vizData)
   const charts = grammarParser.charts
   const vizInfo = grammarParser.vizInfo
@@ -31,4 +31,4 @@ const VidaComponent = (props: VidaProps) => {
   )
 }
 
-export default VidaComponent
+export default Vida

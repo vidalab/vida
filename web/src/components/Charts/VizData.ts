@@ -1,12 +1,14 @@
 export interface JSONDataTransform {
   groupBy?: string
   select?: string
+  function?: string
+  fields?: object
 }
 
 export interface JSONDataset {
   name: string
   url?: string
-  values?: object[],
+  values?: object[]
   transform: JSONDataTransform
 }
 
@@ -50,6 +52,8 @@ export interface JSONChart {
   // pie chart
   group?: string
   value?: string
+  // markdown text
+  text?: string
 }
 
 export interface JSONVizHeader {
@@ -68,6 +72,7 @@ export interface JSONVizData {
   header: JSONVizHeader
   columns: number
   rows: number
+  scripts: string[]
   data: JSONDataset[]
   charts: JSONChart[]
 }
@@ -82,5 +87,9 @@ export interface DataLoaderState {
 }
 
 export interface IHash {
-  [details: string] : any;
+  [details: string] : any
+}
+
+export interface MarkdownTextProps {
+  text: string
 }
