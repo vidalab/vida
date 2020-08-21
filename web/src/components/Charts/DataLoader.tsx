@@ -36,6 +36,14 @@ class DataLoader extends Component<DataLoaderProps, DataLoaderState> {
         tData = d3group(data, (d: any) => d[transform.groupBy])
       } else if (t == "select") {
         tData = tData.get(transform.select)
+      } else if (t == "function") {
+        // split namespace
+        const functionSegs = transform.function.split('.')
+        if (functionSegs.length == 1) {
+          tData = window[functionSegs[0]](tData)
+        } else {
+          tData = window[functionSegs[0]][functionSegs[1]](tData)
+        }
       }
     }
     return tData
@@ -50,7 +58,11 @@ class DataLoader extends Component<DataLoaderProps, DataLoaderState> {
           const json = await response.json()
           this.urlData[d["url"]] = json
         }
-        d["values"] = this.urlData[d["url"]]
+        let values = this.urlData[d["url"]]
+        if (d["transform"]) {
+          values = this.transformData(this.urlData[d["url"]], d["transform"])
+        }
+        d["values"] = values
       } else if (d["url"].indexOf(".csv") != -1) {
         if (!this.urlData[d["url"]]) {
           const response = await fetch(d["url"])
@@ -64,6 +76,29 @@ class DataLoader extends Component<DataLoaderProps, DataLoaderState> {
         }
         d["values"] = values
       }
+    }
+  }
+
+  private removeScriptTags = (className: string) => {
+    var elements = document.getElementsByClassName(className);
+    while(elements.length > 0){
+        elements[0].parentNode.removeChild(elements[0]);
+    }
+  }
+
+  private loadScripts = async (scripts: string[], callback: () => void) => {
+    let count = 0
+    for (const scriptUrl of scripts) {
+      var scriptTag = document.createElement('script')
+      scriptTag.setAttribute('src', scriptUrl)
+      scriptTag.setAttribute('class', 'dynamic-script')
+      document.body.appendChild(scriptTag)
+      scriptTag.addEventListener('load', function() {
+        count++
+        if (count == scripts.length) {
+          callback()
+        }
+      })
     }
   }
 
@@ -93,7 +128,14 @@ class DataLoader extends Component<DataLoaderProps, DataLoaderState> {
           this.setState({ data: json })
         })
     } else {
-      this.getDataUrl()
+      this.removeScriptTags('dynamic-script')
+      if (this.vizData["scripts"]) {
+        this.loadScripts(this.vizData["scripts"], () => {
+          this.getDataUrl()
+        })
+      } else {
+        this.getDataUrl()
+      }
     }
   }
 

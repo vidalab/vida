@@ -79,7 +79,10 @@ const GrammarParser = (jsonData: JSONVizData) => {
   }
 
   const getVizInfo = (): any => {
-    return {"name": jsonData["name"], "description": jsonData["description"], "header": jsonData["header"]}
+    return {
+      "name": jsonData["name"], "description": jsonData["description"],
+      "scripts": jsonData["scripts"],
+      "header": jsonData["header"]}
   }
 
   let els: JSX.Element[] = []

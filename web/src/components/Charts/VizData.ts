@@ -70,6 +70,7 @@ export interface JSONVizData {
   header: JSONVizHeader
   columns: number
   rows: number
+  scripts: string[]
   data: JSONDataset[]
   charts: JSONChart[]
 }
