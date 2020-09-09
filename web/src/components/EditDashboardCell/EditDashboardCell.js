@@ -21,6 +21,10 @@ const UPDATE_DASHBOARD_MUTATION = gql`
   }
 `
 
+export const beforeQuery = (props) => {
+  return { variables: props, fetchPolicy: 'cache-first' }
+}
+
 export const Loading = () => <div>Loading...</div>
 
 export const Success = ({ dashboard }) => {
