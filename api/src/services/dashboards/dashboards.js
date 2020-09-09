@@ -27,10 +27,10 @@ export const createDashboard = async ({ input }) => {
   requireAuth()
   input.user = {
     connect: {
-      id: context.currentUser.id
+      id: context.userMetadata.id
     }
   }
-  input.ownerEmail = context.currentUser.email
+  input.ownerEmail = context.userMetadata.email
   return db.dashboard.create({
     data: input,
   })

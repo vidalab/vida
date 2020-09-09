@@ -40,6 +40,10 @@ export const Failure = ( error: CellError ) => (
   <div className={containerClassName + " text-center"}>Error: {error.message}</div>
 )
 
+export const beforeQuery = (props: object) => {
+  return { variables: props, fetchPolicy: 'cache-first' }
+}
+
 export const Success = ( success: CellSuccess ) => {
   const { isAuthenticated } = useAuth()
 
