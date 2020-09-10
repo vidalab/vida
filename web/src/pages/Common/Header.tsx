@@ -30,7 +30,7 @@ const Header = (props: HeaderProps) => {
     backgroundColor: props.backgroundColor,
     textAlign: props.align
   }
-  const { logIn, logOut, isAuthenticated, currentUser } = useAuth()
+  const { logIn, logOut, isAuthenticated, userMetadata } = useAuth()
 
   return (<>
       <header>
@@ -81,7 +81,7 @@ const Header = (props: HeaderProps) => {
               }
             </div>
             <div className="text-sm inline-block float-right">
-                <span>{isAuthenticated ? 'Hi ' + (currentUser.name ? currentUser.name : currentUser.email) : ''}</span>
+                <span>{isAuthenticated ? 'Hi ' + (userMetadata.name ? userMetadata.name : userMetadata.email) : ''}</span>
                 <a href="#" onClick={ async () => {
                     isAuthenticated ?
                       await logOut({returnTo: process.env.REDIRECT_URL || 'http://localhost:8910/'}) :
