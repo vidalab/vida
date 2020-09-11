@@ -64,8 +64,8 @@ class DashboardFormCell extends React.Component<DashboardFormCellProps, Dashboar
 
   render() {
     return (
-      <div className="grid grid-cols-3 gap-4" style={{height: "calc(100% - 45px)"}}>
-        <div className="col-span-1" style={{height: "calc(100% - 40px)"}}>
+      <div className="grid grid-cols-3 gap-4" style={{height: "calc(100% - 15px)"}}>
+        <div className="col-span-1" style={{height: "calc(100% - 30px)"}}>
           <DashboardForm dashboard={this.props.dashboard} onSave={this.onSave} onPreview={this.onPreview}/>
         </div>
         <div className="col-span-2 ">

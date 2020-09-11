@@ -13,9 +13,9 @@ const CSS = {
   label: 'block text-gray-700 font-semibold',
   labelError: 'block mt-6 font-semibold text-red-700',
   input:
-    'block mt-2 w-full p-2 border border-gray-300 text-gray-700 rounded focus:outline-none focus:border-gray-500',
+    'block mt-1 w-full p-2 border border-gray-300 text-gray-700 rounded focus:outline-none focus:border-gray-500',
   inputError:
-    'block mt-2 w-full p-2 border border-red-700 text-red-900 rounded focus:outline-none',
+    'block mt-1 w-full p-2 border border-red-700 text-red-900 rounded focus:outline-none',
   errorMessage: 'block mt-1 font-semibold uppercase text-xs text-red-700',
 }
 
@@ -41,7 +41,7 @@ const DashboardForm = (props) => {
       <Form onSubmit={onSubmit} error={props.error} style={{height: "100%"}}>
         <FormError
           error={props.error}
-          wrapperClassName="p-4 bg-red-100 text-red-700 border border-red-300 rounded mt-4 mb-4"
+          wrapperClassName="p-4 bg-red-100 text-red-700 border border-red-300 rounded mt-2 mb-4"
           titleClassName="mt-0 font-semibold"
           listClassName="mt-2 list-disc list-inside"
         />
@@ -62,17 +62,17 @@ const DashboardForm = (props) => {
 
         <Label
           name="json"
-          className={CSS.label + " mt-4"}
+          className={CSS.label + " mt-2"}
           errorClassName={CSS.labelError}
           >JSON</Label>
 
-        <div style={{height: "calc(100% - 95px)"}}>
+        <div style={{height: "calc(100% - 90px)"}}>
           <CodeEditor jsonText={props.dashboard?.json} onChange={onCodeChange} />
         </div>
 
         <FieldError name="json" className={CSS.errorMessage} />
 
-        <div className="text-center">
+        <div className="text-center mt-1">
           <Submit
             disabled={props.loading}
             type="submit"

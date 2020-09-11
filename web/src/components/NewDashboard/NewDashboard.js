@@ -28,11 +28,8 @@ const NewDashboard = ({alert}) => {
 
   return (
     <div className="bg-white border rounded-lg overflow-hidden" style={{height: "100%"}}>
-      <header className="bg-gray-300 text-gray-700 py-3 px-4">
-        <h2 className="text-sm font-semibold">New Dashboard</h2>
-      </header>
-      <div className="grid grid-cols-2 gap-4" style={{height: "calc(100% - 45px)"}}>
-        <div className="col-span-1" style={{height: "calc(100% - 40px)"}}>
+      <div className="grid grid-cols-2 gap-4" style={{height: "calc(100% - 10px)"}}>
+        <div className="col-span-1" style={{height: "calc(100% - 30px)"}}>
           <DashboardForm onSave={onSave} loading={loading} error={error}/>
         </div>
         <div className="col-span-1 ">
