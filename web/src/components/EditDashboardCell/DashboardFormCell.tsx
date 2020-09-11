@@ -1,23 +1,9 @@
 import React from 'react'
 import DashboardCell from '../DashboardCell/DashboardCell'
 import DashboardForm from '../DashboardForm/DashboardForm'
-import { withAlert, useAlert } from "react-alert"
+import { withAlert } from "react-alert"
 import { checkJSONSize } from '../../PageHelper'
-
-interface Dashboard {
-  id: number
-  json: object
-}
-
-interface DashboardFormCellProps {
-  dashboard: Dashboard
-  alert: useAlert
-  onSave: (id: number, input: Dashboard) => void
-}
-
-interface DashboardFormCellState {
-  dashboard: Dashboard
-}
+import { DashboardFormCellProps, DashboardFormCellState } from '../DashboardData'
 
 class DashboardFormCell extends React.Component<DashboardFormCellProps, DashboardFormCellState> {
   constructor(props: DashboardFormCellProps) {
