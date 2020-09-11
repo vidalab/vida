@@ -4,9 +4,11 @@ import Footer from '../Common/Footer'
 import { containerClassName } from '../../components/Charts/Constants'
 import DashboardsCell from '../../components/DashboardsCell/DashboardsCell'
 import { useAuth } from '@redwoodjs/auth'
+import { setPageTitle } from '../../PageHelper'
 
 const UserHomePage = () => {
   const { userMetadata } = useAuth()
+  setPageTitle()
   return (
     <>
       <Header name="Vida"/>

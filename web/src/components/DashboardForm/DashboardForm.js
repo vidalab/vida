@@ -1,12 +1,13 @@
 import CodeEditor from 'src/components/CodeEditor'
 import {
-  Form,
   FormError,
   FieldError,
   Label,
   TextField,
   Submit,
 } from '@redwoodjs/web'
+
+import { Form } from '@redwoodjs/forms'
 
 const CSS = {
   label: 'block text-gray-700 font-semibold',
