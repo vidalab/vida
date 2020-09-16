@@ -7,8 +7,8 @@ import {
   TextField,
   Submit,
 } from '@redwoodjs/web'
-
 import { Form } from '@redwoodjs/forms'
+import { Dashboard } from '../DashboardData'
 
 const CSS = {
   label: 'block text-gray-700 font-semibold',
@@ -21,40 +21,67 @@ const CSS = {
 }
 
 interface DashboardFormProps {
-  dashboard: object
+  dashboard: Dashboard
+  onSave: (id: number, input: Dashboard) => void
+  onPreview: (id: number, json: object) => void
 }
 
-class DashboardForm extends React.Component<DashboardFormProps> {
-  private dashboard: object
+enum EditorTab {
+  Info,
+  Data,
+  Charts
+}
+
+interface DashboardFormState {
+  textEdit: boolean
+  currentTab: EditorTab
+}
+
+class DashboardForm extends React.Component<DashboardFormProps, DashboardFormState> {
+  private dashboard: Dashboard
 
   constructor(props: DashboardFormProps) {
     super(props)
     this.dashboard = props.dashboard
+    this.state = {
+      // the default editor is text
+      textEdit: false,
+      currentTab: EditorTab.Info
+    }
   }
 
-  onSubmit = (data: object) => {
+  onSubmit = (data: Dashboard) => {
     data.json = this.dashboard.json
     this.props.onSave(this.dashboard.id, data)
   }
 
-  onCodeChange = (value, e) => {
+  onCodeChange = (value: object) => {
     this.dashboard.json = value
   }
 
   onPreview = () => {
-    this.props.onPreview(dashboard.id, dashboard.json)
+    this.props.onPreview(this.dashboard.id, this.dashboard.json)
   }
 
   onEditorChange = () => {
+    this.setState({
+      textEdit: !this.state.textEdit,
+      currentTab: this.state.currentTab
+    })
+  }
 
+  onEditorTabChange = (tab: EditorTab) => {
+    this.setState({
+      textEdit: this.state.textEdit,
+      currentTab: tab
+    })
   }
 
   render() {
     return (
       <div className="box-border text-sm col-span-1 bg-gray-100 p-2" style={{height: "100%"}}>
-        <Form onSubmit={this.onSubmit} error={this.props.error} style={{height: "100%"}}>
+        {this.state.textEdit && <Form onSubmit={this.onSubmit} style={{height: "100%"}}>
           <FormError
-            error={this.props.error}
             wrapperClassName="p-4 bg-red-100 text-red-700 border border-red-300 rounded mt-2 mb-4"
             titleClassName="mt-0 font-semibold"
             listClassName="mt-2 list-disc list-inside"
@@ -80,7 +107,7 @@ class DashboardForm extends React.Component<DashboardFormProps> {
             errorClassName={CSS.labelError}
             >JSON</Label>
 
-          <div style={{height: "calc(100% - 90px)"}}>
+          <div style={{height: "calc(100% - 105px)"}}>
             <CodeEditor jsonText={this.props.dashboard?.json} onChange={this.onCodeChange} />
           </div>
 
@@ -112,7 +139,84 @@ class DashboardForm extends React.Component<DashboardFormProps> {
               Editor
             </button>
           </div>
-        </Form>
+        </Form>}
+        {!this.state.textEdit &&
+          <div style={{height: "100%"}}>
+            <div style={{height: "100%"}}>
+              <ul className="flex border-b">
+                <li className="-mb-px mr-1">
+                  <a
+                    className="bg-white inline-block border-l border-t border-r rounded-t py-2 px-4 text-blue-700 font-semibold"
+                    onClick={(e) => {
+                      e.preventDefault()
+                      this.onEditorTabChange(EditorTab.Info)
+                    }}
+                    href="#">Info</a>
+                </li>
+                <li className="mr-1">
+                  <a className="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold"
+                    onClick={(e) => {
+                      e.preventDefault()
+                      this.onEditorTabChange(EditorTab.Data)
+                    }}
+                    href="#">Data</a>
+                </li>
+                <li className="mr-1">
+                  <a className="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold"
+                    onClick={(e) => {
+                      e.preventDefault()
+                      this.onEditorTabChange(EditorTab.Charts)
+                    }}
+                    href="#">Charts</a>
+                </li>
+              </ul>
+              <div className={this.state.currentTab == EditorTab.Info ? "active" : "hidden"}>
+                <h2>Info</h2>
+                <label
+                  className={CSS.label}
+                >Name</label>
+                <input
+                  name="name"
+                  type="text"
+                  defaultValue={this.props.dashboard?.name}
+                  className={CSS.input}
+                />
+              </div>
+              <div className={this.state.currentTab == EditorTab.Data ? "active" : "hidden"}>
+                <h2>Data</h2>
+              </div>
+              <div className={this.state.currentTab == EditorTab.Charts ? "active" : "hidden"}>
+                <h2>Charts</h2>
+              </div>
+            </div>
+
+            <div className="text-center mt-1">
+              <button
+                type="submit"
+                className="bg-blue-600 text-white hover:bg-blue-700 text-xs rounded px-4 py-2 uppercase font-semibold tracking-wide"
+              >
+                Save
+              </button>
+
+              <button
+                className="ml-2 bg-green-600 text-white hover:bg-green-700 text-xs rounded px-4 py-2 uppercase font-semibold tracking-wide"
+                title="Ctrl+Enter"
+                type="button"
+                onClick={this.onPreview}
+              >
+                Preview
+              </button>
+
+              <button
+                className="ml-2 bg-orange-600 text-white hover:bg-orange-700 text-xs rounded px-4 py-2 uppercase font-semibold tracking-wide"
+                type="button"
+                onClick={this.onEditorChange}
+              >
+                Text
+              </button>
+            </div>
+          </div>
+        }
       </div>
     )
   }
