@@ -1,8 +1,13 @@
 import { useAlert } from "react-alert"
 
+export interface DashboardJSON {
+  name: string
+  description: string
+}
+
 export interface Dashboard {
   id: number
-  json: object
+  json: DashboardJSON
 }
 
 export interface DashboardFormCellProps {

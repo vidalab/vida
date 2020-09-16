@@ -8,7 +8,7 @@ import {
   Submit,
 } from '@redwoodjs/web'
 import { Form } from '@redwoodjs/forms'
-import { Dashboard } from '../DashboardData'
+import { Dashboard, DashboardJSON } from '../DashboardData'
 
 const CSS = {
   label: 'block text-gray-700 font-semibold',
@@ -18,12 +18,14 @@ const CSS = {
   inputError:
     'block mt-1 w-full p-2 border border-red-700 text-red-900 rounded focus:outline-none',
   errorMessage: 'block mt-1 font-semibold uppercase text-xs text-red-700',
+  activeTab: "bg-white inline-block border-l border-t border-r rounded-t py-2 px-4 text-blue-700 font-semibold",
+  inactiveTab: "bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold"
 }
 
 interface DashboardFormProps {
   dashboard: Dashboard
   onSave: (id: number, input: Dashboard) => void
-  onPreview: (id: number, json: object) => void
+  onPreview: (id: number, json: DashboardJSON) => void
 }
 
 enum EditorTab {
@@ -55,7 +57,7 @@ class DashboardForm extends React.Component<DashboardFormProps, DashboardFormSta
     this.props.onSave(this.dashboard.id, data)
   }
 
-  onCodeChange = (value: object) => {
+  onCodeChange = (value: DashboardJSON) => {
     this.dashboard.json = value
   }
 
@@ -78,6 +80,7 @@ class DashboardForm extends React.Component<DashboardFormProps, DashboardFormSta
   }
 
   render() {
+    console.log(this.props.dashboard)
     return (
       <div className="box-border text-sm col-span-1 bg-gray-100 p-2" style={{height: "100%"}}>
         {this.state.textEdit && <Form onSubmit={this.onSubmit} style={{height: "100%"}}>
@@ -94,7 +97,7 @@ class DashboardForm extends React.Component<DashboardFormProps, DashboardFormSta
           >Name</Label>
           <TextField
             name="name"
-            defaultValue={this.props.dashboard?.name}
+            defaultValue={this.props.dashboard?.json.name}
             className={CSS.input}
             errorClassName={CSS.inputError}
             validation={{ required: true }}
@@ -144,25 +147,25 @@ class DashboardForm extends React.Component<DashboardFormProps, DashboardFormSta
           <div style={{height: "100%"}}>
             <div style={{height: "100%"}}>
               <ul className="flex border-b">
-                <li className="-mb-px mr-1">
+                <li className={this.state.currentTab == EditorTab.Info ? "-mb-px mr-1" : "mr-1"}>
                   <a
-                    className="bg-white inline-block border-l border-t border-r rounded-t py-2 px-4 text-blue-700 font-semibold"
+                    className={this.state.currentTab == EditorTab.Info ? CSS.activeTab : CSS.inactiveTab}
                     onClick={(e) => {
                       e.preventDefault()
                       this.onEditorTabChange(EditorTab.Info)
                     }}
                     href="#">Info</a>
                 </li>
-                <li className="mr-1">
-                  <a className="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold"
+                <li className={this.state.currentTab == EditorTab.Data ? "-mb-px mr-1" : "mr-1"}>
+                  <a className={this.state.currentTab == EditorTab.Data ? CSS.activeTab : CSS.inactiveTab}
                     onClick={(e) => {
                       e.preventDefault()
                       this.onEditorTabChange(EditorTab.Data)
                     }}
                     href="#">Data</a>
                 </li>
-                <li className="mr-1">
-                  <a className="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold"
+                <li className={this.state.currentTab == EditorTab.Charts ? "-mb-px mr-1" : "mr-1"}>
+                  <a className={this.state.currentTab == EditorTab.Charts ? CSS.activeTab : CSS.inactiveTab}
                     onClick={(e) => {
                       e.preventDefault()
                       this.onEditorTabChange(EditorTab.Charts)
@@ -171,14 +174,67 @@ class DashboardForm extends React.Component<DashboardFormProps, DashboardFormSta
                 </li>
               </ul>
               <div className={this.state.currentTab == EditorTab.Info ? "active" : "hidden"}>
-                <h2>Info</h2>
                 <label
                   className={CSS.label}
                 >Name</label>
                 <input
                   name="name"
                   type="text"
-                  defaultValue={this.props.dashboard?.name}
+                  className={CSS.input}
+                  value={this.props.dashboard?.json.name}
+                />
+
+                <label
+                  className={CSS.label}
+                >Description</label>
+                <textarea
+                  name="description"
+                  className={CSS.input}
+                  rows={3}
+                />
+
+                <label
+                  className={CSS.label}
+                >Columns</label>
+                <input
+                  name="columns"
+                  type="text"
+                  className={CSS.input}
+                />
+
+                <label
+                  className={CSS.label}
+                >Rows</label>
+                <input
+                  name="columns"
+                  type="text"
+                  className={CSS.input}
+                />
+
+                <label
+                  className={CSS.label}
+                >Header Align</label>
+                <input
+                  name="header-align"
+                  type="text"
+                  className={CSS.input}
+                />
+
+                <label
+                  className={CSS.label}
+                >Header Text</label>
+                <input
+                  name="header-text"
+                  type="text"
+                  className={CSS.input}
+                />
+
+                <label
+                  className={CSS.label}
+                >Header Background</label>
+                <input
+                  name="header-background"
+                  type="text"
                   className={CSS.input}
                 />
               </div>

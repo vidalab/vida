@@ -3,7 +3,7 @@ import DashboardCell from '../DashboardCell/DashboardCell'
 import DashboardForm from '../DashboardForm/DashboardForm'
 import { withAlert } from "react-alert"
 import { checkJSONSize } from '../../PageHelper'
-import { DashboardFormCellProps, DashboardFormCellState } from '../DashboardData'
+import { Dashboard, DashboardFormCellProps, DashboardFormCellState, DashboardJSON } from '../DashboardData'
 
 class DashboardFormCell extends React.Component<DashboardFormCellProps, DashboardFormCellState> {
   constructor(props: DashboardFormCellProps) {
@@ -37,14 +37,14 @@ class DashboardFormCell extends React.Component<DashboardFormCellProps, Dashboar
     document.removeEventListener("keydown", this.handleKeyDown, false);
   }
 
-  onPreview = (id: number, json: object) => {
+  onPreview = (id: number, json: DashboardJSON) => {
     this.state.dashboard.json = json
     this.setDashboardState()
   }
 
-  onSave = (id: number, json: object) => {
-    if (checkJSONSize(this.props.alert, json)) {
-      this.props.onSave(id, json)
+  onSave = (id: number, dashboard: Dashboard) => {
+    if (checkJSONSize(this.props.alert, dashboard)) {
+      this.props.onSave(id, dashboard)
     }
   }
 
