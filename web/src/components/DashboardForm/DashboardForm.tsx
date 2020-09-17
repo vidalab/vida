@@ -79,8 +79,11 @@ class DashboardForm extends React.Component<DashboardFormProps, DashboardFormSta
     })
   }
 
+  onInfoChange = () => {
+
+  }
+
   render() {
-    console.log(this.props.dashboard)
     return (
       <div className="box-border text-sm col-span-1 bg-gray-100 p-2" style={{height: "100%"}}>
         {this.state.textEdit && <Form onSubmit={this.onSubmit} style={{height: "100%"}}>
@@ -111,7 +114,7 @@ class DashboardForm extends React.Component<DashboardFormProps, DashboardFormSta
             >JSON</Label>
 
           <div style={{height: "calc(100% - 105px)"}}>
-            <CodeEditor jsonText={this.props.dashboard?.json} onChange={this.onCodeChange} />
+            <CodeEditor jsonText={JSON.stringify(this.props.dashboard?.json, null, '  ')} onChange={this.onCodeChange} />
           </div>
 
           <FieldError name="json" className={CSS.errorMessage} />
@@ -182,6 +185,7 @@ class DashboardForm extends React.Component<DashboardFormProps, DashboardFormSta
                   type="text"
                   className={CSS.input}
                   value={this.props.dashboard?.json.name}
+                  readOnly={true}
                 />
 
                 <label
@@ -191,6 +195,8 @@ class DashboardForm extends React.Component<DashboardFormProps, DashboardFormSta
                   name="description"
                   className={CSS.input}
                   rows={3}
+                  value={this.props.dashboard?.json.description}
+                  readOnly={true}
                 />
 
                 <label
@@ -200,25 +206,35 @@ class DashboardForm extends React.Component<DashboardFormProps, DashboardFormSta
                   name="columns"
                   type="text"
                   className={CSS.input}
+                  value={this.props.dashboard?.json.columns}
+                  readOnly={true}
                 />
 
                 <label
                   className={CSS.label}
                 >Rows</label>
                 <input
-                  name="columns"
+                  name="rows"
                   type="text"
                   className={CSS.input}
+                  value={this.props.dashboard?.json.rows}
+                  readOnly={true}
                 />
 
                 <label
                   className={CSS.label}
                 >Header Align</label>
-                <input
+                <select
+                  id="header-align"
                   name="header-align"
-                  type="text"
                   className={CSS.input}
-                />
+                  value={this.props.dashboard?.json.header?.align}
+                  onChange={this.onInfoChange}
+                  >
+                  <option value="left">left</option>
+                  <option value="center">center</option>
+                  <option value="right">right</option>
+                </select>
 
                 <label
                   className={CSS.label}
@@ -227,15 +243,19 @@ class DashboardForm extends React.Component<DashboardFormProps, DashboardFormSta
                   name="header-text"
                   type="text"
                   className={CSS.input}
+                  value={this.props.dashboard?.json.header?.text}
+                  readOnly={true}
                 />
 
                 <label
                   className={CSS.label}
-                >Header Background</label>
+                >Header Background Color</label>
                 <input
-                  name="header-background"
+                  name="header-background-color"
                   type="text"
                   className={CSS.input}
+                  value={this.props.dashboard?.json.header?.backgroundColor}
+                  readOnly={true}
                 />
               </div>
               <div className={this.state.currentTab == EditorTab.Data ? "active" : "hidden"}>

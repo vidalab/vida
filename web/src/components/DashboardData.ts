@@ -1,8 +1,17 @@
 import { useAlert } from "react-alert"
 
+export interface DashboardJSONHeader {
+  align: string
+  text: string
+  backgroundColor: string
+}
+
 export interface DashboardJSON {
   name: string
   description: string
+  columns: number
+  rows: number
+  header?: DashboardJSONHeader
 }
 
 export interface Dashboard {

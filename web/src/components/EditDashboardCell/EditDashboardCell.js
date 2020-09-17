@@ -40,6 +40,8 @@ export const Success = ({ dashboard }) => {
     updateDashboard({ variables: { id, input }})
   }
 
+  dashboard.json = JSON.parse(dashboard.json)
+
   return (
     <div className="bg-white border rounded-lg overflow-hidden" style={{height: "100%"}}>
       <DashboardFormCell dashboard={dashboard} onSave={onSave} />
