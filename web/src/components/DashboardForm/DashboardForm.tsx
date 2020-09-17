@@ -123,7 +123,35 @@ class DashboardForm extends React.Component<DashboardFormProps, DashboardFormSta
           </div>
         </Form>}
         {!this.state.textEdit &&
-          <DashboardEditor dashboard={this.props.dashboard} />
+          <>
+            <DashboardEditor dashboard={this.props.dashboard} />
+
+            <div className="text-center mt-1">
+              <button
+                type="submit"
+                className="bg-blue-600 text-white hover:bg-blue-700 text-xs rounded px-4 py-2 uppercase font-semibold tracking-wide"
+              >
+                Save
+              </button>
+
+              <button
+                className="ml-2 bg-green-600 text-white hover:bg-green-700 text-xs rounded px-4 py-2 uppercase font-semibold tracking-wide"
+                title="Ctrl+Enter"
+                type="button"
+                onClick={this.onPreview}
+              >
+                Preview
+              </button>
+
+              <button
+                className="ml-2 bg-orange-600 text-white hover:bg-orange-700 text-xs rounded px-4 py-2 uppercase font-semibold tracking-wide"
+                type="button"
+                onClick={this.onEditorChange}
+              >
+                Text
+              </button>
+            </div>
+          </>
         }
       </div>
     )
