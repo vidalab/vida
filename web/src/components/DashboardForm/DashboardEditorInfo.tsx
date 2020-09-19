@@ -6,8 +6,70 @@ interface DashboardEditorInfoProps {
   dashboard: Dashboard
 }
 
-class DashboardEditorInfo extends React.Component<DashboardEditorInfoProps> {
-  onInfoChange = () => {
+interface DashboardEditorInfoState {
+  nameValue: string
+  descriptionValue: string
+  columnsValue: number
+  rowsValue: number
+  headerAlignValue: string
+  headerTextValue: string
+  headerBackgroundColorValue: string
+}
+
+class DashboardEditorInfo extends React.Component<DashboardEditorInfoProps, DashboardEditorInfoState> {
+  constructor(props: DashboardEditorInfoProps) {
+    super(props)
+    this.state = {
+      nameValue: this.props.dashboard?.json.name,
+      descriptionValue: this.props.dashboard?.json.description,
+      columnsValue: this.props.dashboard?.json.columns,
+      rowsValue: this.props.dashboard?.json.rows,
+      headerAlignValue: this.props.dashboard?.json.header?.align,
+      headerTextValue: this.props.dashboard?.json.header?.text,
+      headerBackgroundColorValue: this.props.dashboard?.json.header?.backgroundColor
+    }
+  }
+
+  onNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    this.setState({
+      nameValue: event.target.value
+    })
+  }
+
+  onDescriptionChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    this.setState({
+      descriptionValue: event.target.value
+    })
+  }
+
+  onColumnsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    this.setState({
+      columnsValue: +event.target.value
+    })
+  }
+
+  onRowsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    this.setState({
+      rowsValue: +event.target.value
+    })
+  }
+
+  onHeaderAlignChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    this.setState({
+      headerAlignValue: event.target.value
+    })
+  }
+
+  onHeaderTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    this.setState({
+      headerTextValue: event.target.value
+    })
+  }
+
+  onHeaderBackgroundColorChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    this.setState({
+      headerBackgroundColorValue: event.target.value
+    })
   }
 
   render = () => {
@@ -20,8 +82,8 @@ class DashboardEditorInfo extends React.Component<DashboardEditorInfoProps> {
           name="name"
           type="text"
           className={CSS.input}
-          value={this.props.dashboard?.json.name}
-          readOnly={true}
+          value={this.state.nameValue}
+          onChange={this.onNameChange}
         />
 
         <label
@@ -31,8 +93,8 @@ class DashboardEditorInfo extends React.Component<DashboardEditorInfoProps> {
           name="description"
           className={CSS.input}
           rows={3}
-          value={this.props.dashboard?.json.description}
-          readOnly={true}
+          value={this.state.descriptionValue}
+          onChange={this.onDescriptionChange}
         />
 
         <label
@@ -42,8 +104,8 @@ class DashboardEditorInfo extends React.Component<DashboardEditorInfoProps> {
           name="columns"
           type="text"
           className={CSS.input}
-          value={this.props.dashboard?.json.columns}
-          readOnly={true}
+          value={this.state.columnsValue}
+          onChange={this.onColumnsChange}
         />
 
         <label
@@ -53,8 +115,8 @@ class DashboardEditorInfo extends React.Component<DashboardEditorInfoProps> {
           name="rows"
           type="text"
           className={CSS.input}
-          value={this.props.dashboard?.json.rows}
-          readOnly={true}
+          value={this.state.rowsValue}
+          onChange={this.onRowsChange}
         />
 
         <label
@@ -64,8 +126,8 @@ class DashboardEditorInfo extends React.Component<DashboardEditorInfoProps> {
           id="header-align"
           name="header-align"
           className={CSS.input}
-          value={this.props.dashboard?.json.header?.align}
-          onChange={this.onInfoChange}
+          value={this.state.headerAlignValue}
+          onChange={this.onHeaderAlignChange}
           >
           <option value="left">left</option>
           <option value="center">center</option>
@@ -79,8 +141,8 @@ class DashboardEditorInfo extends React.Component<DashboardEditorInfoProps> {
           name="header-text"
           type="text"
           className={CSS.input}
-          value={this.props.dashboard?.json.header?.text}
-          readOnly={true}
+          value={this.state.headerTextValue}
+          onChange={this.onHeaderTextChange}
         />
 
         <label
@@ -90,8 +152,8 @@ class DashboardEditorInfo extends React.Component<DashboardEditorInfoProps> {
           name="header-background-color"
           type="text"
           className={CSS.input}
-          value={this.props.dashboard?.json.header?.backgroundColor}
-          readOnly={true}
+          value={this.state.headerBackgroundColorValue}
+          onChange={this.onHeaderBackgroundColorChange}
         />
       </>
     )
