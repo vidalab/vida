@@ -1,9 +1,9 @@
 import React from 'react'
-import DashboardCell from '../DashboardCell/DashboardCell'
+import Dashboard from '../Dashboard/Dashboard'
 import DashboardForm from '../DashboardForm/DashboardForm'
 import { withAlert } from "react-alert"
 import { checkJSONSize } from '../../PageHelper'
-import { Dashboard, DashboardFormCellProps, DashboardFormCellState, DashboardJSON } from '../DashboardData'
+import { DashboardData, DashboardFormCellProps, DashboardFormCellState, DashboardJSON } from '../DashboardData'
 
 class DashboardFormCell extends React.Component<DashboardFormCellProps, DashboardFormCellState> {
   constructor(props: DashboardFormCellProps) {
@@ -12,6 +12,8 @@ class DashboardFormCell extends React.Component<DashboardFormCellProps, Dashboar
     this.state = {
       dashboard: props.dashboard
     }
+
+    this.onPreview = this.onPreview.bind(this)
   }
 
   handleKeyDown = (e: KeyboardEvent) => {
@@ -21,7 +23,7 @@ class DashboardFormCell extends React.Component<DashboardFormCellProps, Dashboar
   }
 
   setDashboardState = () => {
-    const dashboard = this.state.dashboard
+    const dashboard = JSON.parse(JSON.stringify(this.state.dashboard))
     const json = dashboard.json
     if (checkJSONSize(this.props.alert, json)) {
       this.setState({
@@ -42,7 +44,7 @@ class DashboardFormCell extends React.Component<DashboardFormCellProps, Dashboar
     this.setDashboardState()
   }
 
-  onSave = (id: number, dashboard: Dashboard) => {
+  onSave = (id: number, dashboard: DashboardData) => {
     if (checkJSONSize(this.props.alert, dashboard)) {
       this.props.onSave(id, dashboard)
     }
@@ -55,7 +57,7 @@ class DashboardFormCell extends React.Component<DashboardFormCellProps, Dashboar
           <DashboardForm dashboard={this.props.dashboard} onSave={this.onSave} onPreview={this.onPreview}/>
         </div>
         <div className="col-span-2 ">
-          {this.state.dashboard && <DashboardCell id={this.props.dashboard.id} />}
+          {this.state.dashboard && <Dashboard dashboard={this.state.dashboard.json} />}
         </div>
       </div>
     )

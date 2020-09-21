@@ -8,13 +8,13 @@ import {
   Submit,
 } from '@redwoodjs/web'
 import { Form } from '@redwoodjs/forms'
-import { Dashboard, DashboardJSON } from '../DashboardData'
+import { DashboardData, DashboardJSON } from '../DashboardData'
 import DashboardEditor from './DashboardEditor'
 import { CSS } from './DashboardEditorCSS'
 
 interface DashboardFormProps {
-  dashboard: Dashboard
-  onSave: (id: number, input: Dashboard) => void
+  dashboard: DashboardData
+  onSave: (id: number, input: DashboardData) => void
   onPreview: (id: number, json: DashboardJSON) => void
 }
 
@@ -29,7 +29,7 @@ interface DashboardFormState {
 }
 
 class DashboardForm extends React.Component<DashboardFormProps, DashboardFormState> {
-  private dashboard: Dashboard
+  private dashboard: DashboardData
 
   constructor(props: DashboardFormProps) {
     super(props)
@@ -40,7 +40,7 @@ class DashboardForm extends React.Component<DashboardFormProps, DashboardFormSta
     }
   }
 
-  onSubmit = (data: Dashboard) => {
+  onSubmit = (data: DashboardData) => {
     data.json = this.dashboard.json
     this.props.onSave(this.dashboard.id, data)
   }
@@ -57,6 +57,12 @@ class DashboardForm extends React.Component<DashboardFormProps, DashboardFormSta
     this.setState({
       textEdit: !this.state.textEdit
     })
+  }
+
+  onInfoChange = (data: DashboardData) => {
+    this.dashboard = data
+    console.log(this.dashboard)
+    this.props.onPreview(this.dashboard.id, this.dashboard.json)
   }
 
   render() {
@@ -124,7 +130,7 @@ class DashboardForm extends React.Component<DashboardFormProps, DashboardFormSta
         </Form>}
         {!this.state.textEdit &&
           <>
-            <DashboardEditor dashboard={this.props.dashboard} />
+            <DashboardEditor dashboard={this.props.dashboard} onInfoChange={this.onInfoChange} />
 
             <div className="text-center mt-1">
               <button

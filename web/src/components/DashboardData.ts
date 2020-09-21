@@ -14,17 +14,17 @@ export interface DashboardJSON {
   header?: DashboardJSONHeader
 }
 
-export interface Dashboard {
+export interface DashboardData {
   id: number
   json: DashboardJSON
 }
 
 export interface DashboardFormCellProps {
-  dashboard: Dashboard
+  dashboard: DashboardData
   alert: useAlert
-  onSave: (id: number, input: Dashboard) => void
+  onSave: (id: number, input: DashboardData) => void
 }
 
 export interface DashboardFormCellState {
-  dashboard: Dashboard
+  dashboard: DashboardData
 }

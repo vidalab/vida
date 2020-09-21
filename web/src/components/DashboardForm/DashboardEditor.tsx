@@ -1,10 +1,11 @@
 import React from 'react'
-import { Dashboard } from '../DashboardData'
+import { DashboardData } from '../DashboardData'
 import { CSS } from './DashboardEditorCSS'
 import DashboardEditorInfo from './DashboardEditorInfo'
 
 interface DashboardEditorProps {
-  dashboard: Dashboard
+  dashboard: DashboardData
+  onInfoChange: (dashboard: DashboardData) => void
 }
 
 enum EditorTab {
@@ -63,7 +64,7 @@ class DashboardEditor extends React.Component<DashboardEditorProps, DashboardEdi
             </li>
           </ul>
           <div className={this.state.currentTab == EditorTab.Info ? "active" : "hidden"}>
-            <DashboardEditorInfo dashboard={this.props.dashboard} />
+            <DashboardEditorInfo dashboard={this.props.dashboard} onInfoChange={this.props.onInfoChange} />
           </div>
           <div className={this.state.currentTab == EditorTab.Data ? "active" : "hidden"}>
             <h2>Data</h2>
