@@ -8,14 +8,15 @@ import {
   Submit,
 } from '@redwoodjs/web'
 import { Form } from '@redwoodjs/forms'
-import { DashboardData, DashboardJSON } from '../DashboardData'
+import { DashboardData } from '../DashboardData'
+import { JSONVizData } from '../Charts/VizData'
 import DashboardEditor from './DashboardEditor'
 import { CSS } from './DashboardEditorCSS'
 
 interface DashboardFormProps {
   dashboard: DashboardData
   onSave: (id: number, input: DashboardData) => void
-  onPreview: (id: number, json: DashboardJSON) => void
+  onPreview: (id: number, json: JSONVizData) => void
 }
 
 enum EditorTab {
@@ -45,7 +46,7 @@ class DashboardForm extends React.Component<DashboardFormProps, DashboardFormSta
     this.props.onSave(this.dashboard.id, data)
   }
 
-  onCodeChange = (value: DashboardJSON) => {
+  onCodeChange = (value: JSONVizData) => {
     this.dashboard.json = value
   }
 

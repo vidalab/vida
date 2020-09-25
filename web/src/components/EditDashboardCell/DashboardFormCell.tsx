@@ -3,33 +3,27 @@ import Dashboard from '../Dashboard/Dashboard'
 import DashboardForm from '../DashboardForm/DashboardForm'
 import { withAlert } from "react-alert"
 import { checkJSONSize } from '../../PageHelper'
-import { DashboardData, DashboardFormCellProps, DashboardFormCellState, DashboardJSON } from '../DashboardData'
+import { DashboardData, DashboardFormCellProps } from '../DashboardData'
+import { JSONVizData } from '../../components/Charts/VizData'
 
-class DashboardFormCell extends React.Component<DashboardFormCellProps, DashboardFormCellState> {
+class DashboardFormCell extends React.Component<DashboardFormCellProps> {
+  private dashboardRef: React.RefObject<typeof Dashboard>
+
   constructor(props: DashboardFormCellProps) {
     super(props)
 
-    this.state = {
-      dashboard: props.dashboard
-    }
-
     this.onPreview = this.onPreview.bind(this)
+    this.dashboardRef = React.createRef()
   }
 
   handleKeyDown = (e: KeyboardEvent) => {
     if (e.ctrlKey && e.key == "Enter") {
-      this.setDashboardState()
+      this.refreshDashboard()
     }
   }
 
-  setDashboardState = () => {
-    const dashboard = JSON.parse(JSON.stringify(this.state.dashboard))
-    const json = dashboard.json
-    if (checkJSONSize(this.props.alert, json)) {
-      this.setState({
-        dashboard: dashboard
-      })
-    }
+  refreshDashboard = () => {
+    this.dashboardRef.current.refresh()
   }
 
   componentDidMount(){
@@ -39,9 +33,11 @@ class DashboardFormCell extends React.Component<DashboardFormCellProps, Dashboar
     document.removeEventListener("keydown", this.handleKeyDown, false);
   }
 
-  onPreview = (id: number, json: DashboardJSON) => {
-    this.state.dashboard.json = json
-    this.setDashboardState()
+  onPreview = (id: number, json: JSONVizData) => {
+    if (checkJSONSize(this.props.alert, json)) {
+      this.props.dashboard.json = json
+      this.refreshDashboard()
+    }
   }
 
   onSave = (id: number, dashboard: DashboardData) => {
@@ -51,13 +47,14 @@ class DashboardFormCell extends React.Component<DashboardFormCellProps, Dashboar
   }
 
   render() {
+    console.log('DashboardFormCell render')
     return (
       <div className="grid grid-cols-3 gap-4" style={{height: "calc(100% - 15px)"}}>
         <div className="col-span-1" style={{height: "calc(100% - 30px)"}}>
           <DashboardForm dashboard={this.props.dashboard} onSave={this.onSave} onPreview={this.onPreview}/>
         </div>
         <div className="col-span-2 ">
-          {this.state.dashboard && <Dashboard dashboard={this.state.dashboard.json} />}
+          {this.props.dashboard && <Dashboard dashboardJSON={this.props.dashboard.json} ref={this.dashboardRef} />}
         </div>
       </div>
     )
