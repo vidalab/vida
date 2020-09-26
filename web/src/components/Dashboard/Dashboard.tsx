@@ -11,12 +11,22 @@ interface DashboardState {
   dashboardJSON: JSONVizData
 }
 
-class Dashboard extends React.Component<DashboardProps> {
-  refresh() {
+class Dashboard extends React.Component<DashboardProps, DashboardState> {
+  constructor(props: DashboardProps) {
+    super(props)
+    this.state = {
+      dashboardJSON: props.dashboardJSON
+    }
+  }
+
+  refresh(newJson: JSONVizData) {
     console.log('Dashboard refresh')
+    this.setState({
+      dashboardJSON: newJson
+    })
   }
   render() {
-    const vizData = this.props.dashboardJSON
+    const vizData = this.state.dashboardJSON
     return (
       <ErrorBoundary>
         <DataLoader vizData={vizData} />

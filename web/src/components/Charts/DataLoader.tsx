@@ -140,7 +140,7 @@ class DataLoader extends Component<DataLoaderProps, DataLoaderState> {
   }
 
   public componentDidUpdate = (prevProps: DataLoaderProps) => {
-    if (JSON.stringify(this.props) != JSON.stringify(prevProps)) {
+    if (JSON.stringify(this.props.vizData) != JSON.stringify(this.vizData)) {
       this.vizData = this.props.vizData
       this.getDataUrl()
     }

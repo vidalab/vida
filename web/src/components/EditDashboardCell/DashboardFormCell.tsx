@@ -23,7 +23,7 @@ class DashboardFormCell extends React.Component<DashboardFormCellProps> {
   }
 
   refreshDashboard = () => {
-    this.dashboardRef.current.refresh()
+    this.dashboardRef.current.refresh(this.props.dashboard.json)
   }
 
   componentDidMount(){
@@ -34,10 +34,8 @@ class DashboardFormCell extends React.Component<DashboardFormCellProps> {
   }
 
   onPreview = (id: number, json: JSONVizData) => {
-    if (checkJSONSize(this.props.alert, json)) {
-      this.props.dashboard.json = json
-      this.refreshDashboard()
-    }
+    this.props.dashboard.json = json
+    this.refreshDashboard()
   }
 
   onSave = (id: number, dashboard: DashboardData) => {
