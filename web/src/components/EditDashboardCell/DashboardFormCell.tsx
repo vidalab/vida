@@ -34,8 +34,10 @@ class DashboardFormCell extends React.Component<DashboardFormCellProps> {
   }
 
   onPreview = (id: number, json: JSONVizData) => {
-    this.props.dashboard.json = json
-    this.refreshDashboard()
+    if (checkJSONSize(this.props.alert, json)) {
+      this.props.dashboard.json = json
+      this.refreshDashboard()
+    }
   }
 
   onSave = (id: number, dashboard: DashboardData) => {
@@ -45,7 +47,6 @@ class DashboardFormCell extends React.Component<DashboardFormCellProps> {
   }
 
   render() {
-    console.log('DashboardFormCell render')
     return (
       <div className="grid grid-cols-3 gap-4" style={{height: "calc(100% - 15px)"}}>
         <div className="col-span-1" style={{height: "calc(100% - 30px)"}}>

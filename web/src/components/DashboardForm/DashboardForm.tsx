@@ -39,6 +39,8 @@ class DashboardForm extends React.Component<DashboardFormProps, DashboardFormSta
       // the default editor is text
       textEdit: false,
     }
+
+    this.onPreview = this.onPreview.bind(this)
   }
 
   onSubmit = (data: DashboardData) => {
@@ -62,7 +64,6 @@ class DashboardForm extends React.Component<DashboardFormProps, DashboardFormSta
 
   onInfoChange = (data: DashboardData) => {
     this.dashboard = data
-    console.log(this.dashboard)
     this.props.onPreview(this.dashboard.id, this.dashboard.json)
   }
 

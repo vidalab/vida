@@ -89,7 +89,6 @@ class DashboardEditorInfo extends React.Component<DashboardEditorInfoProps, Dash
   }
 
   render = () => {
-    console.log('DashboardEditorInfo render')
     return (
       <>
         <label
