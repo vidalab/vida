@@ -40,9 +40,10 @@ class DashboardFormCell extends React.Component<DashboardFormCellProps> {
     }
   }
 
-  onSave = (id: number, dashboard: DashboardData) => {
-    if (checkJSONSize(this.props.alert, dashboard)) {
-      this.props.onSave(id, dashboard)
+  onSave = (id: number, dbData: DashboardData) => {
+    if (checkJSONSize(this.props.alert, dbData)) {
+      this.props.onSave(id, dbData)
+      this.refreshDashboard()
     }
   }
 
@@ -53,7 +54,7 @@ class DashboardFormCell extends React.Component<DashboardFormCellProps> {
           <DashboardForm dashboard={this.props.dashboard} onSave={this.onSave} onPreview={this.onPreview}/>
         </div>
         <div className="col-span-2 ">
-          {this.props.dashboard && <Dashboard dashboardJSON={this.props.dashboard.json} ref={this.dashboardRef} />}
+          {this.props.dashboard && <Dashboard dashboardText={this.props.dashboard.json} ref={this.dashboardRef} />}
         </div>
       </div>
     )

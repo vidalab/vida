@@ -25,7 +25,6 @@ interface TooltipPointArg {
 }
 
 const CustomLinePointTooltip = (pointArg: TooltipPointArg) => {
-  console.log(pointArg)
   const point: TooltipPoint = pointArg.point
   return (
     <BasicTooltip

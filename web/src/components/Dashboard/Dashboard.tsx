@@ -4,7 +4,7 @@ import ErrorBoundary from '../ErrorBoundary'
 import { JSONVizData } from '../../components/Charts/VizData'
 
 interface DashboardProps {
-  dashboardJSON: JSONVizData
+  dashboardText: string
 }
 
 interface DashboardState {
@@ -15,18 +15,17 @@ class Dashboard extends React.Component<DashboardProps, DashboardState> {
   constructor(props: DashboardProps) {
     super(props)
     this.state = {
-      dashboardJSON: props.dashboardJSON
+      dashboardJSON: JSON.parse(props.dashboardText)
     }
   }
 
-  refresh(newJson: JSONVizData) {
-    console.log('Dashboard refresh')
+  refresh(newJson: string) {
     this.setState({
-      dashboardJSON: newJson
+      dashboardJSON: JSON.parse(newJson)
     })
   }
   render() {
-    const vizData = this.state.dashboardJSON
+    let vizData = this.state.dashboardJSON
     return (
       <ErrorBoundary>
         <DataLoader vizData={vizData} />

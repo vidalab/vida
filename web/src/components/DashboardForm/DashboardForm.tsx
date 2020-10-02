@@ -8,14 +8,14 @@ import {
   Submit,
 } from '@redwoodjs/web'
 import { Form } from '@redwoodjs/forms'
-import { DashboardData } from '../DashboardData'
+import { DashboardData, DashboardUpdateData } from '../DashboardData'
 import { JSONVizData } from '../Charts/VizData'
 import DashboardEditor from './DashboardEditor'
 import { CSS } from './DashboardEditorCSS'
 
 interface DashboardFormProps {
   dashboard: DashboardData
-  onSave: (id: number, input: DashboardData) => void
+  onSave: (id: number, updateData: DashboardUpdateData) => void
   onPreview: (id: number, json: JSONVizData) => void
 }
 
@@ -45,11 +45,15 @@ class DashboardForm extends React.Component<DashboardFormProps, DashboardFormSta
 
   onSubmit = (data: DashboardData) => {
     data.json = this.dashboard.json
-    this.props.onSave(this.dashboard.id, data)
+    this.props.onSave(this.dashboard.id, {name: this.dashboard.name, json: data.json})
   }
 
   onCodeChange = (value: JSONVizData) => {
-    this.dashboard.json = value
+    this.dashboard.json = JSON.stringify(value, null, ' ')
+  }
+
+  onSave = () => {
+    this.props.onSave(this.dashboard.id, {name: this.dashboard.name, json: this.dashboard.json})
   }
 
   onPreview = () => {
@@ -138,6 +142,7 @@ class DashboardForm extends React.Component<DashboardFormProps, DashboardFormSta
               <button
                 type="submit"
                 className="bg-blue-600 text-white hover:bg-blue-700 text-xs rounded px-4 py-2 uppercase font-semibold tracking-wide"
+                onClick={this.onSave}
               >
                 Save
               </button>

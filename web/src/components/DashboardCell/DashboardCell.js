@@ -27,7 +27,7 @@ export const Success = ({ dashboard }) => {
   setPageTitle(dashboard.name)
   try {
     const json = dashboard.json
-    return <Dashboard dashboard={json} />
+    return <Dashboard dashboardText={json} />
   } catch (e) {
     const alert = useAlert()
     alert.show('Invalid JSON data for dashboard.')

@@ -3,11 +3,17 @@ import { JSONVizData } from "../components/Charts/VizData"
 
 export interface DashboardData {
   id: number
-  json: JSONVizData
+  name: string
+  json: string
+}
+
+export interface DashboardUpdateData {
+  name: string
+  json: string
 }
 
 export interface DashboardFormCellProps {
   dashboard: DashboardData
   alert: useAlert
-  onSave: (id: number, input: DashboardData) => void
+  onSave: (id: number, dbData: DashboardData) => void
 }
