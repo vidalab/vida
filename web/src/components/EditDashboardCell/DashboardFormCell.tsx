@@ -4,7 +4,6 @@ import DashboardForm from '../DashboardForm/DashboardForm'
 import { withAlert } from "react-alert"
 import { checkJSONSize } from '../../PageHelper'
 import { DashboardData, DashboardFormCellProps } from '../DashboardData'
-import { JSONVizData } from '../../components/Charts/VizData'
 
 class DashboardFormCell extends React.Component<DashboardFormCellProps> {
   private dashboardRef: React.RefObject<typeof Dashboard>
@@ -33,7 +32,7 @@ class DashboardFormCell extends React.Component<DashboardFormCellProps> {
     document.removeEventListener("keydown", this.handleKeyDown, false);
   }
 
-  onPreview = (id: number, json: JSONVizData) => {
+  onPreview = (id: number, json: string) => {
     if (checkJSONSize(this.props.alert, json)) {
       this.props.dashboard.json = json
       this.refreshDashboard()
@@ -41,7 +40,7 @@ class DashboardFormCell extends React.Component<DashboardFormCellProps> {
   }
 
   onSave = (id: number, dbData: DashboardData) => {
-    if (checkJSONSize(this.props.alert, dbData)) {
+    if (checkJSONSize(this.props.alert, dbData.json)) {
       this.props.onSave(id, dbData)
       this.refreshDashboard()
     }

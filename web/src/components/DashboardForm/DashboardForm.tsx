@@ -16,7 +16,7 @@ import { CSS } from './DashboardEditorCSS'
 interface DashboardFormProps {
   dashboard: DashboardData
   onSave: (id: number, updateData: DashboardUpdateData) => void
-  onPreview: (id: number, json: JSONVizData) => void
+  onPreview: (id: number, json: string) => void
 }
 
 enum EditorTab {
@@ -66,11 +66,6 @@ class DashboardForm extends React.Component<DashboardFormProps, DashboardFormSta
     })
   }
 
-  onInfoChange = (data: DashboardData) => {
-    this.dashboard = data
-    this.props.onPreview(this.dashboard.id, this.dashboard.json)
-  }
-
   render() {
     return (
       <div className="box-border text-sm col-span-1 bg-gray-100 p-2" style={{height: "100%"}}>
@@ -102,7 +97,7 @@ class DashboardForm extends React.Component<DashboardFormProps, DashboardFormSta
             >JSON</Label>
 
           <div style={{height: "calc(100% - 105px)"}}>
-            <CodeEditor jsonText={JSON.stringify(this.props.dashboard?.json, null, '  ')} onChange={this.onCodeChange} />
+            <CodeEditor jsonText={this.props.dashboard?.json} onChange={this.onCodeChange} />
           </div>
 
           <FieldError name="json" className={CSS.errorMessage} />
@@ -136,7 +131,7 @@ class DashboardForm extends React.Component<DashboardFormProps, DashboardFormSta
         </Form>}
         {!this.state.textEdit &&
           <>
-            <DashboardEditor dashboard={this.props.dashboard} onInfoChange={this.onInfoChange} />
+            <DashboardEditor dashboard={this.props.dashboard} />
 
             <div className="text-center mt-1">
               <button
