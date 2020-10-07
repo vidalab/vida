@@ -4,6 +4,7 @@ import DashboardCell from 'src/components/DashboardCell'
 import DashboardForm from 'src/components/DashboardForm'
 import { checkJSONSize } from '../../PageHelper'
 import { withAlert } from "react-alert"
+import vizJson from '../../pages/CreateDashboardPage/viz.json'
 
 const CREATE_DASHBOARD_MUTATION = gql`
   mutation CreateDashboardMutation($input: CreateDashboardInput!) {
@@ -30,7 +31,7 @@ const NewDashboard = ({alert}) => {
     <div className="bg-white border rounded-lg overflow-hidden" style={{height: "100%"}}>
       <div className="grid grid-cols-3 gap-4" style={{height: "calc(100% - 15px)"}}>
         <div className="col-span-1" style={{height: "calc(100% - 20px)"}}>
-          <DashboardForm onSave={onSave} loading={loading} error={error}/>
+          <DashboardForm dashboard={{name: 'Example Viz', json: JSON.stringify(vizJson, null, ' ')}} onSave={onSave} loading={loading} error={error}/>
         </div>
         <div className="col-span-2 ">
           Preview

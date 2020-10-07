@@ -23,7 +23,7 @@ class DashboardEditorInfo extends React.Component<DashboardEditorInfoProps, Dash
   constructor(props: DashboardEditorInfoProps) {
     super(props)
 
-    this.dashboardJSON = JSON.parse(this.props.dashboard.json)
+    this.dashboardJSON = JSON.parse(props.dashboard.json)
 
     this.state = {
       name: this.dashboardJSON.name,
