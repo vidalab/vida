@@ -45,6 +45,7 @@ class DashboardEditor extends React.Component<DashboardEditorProps, DashboardEdi
                 }}
                 href="#">Info</a>
             </li>
+            {/*
             <li className={this.state.currentTab == EditorTab.Data ? "-mb-px mr-1" : "mr-1"}>
               <a className={this.state.currentTab == EditorTab.Data ? CSS.activeTab : CSS.inactiveTab}
                 onClick={(e) => {
@@ -61,16 +62,19 @@ class DashboardEditor extends React.Component<DashboardEditorProps, DashboardEdi
                 }}
                 href="#">Charts</a>
             </li>
+            */}
           </ul>
           <div className={this.state.currentTab == EditorTab.Info ? "active" : "hidden"}>
             <DashboardEditorInfo dashboard={this.props.dashboard} />
           </div>
+          {/*
           <div className={this.state.currentTab == EditorTab.Data ? "active" : "hidden"}>
             <h2>Data</h2>
           </div>
           <div className={this.state.currentTab == EditorTab.Charts ? "active" : "hidden"}>
             <h2>Charts</h2>
           </div>
+          */}
         </div>
       </div>
     )

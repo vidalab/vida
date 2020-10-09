@@ -19,12 +19,6 @@ interface DashboardFormProps {
   onPreview: (id: number, json: string) => void
 }
 
-enum EditorTab {
-  Info,
-  Data,
-  Charts
-}
-
 interface DashboardFormState {
   textEdit: boolean
 }
@@ -37,7 +31,7 @@ class DashboardForm extends React.Component<DashboardFormProps, DashboardFormSta
     this.dashboard = props.dashboard
     this.state = {
       // the default editor is text
-      textEdit: false,
+      textEdit: true,
     }
 
     this.onPreview = this.onPreview.bind(this)
@@ -96,7 +90,7 @@ class DashboardForm extends React.Component<DashboardFormProps, DashboardFormSta
             errorClassName={CSS.labelError}
             >JSON</Label>
 
-          <div style={{height: "calc(100% - 105px)"}}>
+          <div style={{height: "calc(100% - 95px)"}}>
             <CodeEditor jsonText={this.props.dashboard?.json} onChange={this.onCodeChange} />
           </div>
 

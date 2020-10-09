@@ -1,6 +1,6 @@
 import { useMutation } from '@redwoodjs/web'
 import { navigate, routes } from '@redwoodjs/router'
-import DashboardCell from 'src/components/DashboardCell'
+import Dashboard from 'src/components/Dashboard'
 import DashboardForm from 'src/components/DashboardForm'
 import { checkJSONSize } from '../../PageHelper'
 import { withAlert } from "react-alert"
@@ -29,12 +29,12 @@ const NewDashboard = ({alert}) => {
 
   return (
     <div className="bg-white border rounded-lg overflow-hidden" style={{height: "100%"}}>
-      <div className="grid grid-cols-3 gap-4" style={{height: "calc(100% - 15px)"}}>
-        <div className="col-span-1" style={{height: "calc(100% - 20px)"}}>
+      <div className="grid grid-cols-3 gap-4" style={{height: "100%"}}>
+        <div className="col-span-1" style={{height: "calc(100% - 40px)"}}>
           <DashboardForm dashboard={{name: 'Example Viz', json: JSON.stringify(vizJson, null, ' ')}} onSave={onSave} loading={loading} error={error}/>
         </div>
         <div className="col-span-2 ">
-          Preview
+          <Dashboard dashboardText={JSON.stringify(vizJson, null, ' ')} />
         </div>
       </div>
     </div>
