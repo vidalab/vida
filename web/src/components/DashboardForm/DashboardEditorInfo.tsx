@@ -30,9 +30,9 @@ class DashboardEditorInfo extends React.Component<DashboardEditorInfoProps, Dash
       description: this.dashboardJSON.description,
       columns: this.dashboardJSON.columns,
       rows: this.dashboardJSON.rows,
-      headerAlign: this.dashboardJSON.header?.align,
-      headerText: this.dashboardJSON.header?.text,
-      headerBackgroundColor: this.dashboardJSON.header?.backgroundColor
+      headerAlign: this.dashboardJSON.header ? this.dashboardJSON.header.align : "",
+      headerText: this.dashboardJSON.header ? this.dashboardJSON.header.text : "",
+      headerBackgroundColor: this.dashboardJSON.header ? this.dashboardJSON.header.backgroundColor : ""
     }
   }
 
@@ -69,6 +69,7 @@ class DashboardEditorInfo extends React.Component<DashboardEditorInfoProps, Dash
   }
 
   onHeaderAlignChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    this.initHeader()
     this.dashboardJSON.header.align = event.target.value
     this.setState({
       headerAlign: event.target.value
@@ -77,6 +78,7 @@ class DashboardEditorInfo extends React.Component<DashboardEditorInfoProps, Dash
   }
 
   onHeaderTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    this.initHeader()
     this.dashboardJSON.header.text = event.target.value
     this.setState({
       headerText: event.target.value
@@ -85,6 +87,7 @@ class DashboardEditorInfo extends React.Component<DashboardEditorInfoProps, Dash
   }
 
   onHeaderBackgroundColorChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    this.initHeader()
     this.dashboardJSON.header.backgroundColor = event.target.value
     this.setState({
       headerBackgroundColor: event.target.value
@@ -94,6 +97,16 @@ class DashboardEditorInfo extends React.Component<DashboardEditorInfoProps, Dash
 
   updateJSONProp = () => {
     this.props.dashboard.json = JSON.stringify(this.dashboardJSON, null, ' ')
+  }
+
+  initHeader = () => {
+    if (!this.dashboardJSON.header) {
+      this.dashboardJSON.header = {
+        align: "",
+        text: "",
+        backgroundColor: ""
+      }
+    }
   }
 
   render = () => {

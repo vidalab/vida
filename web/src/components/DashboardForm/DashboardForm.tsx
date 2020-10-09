@@ -46,6 +46,10 @@ class DashboardForm extends React.Component<DashboardFormProps, DashboardFormSta
     this.dashboard.json = JSON.stringify(value, null, ' ')
   }
 
+  onNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    this.dashboard.name = event.target.value
+  }
+
   onSave = () => {
     this.props.onSave(this.dashboard.id, {name: this.dashboard.name, json: this.dashboard.json})
   }
@@ -63,47 +67,32 @@ class DashboardForm extends React.Component<DashboardFormProps, DashboardFormSta
   render() {
     return (
       <div className="box-border text-sm col-span-1 bg-gray-100 p-2" style={{height: "100%"}}>
-        {this.state.textEdit && <Form onSubmit={this.onSubmit} style={{height: "100%"}}>
-          <FormError
-            wrapperClassName="p-4 bg-red-100 text-red-700 border border-red-300 rounded mt-2 mb-4"
-            titleClassName="mt-0 font-semibold"
-            listClassName="mt-2 list-disc list-inside"
-          />
-
-          <Label
-            name="name"
+        {this.state.textEdit && <div style={{height: "100%"}}>
+          <label
             className={CSS.label}
-            errorClassName={CSS.labelError}
-          >Name</Label>
-          <TextField
-            name="name"
-            defaultValue={this.props.dashboard?.json.name}
+          >Name</label>
+          <input
+            defaultValue={this.props.dashboard?.name}
             className={CSS.input}
-            errorClassName={CSS.inputError}
-            validation={{ required: true }}
+            onChange={this.onNameChange}
           />
-          <FieldError name="name" className={CSS.errorMessage} />
 
-          <Label
-            name="json"
+          <label
             className={CSS.label + " mt-2"}
-            errorClassName={CSS.labelError}
-            >JSON</Label>
+            >JSON</label>
 
           <div style={{height: "calc(100% - 95px)"}}>
             <CodeEditor jsonText={this.props.dashboard?.json} onChange={this.onCodeChange} />
           </div>
 
-          <FieldError name="json" className={CSS.errorMessage} />
-
           <div className="text-center mt-1">
-            <Submit
-              disabled={this.props.loading}
+            <button
               type="submit"
               className="bg-blue-600 text-white hover:bg-blue-700 text-xs rounded px-4 py-2 uppercase font-semibold tracking-wide"
+              onClick={this.onSave}
             >
               Save
-            </Submit>
+            </button>
 
             <button
               className="ml-2 bg-green-600 text-white hover:bg-green-700 text-xs rounded px-4 py-2 uppercase font-semibold tracking-wide"
@@ -122,7 +111,7 @@ class DashboardForm extends React.Component<DashboardFormProps, DashboardFormSta
               Editor
             </button>
           </div>
-        </Form>}
+        </div>}
         {!this.state.textEdit &&
           <>
             <DashboardEditor dashboard={this.props.dashboard} />
