@@ -1,15 +1,6 @@
 import React from 'react'
 import CodeEditor from 'src/components/CodeEditor'
-import {
-  FormError,
-  FieldError,
-  Label,
-  TextField,
-  Submit,
-} from '@redwoodjs/web'
-import { Form } from '@redwoodjs/forms'
 import { DashboardData, DashboardUpdateData } from '../DashboardData'
-import { JSONVizData } from '../Charts/VizData'
 import DashboardEditor from './DashboardEditor'
 import { CSS } from './DashboardEditorCSS'
 
@@ -42,8 +33,8 @@ class DashboardForm extends React.Component<DashboardFormProps, DashboardFormSta
     this.props.onSave(this.dashboard.id, {name: this.dashboard.name, json: data.json})
   }
 
-  onCodeChange = (value: JSONVizData) => {
-    this.dashboard.json = JSON.stringify(value, null, ' ')
+  onCodeChange = (value: string) => {
+    this.dashboard.json = value
   }
 
   onNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
