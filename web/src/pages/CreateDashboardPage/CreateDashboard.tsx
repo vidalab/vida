@@ -73,7 +73,7 @@ class CreateDashboard extends Component<CreateDashboardProps, CreateDashboardSta
               </div>
             </div>
             <div className="col-span-2 ">
-              <Dashboard dashboard={this.state.vizData} />
+              <Dashboard dashboardText={this.state.vizData} />
             </div>
           </div>
         </div>

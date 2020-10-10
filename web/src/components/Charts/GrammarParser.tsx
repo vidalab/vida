@@ -5,15 +5,20 @@ import NivoScatterChart from "./NivoScatterChart"
 import NivoPieChart from "./NivoPieChart"
 import NivoBubbleChart from "./NivoBubbleChart"
 import MarkdownText from "./MarkdownText"
-import { JSONVizData, XYAxes, JSONChartDataColumn, IHash } from "./VizData"
+import { JSONVizData, XYAxes, JSONChartDataColumn, IHash, UrlData } from "./VizData"
 
-const GrammarParser = (jsonData: JSONVizData) => {
+const GrammarParser = (jsonData: JSONVizData, urlData: UrlData) => {
 
   const getData = (name: string): object[] => {
     let values = null
     jsonData.data.forEach((d) => {
       if (d.name == name) {
-        values = d.values
+        if (d.url) {
+          // find values from urlData map
+          values = urlData[d.url]
+        } else {
+          values = d.values
+        }
       }
     })
     return values

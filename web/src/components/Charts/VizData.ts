@@ -93,3 +93,7 @@ export interface IHash {
 export interface MarkdownTextProps {
   text: string
 }
+
+export interface UrlData {
+  [url: string]: object[]
+}

@@ -28,15 +28,12 @@ export const beforeQuery = (props) => {
 export const Loading = () => <div>Loading...</div>
 
 export const Success = ({ dashboard }) => {
-  let newJson
-
   const [updateDashboard, { loading, error, data }] = useMutation(UPDATE_DASHBOARD_MUTATION, {
     onCompleted: (e) => {
     },
   })
 
   const onSave = (id, input) => {
-    newJson = input.json
     updateDashboard({ variables: { id, input }})
   }
 

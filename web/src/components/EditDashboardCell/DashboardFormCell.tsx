@@ -1,47 +1,28 @@
 import React from 'react'
-import DashboardCell from '../DashboardCell/DashboardCell'
+import Dashboard from '../Dashboard/Dashboard'
 import DashboardForm from '../DashboardForm/DashboardForm'
-import { withAlert, useAlert } from "react-alert"
+import { withAlert } from "react-alert"
 import { checkJSONSize } from '../../PageHelper'
+import { DashboardData, DashboardFormCellProps } from '../DashboardData'
 
-interface Dashboard {
-  id: number
-  json: object
-}
+class DashboardFormCell extends React.Component<DashboardFormCellProps> {
+  private dashboardRef: React.RefObject<typeof Dashboard>
 
-interface DashboardFormCellProps {
-  dashboard: Dashboard
-  alert: useAlert
-  onSave: (id: number, input: Dashboard) => void
-}
-
-interface DashboardFormCellState {
-  dashboard: Dashboard
-}
-
-class DashboardFormCell extends React.Component<DashboardFormCellProps, DashboardFormCellState> {
   constructor(props: DashboardFormCellProps) {
     super(props)
 
-    this.state = {
-      dashboard: props.dashboard
-    }
+    this.onPreview = this.onPreview.bind(this)
+    this.dashboardRef = React.createRef()
   }
 
   handleKeyDown = (e: KeyboardEvent) => {
     if (e.ctrlKey && e.key == "Enter") {
-      this.setDashboardState()
+      this.refreshDashboard()
     }
   }
 
-  setDashboardState = () => {
-    const dashboard = this.state.dashboard
-    const json = dashboard.json
-    if (checkJSONSize(this.props.alert, json)) {
-      this.setState({
-        dashboard: dashboard
-      })
-    }
+  refreshDashboard = () => {
+    this.dashboardRef.current.refresh(this.props.dashboard.json)
   }
 
   componentDidMount(){
@@ -51,14 +32,17 @@ class DashboardFormCell extends React.Component<DashboardFormCellProps, Dashboar
     document.removeEventListener("keydown", this.handleKeyDown, false);
   }
 
-  onPreview = (id: number, json: object) => {
-    this.state.dashboard.json = json
-    this.setDashboardState()
+  onPreview = (id: number, json: string) => {
+    if (checkJSONSize(this.props.alert, json)) {
+      this.props.dashboard.json = json
+      this.refreshDashboard()
+    }
   }
 
-  onSave = (id: number, json: object) => {
-    if (checkJSONSize(this.props.alert, json)) {
-      this.props.onSave(id, json)
+  onSave = (id: number, dbData: DashboardData) => {
+    if (checkJSONSize(this.props.alert, dbData.json)) {
+      this.props.onSave(id, dbData)
+      this.refreshDashboard()
     }
   }
 
@@ -69,7 +53,7 @@ class DashboardFormCell extends React.Component<DashboardFormCellProps, Dashboar
           <DashboardForm dashboard={this.props.dashboard} onSave={this.onSave} onPreview={this.onPreview}/>
         </div>
         <div className="col-span-2 ">
-          {this.state.dashboard && <DashboardCell id={this.props.dashboard.id} />}
+          {this.props.dashboard && <Dashboard dashboardText={this.props.dashboard.json} ref={this.dashboardRef} />}
         </div>
       </div>
     )
