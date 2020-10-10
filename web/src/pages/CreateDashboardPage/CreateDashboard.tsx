@@ -52,7 +52,7 @@ class CreateDashboard extends Component<CreateDashboardProps, CreateDashboardSta
           <header className="bg-gray-300 text-gray-700 py-3 px-4">
             <h2 className="text-sm font-semibold"><b>Create Dashboard</b></h2>
           </header>
-          <div className="grid grid-cols-3 gap-4" style={{height: "calc(100% - 45px)"}}>
+          <div className="grid grid-cols-3 gap-4" style={{height: "calc(100% - 35px)"}}>
             <div className="col-span-1 bg-gray-100 p-4">
               <MonacoEditor
                 width="100%"
@@ -73,7 +73,7 @@ class CreateDashboard extends Component<CreateDashboardProps, CreateDashboardSta
               </div>
             </div>
             <div className="col-span-2 ">
-              <Dashboard dashboard={this.state.vizData} />
+              <Dashboard dashboardText={this.state.vizData} />
             </div>
           </div>
         </div>

@@ -26,8 +26,8 @@ export const Empty = () => <div>Dashboard not found</div>
 export const Success = ({ dashboard }) => {
   setPageTitle(dashboard.name)
   try {
-    const json = JSON.parse(dashboard.json)
-    return <Dashboard dashboard={json} />
+    const json = dashboard.json
+    return <Dashboard dashboardText={json} />
   } catch (e) {
     const alert = useAlert()
     alert.show('Invalid JSON data for dashboard.')

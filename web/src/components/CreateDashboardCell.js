@@ -20,7 +20,7 @@ export const Empty = () => <div>Dashboard not found</div>
 
 export const Success = ({ dashboard }) => {
   try {
-    const json = JSON.parse(dashboard.json)
+    const json = dashboard.json
     return <CreateDashboard vizData={json} />
   } catch (e) {
     const alert = useAlert()

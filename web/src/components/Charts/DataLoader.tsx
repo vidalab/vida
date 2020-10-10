@@ -3,14 +3,11 @@ import { Component } from "react"
 import Header from './Header'
 import Footer from './Footer'
 import GrammarParser from './GrammarParser'
-import { JSONVizData, DataLoaderProps, DataLoaderState, JSONDataTransform, JSONDataset } from './VizData'
+import { JSONVizData, DataLoaderProps, DataLoaderState,
+        JSONDataTransform, JSONDataset, UrlData } from './VizData'
 import { containerClassName } from './Constants'
 import { CSVToJSON } from '../../Utility'
 import { group as d3group } from 'd3-array'
-
-interface UrlData {
-  [url: string]: object[]
-}
 
 class DataLoader extends Component<DataLoaderProps, DataLoaderState> {
   private vizName: string
@@ -60,9 +57,8 @@ class DataLoader extends Component<DataLoaderProps, DataLoaderState> {
         }
         let values = this.urlData[d["url"]]
         if (d["transform"]) {
-          values = this.transformData(this.urlData[d["url"]], d["transform"])
+          this.urlData[d["url"]] = this.transformData(this.urlData[d["url"]], d["transform"])
         }
-        d["values"] = values
       } else if (d["url"].indexOf(".csv") != -1) {
         if (!this.urlData[d["url"]]) {
           const response = await fetch(d["url"])
@@ -72,9 +68,8 @@ class DataLoader extends Component<DataLoaderProps, DataLoaderState> {
         }
         let values = this.urlData[d["url"]]
         if (d["transform"]) {
-          values = this.transformData(this.urlData[d["url"]], d["transform"])
+          this.urlData[d["url"]] = this.transformData(this.urlData[d["url"]], d["transform"])
         }
-        d["values"] = values
       }
     }
   }
@@ -140,7 +135,7 @@ class DataLoader extends Component<DataLoaderProps, DataLoaderState> {
   }
 
   public componentDidUpdate = (prevProps: DataLoaderProps) => {
-    if (JSON.stringify(this.props) != JSON.stringify(prevProps)) {
+    if (JSON.stringify(this.props.vizData) != JSON.stringify(this.vizData)) {
       this.vizData = this.props.vizData
       this.getDataUrl()
     }
@@ -149,12 +144,12 @@ class DataLoader extends Component<DataLoaderProps, DataLoaderState> {
   public render = () => {
     if (this.state.data) {
       const vizData = this.state.data
-      const grammarParser = GrammarParser(vizData)
+      const grammarParser = GrammarParser(vizData, this.urlData)
       const charts = grammarParser.charts
       const vizInfo = grammarParser.vizInfo
       let headerPadding = "80"
       if (!vizInfo["header"]) {
-        headerPadding = "30"
+        headerPadding = "20"
       }
       return (
         <div style={{height: "100%", width: "100%"}}>

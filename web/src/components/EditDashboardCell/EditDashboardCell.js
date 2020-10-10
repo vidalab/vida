@@ -28,23 +28,17 @@ export const beforeQuery = (props) => {
 export const Loading = () => <div>Loading...</div>
 
 export const Success = ({ dashboard }) => {
-  let newJson
-
   const [updateDashboard, { loading, error, data }] = useMutation(UPDATE_DASHBOARD_MUTATION, {
     onCompleted: (e) => {
     },
   })
 
   const onSave = (id, input) => {
-    newJson = input.json
     updateDashboard({ variables: { id, input }})
   }
 
   return (
     <div className="bg-white border rounded-lg overflow-hidden" style={{height: "100%"}}>
-      <header className="bg-gray-300 text-gray-700 py-3 px-4">
-        <h2 className="text-sm font-semibold">Edit Dashboard > <b>{dashboard.name}</b></h2>
-      </header>
       <DashboardFormCell dashboard={dashboard} onSave={onSave} />
     </div>
   )
