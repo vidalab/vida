@@ -31,7 +31,7 @@ const NewDashboard = ({alert}) => {
     <div className="bg-white border rounded-lg overflow-hidden" style={{height: "100%"}}>
       <div className="grid grid-cols-3 gap-4" style={{height: "100%"}}>
         <div className="col-span-1" style={{height: "calc(100% - 40px)"}}>
-          <DashboardForm dashboard={{name: 'Example Viz', json: JSON.stringify(vizJson, null, ' ')}} onSave={onSave} loading={loading} error={error}/>
+          <DashboardForm dashboard={{name: 'Example Viz', json: JSON.stringify(vizJson, null, '  ')}} onSave={onSave} loading={loading} error={error}/>
         </div>
         <div className="col-span-2 ">
           <Dashboard dashboardText={JSON.stringify(vizJson, null, ' ')} />
