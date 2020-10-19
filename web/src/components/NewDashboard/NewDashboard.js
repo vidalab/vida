@@ -1,6 +1,6 @@
 import { useMutation } from '@redwoodjs/web'
 import { navigate, routes } from '@redwoodjs/router'
-import Dashboard from 'src/components/Dashboard'
+import DashboardComponent from 'src/components/DashboardComponent'
 import DashboardForm from 'src/components/DashboardForm'
 import { checkJSONSize } from '../../PageHelper'
 import { withAlert } from "react-alert"

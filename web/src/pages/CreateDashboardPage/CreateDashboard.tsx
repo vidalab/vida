@@ -1,7 +1,7 @@
 import { Component, MouseEvent } from "react"
 import { Submit } from '@redwoodjs/web'
 import DashboardsLayout from 'src/layouts/DashboardsLayout'
-import Dashboard from 'src/components/Dashboard'
+import DashboardComponent from 'src/components/DashboardComponent'
 import MonacoEditor from 'react-monaco-editor'
 import vizJson from './viz.json'
 
@@ -73,7 +73,7 @@ class CreateDashboard extends Component<CreateDashboardProps, CreateDashboardSta
               </div>
             </div>
             <div className="col-span-2 ">
-              <Dashboard dashboardText={this.state.vizData} />
+              <DashboardComponent dashboardText={this.state.vizData} />
             </div>
           </div>
         </div>

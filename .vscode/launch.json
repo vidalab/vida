@@ -5,11 +5,21 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "chrome",
+      "command": "yarn redwood dev",
+      "name": "launch development",
       "request": "launch",
-      "name": "Vida Dashboard",
-      "url": "http://localhost:8910",
-      "webRoot": "${workspaceFolder}"
+      "type": "node-terminal"
+    },
+    {
+      "type": "pwa-node",
+      "request": "launch",
+      "name": "launch api",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "cwd": "${workspaceFolder}/api",
+      "envFile": "${workspaceFolder}/.env.defaults",
+      "program": "${workspaceFolder}/node_modules/.bin/dev-server"
     }
   ]
 }

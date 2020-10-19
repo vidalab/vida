@@ -1,4 +1,4 @@
-import Dashboard from 'src/components/Dashboard'
+import DashboardComponent from 'src/components/DashboardComponent'
 import { containerClassName } from '../Charts/Constants'
 import { setPageTitle } from '../../PageHelper'
 import { useAlert } from 'react-alert'
@@ -27,7 +27,7 @@ export const Success = ({ dashboard }) => {
   setPageTitle(dashboard.name)
   try {
     const json = dashboard.json
-    return <Dashboard dashboardText={json} />
+    return <DashboardComponent dashboardText={json} />
   } catch (e) {
     const alert = useAlert()
     alert.show('Invalid JSON data for dashboard.')

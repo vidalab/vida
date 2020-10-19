@@ -1,7 +1,7 @@
 import React from 'react'
 import DataLoader from '../Charts/DataLoader'
 import ErrorBoundary from '../ErrorBoundary'
-import { JSONVizData } from '../../components/Charts/VizData'
+import { JSONVizData } from '../Charts/VizData'
 
 interface DashboardProps {
   dashboardText: string
@@ -11,7 +11,7 @@ interface DashboardState {
   dashboardJSON: JSONVizData
 }
 
-class Dashboard extends React.Component<DashboardProps, DashboardState> {
+class DashboardComponent extends React.Component<DashboardProps, DashboardState> {
   constructor(props: DashboardProps) {
     super(props)
     this.state = {
@@ -34,4 +34,4 @@ class Dashboard extends React.Component<DashboardProps, DashboardState> {
   }
 }
 
-export default Dashboard
+export default DashboardComponent
