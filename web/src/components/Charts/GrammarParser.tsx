@@ -159,7 +159,7 @@ const GrammarParser = (jsonData: JSONVizData, urlData: UrlData) => {
               <NivoScatterChart
                 key={"scatter-chart-" + index}
                 axes={chart.axes}
-                data={scatterData.data} />
+                data={[{id: dataName, data: scatterData.data}]} />
             </div>
     } else if (chartType == "area") {
       const lineData = getNivoLineData(data, chart.axes)
