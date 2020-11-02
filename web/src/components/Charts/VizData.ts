@@ -9,7 +9,7 @@ export interface JSONDataset {
   name: string
   url?: string
   values?: object[]
-  transform: JSONDataTransform
+  transform?: JSONDataTransform
 }
 
 export interface JSONChartDataColumn {

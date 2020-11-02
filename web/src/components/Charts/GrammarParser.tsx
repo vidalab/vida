@@ -8,14 +8,17 @@ import MarkdownText from "./MarkdownText"
 import { JSONVizData, XYAxes, JSONChartDataColumn, IHash, UrlData } from "./VizData"
 
 const GrammarParser = (jsonData: JSONVizData, urlData: UrlData) => {
-
   const getData = (name: string): object[] => {
     let values = null
     jsonData.data.forEach((d) => {
       if (d.name == name) {
         if (d.url) {
           // find values from urlData map
-          values = urlData[d.url]
+          if (d.transform) {
+            values = urlData[d.name + ':' + d.url]
+          } else {
+            values = urlData[d.url]
+          }
         } else {
           values = d.values
         }

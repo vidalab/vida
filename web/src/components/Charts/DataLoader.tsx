@@ -55,9 +55,8 @@ class DataLoader extends Component<DataLoaderProps, DataLoaderState> {
           const json = await response.json()
           this.urlData[d["url"]] = json
         }
-        let values = this.urlData[d["url"]]
         if (d["transform"]) {
-          this.urlData[d["url"]] = this.transformData(this.urlData[d["url"]], d["transform"])
+          this.urlData[d["name"] + ':' + d["url"]] = this.transformData(this.urlData[d["url"]], d["transform"])
         }
       } else if (d["url"].indexOf(".csv") != -1) {
         if (!this.urlData[d["url"]]) {
@@ -68,7 +67,7 @@ class DataLoader extends Component<DataLoaderProps, DataLoaderState> {
         }
         let values = this.urlData[d["url"]]
         if (d["transform"]) {
-          this.urlData[d["url"]] = this.transformData(this.urlData[d["url"]], d["transform"])
+          this.urlData[d["name"] + ':' + d["url"]] = this.transformData(this.urlData[d["url"]], d["transform"])
         }
       }
     }
