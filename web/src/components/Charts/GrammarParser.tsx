@@ -82,8 +82,23 @@ const GrammarParser = (jsonData: JSONVizData, urlData: UrlData) => {
     return {data: barData, keys: keys, colors: colors}
   }
 
-  const getNivoScatterData = (dataArray: any): any => {
-    return {data: dataArray}
+  const getNivoScatterData = (dataArray: any[], axes: XYAxes, ids: string[]): any => {
+    let scatterData: any[] = []
+    dataArray.forEach((dArray: any[], i: number) => {
+      let sData: any[] = []
+      dArray.forEach((d: any, j: number) => {
+        sData.push({
+          x: d[axes.x.dataColumn],
+          y: d[axes.y.dataColumn]
+        })
+      })
+      scatterData.push({
+        id: ids[i],
+        data: sData
+      })
+    })
+
+    return scatterData
   }
 
   const getVizInfo = (): any => {
@@ -101,7 +116,15 @@ const GrammarParser = (jsonData: JSONVizData, urlData: UrlData) => {
   jsonData.charts.forEach((chart, index) => {
     const chartType = chart.type
     const dataName = chart.data
-    const data = getData(dataName)
+    let data
+    if (Array.isArray(dataName)) {
+      data = []
+      for (let d of dataName) {
+        data.push(getData(d))
+      }
+    } else {
+      data = getData(dataName)
+    }
     const colX = chart.position.x + 1,
           colSpan = chart.position.columns,
           rowSpan = chart.position.rows,
@@ -152,14 +175,15 @@ const GrammarParser = (jsonData: JSONVizData, urlData: UrlData) => {
                 data={barData.data} />
             </div>
     } else if (chartType == "scatter") {
-      const scatterData = getNivoScatterData(data)
+      const scatterData = getNivoScatterData(data, chart.axes, dataName as string[])
       el = <div key={"scatter-chart-container-" + index} style={containerCssStyle}
               className={colXClass + " " + colSpanClass + " " + rowSpanClass}
             >
               <NivoScatterChart
                 key={"scatter-chart-" + index}
                 axes={chart.axes}
-                data={[{id: dataName, data: scatterData.data}]} />
+                colors={chart.colors}
+                data={scatterData} />
             </div>
     } else if (chartType == "area") {
       const lineData = getNivoLineData(data, chart.axes)

@@ -43,7 +43,7 @@ export interface JSONChartPosition {
 
 export interface JSONChart {
   type: string
-  data: string
+  data: string | string[]
   title: string
   position: JSONChartPosition
   axes?: XYAxes
