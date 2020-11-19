@@ -54,7 +54,6 @@ const NivoLineChart = (props: LineChartProps) => {
   }
   const responsiveHeight = props.chartTitle ? "calc(100% - 20px)" : "100%"
   const xLabel = props.axes && props.axes.x.label
-  const yLabel = props.axes && props.axes.y.label
   return (
     <div style={{ height: "100%" }}>
       <div className="text-center text-gray-700 font-medium">{props.chartTitle}</div>

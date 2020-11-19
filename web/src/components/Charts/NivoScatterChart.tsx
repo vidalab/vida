@@ -9,7 +9,10 @@ const NivoScatterChart = (props: ChartProps) => {
   return (
     <ResponsiveScatterPlot
       data={props.data}
-      margin={{ top: MARGIN.top, right: MARGIN.right, bottom: MARGIN.bottom, left: MARGIN.left }}
+      margin={{ top: MARGIN.top,
+        right: (props.legend && props.legend.enabled ? MARGIN.right : MARGIN.right_no_legend),
+        bottom: MARGIN.bottom,
+        left: MARGIN.left }}
       xScale={{ type: 'linear', min: 0, max: 'auto' }}
       xFormat={function(e){return e}}
       yScale={{ type: 'linear', min: 0, max: 'auto' }}
@@ -24,7 +27,7 @@ const NivoScatterChart = (props: ChartProps) => {
           tickRotation: 0,
           legend: xLabel,
           legendPosition: 'middle',
-          legendOffset: 46
+          legendOffset: 36
       }}
       axisLeft={{
           orient: 'left',
@@ -33,7 +36,7 @@ const NivoScatterChart = (props: ChartProps) => {
           tickRotation: 0,
           legend: yLabel,
           legendPosition: 'middle',
-          legendOffset: -50
+          legendOffset: -45
       }}
       legends={[
           {

@@ -48,11 +48,11 @@ class DashboardFormCell extends React.Component<DashboardFormCellProps> {
 
   render() {
     return (
-      <div className="grid grid-cols-3 gap-4" style={{height: "calc(100% - 15px)"}}>
-        <div className="col-span-1" style={{height: "calc(100% - 30px)"}}>
+      <div className="grid grid-cols-3 gap-4" style={{height: "100%"}}>
+        <div className="col-span-1" style={{height: "100%"}}>
           <DashboardForm dashboard={this.props.dashboard} onSave={this.onSave} onPreview={this.onPreview}/>
         </div>
-        <div className="col-span-2 ">
+        <div className="col-span-2" style={{height: "99%"}}>
           {this.props.dashboard && <Dashboard dashboardText={this.props.dashboard.json} ref={this.dashboardRef} />}
         </div>
       </div>
