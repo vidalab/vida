@@ -29,7 +29,7 @@ const HomePage = () => {
 
           <div className="flex mt-6 justify-start md:justify-center xl:justify-start">
             <Link
-              className="rounded-lg px-4 md:px-5 xl:px-4 py-3 md:py-4 xl:py-3 bg-teal-500 hover:bg-teal-600 md:text-lg xl:text-base text-white font-semibold leading-tight shadow-md"
+              className="rounded-lg px-4 md:px-5 xl:px-4 py-3 md:py-4 xl:py-3 bg-green-500 hover:bg-green-600 md:text-lg xl:text-base text-white font-semibold leading-tight shadow-md"
               to={routes.createDashboard()}>
               Create Dashboard
             </Link>

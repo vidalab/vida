@@ -13,7 +13,7 @@ const Header = (props: HeaderProps) => {
   }
   return (<>
       <header>
-        <nav className="bg-teal-500 p-3" style={cssStyle}>
+        <nav className="bg-green-500 p-3" style={cssStyle}>
           <div className="text-white">
             <a
               href="/"
