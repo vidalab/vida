@@ -1,5 +1,5 @@
+import React from 'react'
 import { Component, MouseEvent } from "react"
-import { Submit } from '@redwoodjs/web'
 import DashboardsLayout from 'src/layouts/DashboardsLayout'
 import Dashboard from 'src/components/Dashboard'
 import MonacoEditor from 'react-monaco-editor'
@@ -16,6 +16,7 @@ interface CreateDashboardState {
 class CreateDashboard extends Component<CreateDashboardProps, CreateDashboardState> {
   private editor: MonacoEditor
   private vizData: object
+  private dashboardRef: React.RefObject<typeof Dashboard>
 
   constructor(props: CreateDashboardProps) {
     super(props)
@@ -27,6 +28,7 @@ class CreateDashboard extends Component<CreateDashboardProps, CreateDashboardSta
     this.state = {
       vizData: this.vizData
     }
+    this.dashboardRef = React.createRef()
   }
 
   private createEditorMounted = (editor: MonacoEditor) => {
@@ -37,6 +39,7 @@ class CreateDashboard extends Component<CreateDashboardProps, CreateDashboardSta
     this.setState({
       vizData: JSON.parse(this.editor.getValue())
     })
+    this.dashboardRef.current.refresh(JSON.stringify(this.state.vizData))
   }
 
   public render = () => {
@@ -64,16 +67,16 @@ class CreateDashboard extends Component<CreateDashboardProps, CreateDashboardSta
                 editorDidMount={this.createEditorMounted}
               />
               <div className="mt-1 text-center">
-                <Submit
+                <a
                   className="bg-blue-600 text-white hover:bg-blue-700 text-xs rounded px-4 py-2 uppercase font-semibold tracking-wide"
                   onClick={this.onSaveClicked}
                 >
                   Save
-                </Submit>
+                </a>
               </div>
             </div>
             <div className="col-span-2 ">
-              <Dashboard dashboardText={this.state.vizData} />
+              <Dashboard dashboardText={JSON.stringify(this.state.vizData)} ref={this.dashboardRef} />
             </div>
           </div>
         </div>
