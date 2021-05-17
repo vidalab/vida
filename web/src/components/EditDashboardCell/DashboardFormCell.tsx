@@ -7,10 +7,12 @@ import { DashboardData, DashboardFormCellProps } from '../DashboardData'
 
 class DashboardFormCell extends React.Component<DashboardFormCellProps> {
   private dashboardRef: React.RefObject<typeof Dashboard>
+  private dashboardData: DashboardData
 
   constructor(props: DashboardFormCellProps) {
     super(props)
 
+    this.dashboardData = JSON.parse(JSON.stringify(props.dashboard))
     this.onPreview = this.onPreview.bind(this)
     this.dashboardRef = React.createRef()
   }
@@ -22,7 +24,7 @@ class DashboardFormCell extends React.Component<DashboardFormCellProps> {
   }
 
   refreshDashboard = () => {
-    this.dashboardRef.current.refresh(this.props.dashboard.json)
+    this.dashboardRef.current.refresh(this.dashboardData.json)
   }
 
   componentDidMount(){
@@ -34,7 +36,7 @@ class DashboardFormCell extends React.Component<DashboardFormCellProps> {
 
   onPreview = (id: number, json: string) => {
     if (checkJSONSize(this.props.alert, json)) {
-      this.props.dashboard.json = json
+      this.dashboardData.json = json
       this.refreshDashboard()
     }
   }

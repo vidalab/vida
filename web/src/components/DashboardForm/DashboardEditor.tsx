@@ -33,7 +33,7 @@ class DashboardEditor extends React.Component<DashboardEditorProps, DashboardEdi
 
   render = () => {
     return (
-      <div style={{height: "100%"}}>
+      <div style={{height: "calc(100% - 30px)"}}>
         <div style={{height: "100%"}}>
           <ul className="flex border-b">
             <li className={this.state.currentTab == EditorTab.Info ? "-mb-px mr-1" : "mr-1"}>

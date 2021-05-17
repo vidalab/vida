@@ -19,7 +19,7 @@ class DashboardForm extends React.Component<DashboardFormProps, DashboardFormSta
 
   constructor(props: DashboardFormProps) {
     super(props)
-    this.dashboard = props.dashboard
+    this.dashboard = JSON.parse(JSON.stringify(props.dashboard))
     this.state = {
       // the default editor is text
       textEdit: true,
@@ -72,7 +72,7 @@ class DashboardForm extends React.Component<DashboardFormProps, DashboardFormSta
             className={CSS.label + " mt-2"}
             >JSON</label>
 
-          <div style={{height: "calc(100% - 95px)"}}>
+          <div style={{height: "calc(100% - 125px)"}}>
             <CodeEditor jsonText={this.props.dashboard?.json} onChange={this.onCodeChange} />
           </div>
 
@@ -95,7 +95,7 @@ class DashboardForm extends React.Component<DashboardFormProps, DashboardFormSta
             </button>
 
             <button
-              className="ml-2 bg-orange-600 text-white hover:bg-orange-700 text-xs rounded px-4 py-2 uppercase font-semibold tracking-wide"
+              className="ml-2 bg-red-600 text-white hover:bg-red-700 text-xs rounded px-4 py-2 uppercase font-semibold tracking-wide"
               type="button"
               onClick={this.onEditorChange}
             >
@@ -126,7 +126,7 @@ class DashboardForm extends React.Component<DashboardFormProps, DashboardFormSta
               </button>
 
               <button
-                className="ml-2 bg-orange-600 text-white hover:bg-orange-700 text-xs rounded px-4 py-2 uppercase font-semibold tracking-wide"
+                className="ml-2 bg-red-600 text-white hover:bg-red-700 text-xs rounded px-4 py-2 uppercase font-semibold tracking-wide"
                 type="button"
                 onClick={this.onEditorChange}
               >
