@@ -14,8 +14,15 @@ interface DashboardState {
 class Dashboard extends React.Component<DashboardProps, DashboardState> {
   constructor(props: DashboardProps) {
     super(props)
+    console.log(props)
+    let json = null
+    try {
+      json = JSON.parse(props.dashboardText)
+    } catch (e) {
+      console.log(e)
+    }
     this.state = {
-      dashboardJSON: JSON.parse(props.dashboardText)
+      dashboardJSON: json
     }
   }
 
@@ -28,7 +35,7 @@ class Dashboard extends React.Component<DashboardProps, DashboardState> {
     let vizData = this.state.dashboardJSON
     return (
       <ErrorBoundary>
-        <DataLoader vizData={vizData} />
+        {vizData && <DataLoader vizData={vizData} />}
       </ErrorBoundary>
     )
   }

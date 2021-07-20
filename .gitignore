@@ -6,3 +6,4 @@ dist
 dist-babel
 node_modules
 yarn-error.log
+.redwood/index.d.ts
