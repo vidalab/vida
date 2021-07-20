@@ -14,7 +14,6 @@ interface DashboardState {
 class Dashboard extends React.Component<DashboardProps, DashboardState> {
   constructor(props: DashboardProps) {
     super(props)
-    console.log(props)
     let json = null
     try {
       json = JSON.parse(props.dashboardText)
