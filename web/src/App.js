@@ -1,6 +1,5 @@
 import { AuthProvider } from '@redwoodjs/auth'
 import { Auth0Client } from '@auth0/auth0-spa-js'
-import ReactDOM from 'react-dom'
 import { FatalErrorBoundary } from '@redwoodjs/web'
 import { RedwoodApolloProvider } from '@redwoodjs/web/apollo'
 import FatalErrorPage from 'src/pages/FatalErrorPage'
@@ -33,7 +32,7 @@ const alertOptions = {
   transition: transitions.SCALE
 }
 
-ReactDOM.render(
+const App = () => (
   <FatalErrorBoundary page={FatalErrorPage}>
     <AuthProvider client={auth0} type="auth0">
       <AlertProvider template={AlertTemplate} {...alertOptions}>
@@ -42,6 +41,7 @@ ReactDOM.render(
         </RedwoodApolloProvider>
       </AlertProvider>
     </AuthProvider>
-  </FatalErrorBoundary>,
-  document.getElementById('redwood-app')
+  </FatalErrorBoundary>
 )
+
+export default App
