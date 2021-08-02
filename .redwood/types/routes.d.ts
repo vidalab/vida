@@ -1,17 +1,19 @@
 import '@redwoodjs/router'
 
-type ParseRouteParameters<Route> = Route extends `${string}/{${infer Param}:${string}}/${infer Rest}` ? { [Entry in Param | keyof ParseRouteParameters<`/${Rest}`>]: string } : Route extends `${string}/{${infer Param}:${string}}` ? { [Entry in Param]: string } : Route extends `${string}/{${infer Param}}` ? { [Entry in Param]: string } : Record<string, string>
+type ParamType<constraint> = constraint extends "Int" ? number : constraint extends "Boolean" ? boolean : constraint extends "Float" ? number : string;
+type RouteParams<Route> = Route extends `${string}/{${infer Param}:${infer Constraint}}/${infer Rest}` ? { [Entry in Param]: ParamType<Constraint> } & RouteParams<`/${Rest}`> : Route extends `${string}/{${infer Param}:${infer Constraint}}` ? { [Entry in Param]: ParamType<Constraint> } : Route extends `${string}/{${infer Param}}/${infer Rest}` ? { [Entry in Param]: string } & RouteParams<`/${Rest}`> : {}
+type QueryParams = Record<string | number, string | number | boolean>
 
 declare module '@redwoodjs/router' {
   interface AvailableRoutes {
-    createDashboard: (params?: ParseRouteParameters<"/dashboards/create">) => "/dashboards/create"
-    copyDashboard: (params?: ParseRouteParameters<"/dashboards/create/{id}">) => "/dashboards/create/{id}"
-    dashboard: (params?: ParseRouteParameters<"/dashboards/{id}">) => "/dashboards/{id}"
-    dashboards: (params?: ParseRouteParameters<"/dashboards">) => "/dashboards"
-    start: (params?: ParseRouteParameters<"/">) => "/"
-    home: (params?: ParseRouteParameters<"/home">) => "/home"
-    about: (params?: ParseRouteParameters<"/about">) => "/about"
-    newDashboard: (params?: ParseRouteParameters<"/dashboards/new">) => "/dashboards/new"
-    editDashboard: (params?: ParseRouteParameters<"/dashboards/{id}/edit">) => "/dashboards/{id}/edit"
+    createDashboard: (params?: RouteParams<"/dashboards/create"> & QueryParams) => "/dashboards/create"
+    copyDashboard: (params?: RouteParams<"/dashboards/create/{id}"> & QueryParams) => "/dashboards/create/{id}"
+    dashboard: (params?: RouteParams<"/dashboards/{id}"> & QueryParams) => "/dashboards/{id}"
+    dashboards: (params?: RouteParams<"/dashboards"> & QueryParams) => "/dashboards"
+    start: (params?: RouteParams<"/"> & QueryParams) => "/"
+    home: (params?: RouteParams<"/home"> & QueryParams) => "/home"
+    about: (params?: RouteParams<"/about"> & QueryParams) => "/about"
+    newDashboard: (params?: RouteParams<"/dashboards/new"> & QueryParams) => "/dashboards/new"
+    editDashboard: (params?: RouteParams<"/dashboards/{id}/edit"> & QueryParams) => "/dashboards/{id}/edit"
   }
 }
