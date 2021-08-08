@@ -1,0 +1,60 @@
+input CreateDashboardInput {
+  name: String!
+  json: String!
+}
+
+type Dashboard {
+  id: String!
+  name: String!
+  json: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  user: User!
+  ownerEmail: String!
+}
+
+scalar Date
+
+scalar DateTime
+
+scalar JSON
+
+scalar JSONObject
+
+type Mutation {
+  createDashboard(input: CreateDashboardInput!): Dashboard!
+  updateDashboard(id: String!, input: UpdateDashboardInput!): Dashboard!
+  deleteDashboard(id: String!): Dashboard!
+}
+
+type Query {
+  dashboard(id: String!): Dashboard!
+  dashboards(ownerId: String!): [Dashboard!]!
+  getViz(name: String!): VizJson!
+  redwood: Redwood
+}
+
+type Redwood {
+  version: String
+  currentUser: JSON
+  prismaVersion: String
+}
+
+scalar Time
+
+input UpdateDashboardInput {
+  name: String
+  json: String
+  updatedAt: DateTime
+}
+
+type User {
+  id: Int!
+  email: String!
+  auth0Id: String!
+}
+
+type VizJson {
+  name: String!
+  vizName: String!
+}
