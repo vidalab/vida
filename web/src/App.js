@@ -1,6 +1,6 @@
 import { AuthProvider } from '@redwoodjs/auth'
 import { Auth0Client } from '@auth0/auth0-spa-js'
-import { FatalErrorBoundary } from '@redwoodjs/web'
+import { FatalErrorBoundary, RedwoodProvider } from '@redwoodjs/web'
 import { RedwoodApolloProvider } from '@redwoodjs/web/apollo'
 import FatalErrorPage from 'src/pages/FatalErrorPage'
 import { transitions, positions, Provider as AlertProvider } from 'react-alert'
@@ -15,12 +15,12 @@ import './fontawesome.js'
 ReactGA.initialize(process.env.GA_ID)
 
 const auth0 = new Auth0Client({
-    domain: process.env.AUTH0_DOMAIN,
-    client_id: process.env.AUTH0_CLIENT_ID,
-    redirect_uri: process.env.REDIRECT_URL || 'http://localhost:8910/',
-    cacheLocation: 'localstorage',
-    audience: process.env.AUTH0_AUDIENCE,
-  })
+  domain: process.env.AUTH0_DOMAIN,
+  client_id: process.env.AUTH0_CLIENT_ID,
+  redirect_uri: process.env.REDIRECT_URL || 'http://localhost:8910/',
+  cacheLocation: 'localstorage',
+  audience: process.env.AUTH0_AUDIENCE,
+})
 
 // optional configuration
 const alertOptions = {
@@ -29,18 +29,20 @@ const alertOptions = {
   timeout: 5000,
   offset: '50px',
   // you can also just use 'scale'
-  transition: transitions.SCALE
+  transition: transitions.SCALE,
 }
 
 const App = () => (
   <FatalErrorBoundary page={FatalErrorPage}>
-    <AuthProvider client={auth0} type="auth0">
-      <AlertProvider template={AlertTemplate} {...alertOptions}>
-        <RedwoodApolloProvider>
-          <Routes />
-        </RedwoodApolloProvider>
-      </AlertProvider>
-    </AuthProvider>
+    <RedwoodProvider>
+      <AuthProvider client={auth0} type="auth0">
+        <AlertProvider template={AlertTemplate} {...alertOptions}>
+          <RedwoodApolloProvider>
+            <Routes />
+          </RedwoodApolloProvider>
+        </AlertProvider>
+      </AuthProvider>
+    </RedwoodProvider>
   </FatalErrorBoundary>
 )
 
