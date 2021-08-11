@@ -13,12 +13,28 @@ const Routes = () => {
   return (
     <Router>
       <Private unauthenticated="start">
-        <Route path="/new_dashboard" page={NewDashboardPage} name="newDashboard" />
-        <Route path="/dashboards/{id}/edit" page={EditDashboardPage} name="editDashboard" />
+        <Route
+          path="/new_dashboard"
+          page={NewDashboardPage}
+          name="newDashboard"
+        />
+        <Route
+          path="/dashboards/{id}/edit"
+          page={EditDashboardPage}
+          name="editDashboard"
+        />
       </Private>
 
-      <Route path="/dashboards/create" page={CreateDashboardPage} name="createDashboard" />
-      <Route path="/dashboards/create/{id}" page={CreateDashboardPage} name="copyDashboard" />
+      <Route
+        path="/dashboards/create"
+        page={CreateDashboardPage}
+        name="createDashboard"
+      />
+      <Route
+        path="/dashboards/create/{id}"
+        page={CreateDashboardPage}
+        name="copyDashboard"
+      />
       <Route path="/dashboards/{id}" page={DashboardPage} name="dashboard" />
       <Route path="/dashboards" page={DashboardsPage} name="dashboards" />
       <Route path="/" page={StartPage} name="start" />
