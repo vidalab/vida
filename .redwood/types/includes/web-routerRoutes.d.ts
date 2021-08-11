@@ -13,7 +13,7 @@ type QueryParams = Record<string | number, string | number | boolean>
 declare module '@redwoodjs/router' {
   interface AvailableRoutes {
     // Only "<Route />" components with a "name" and "path" prop will be populated here.
-    newDashboard: (params?: RouteParams<"/dashboards/new"> & QueryParams) => "/dashboards/new"
+    newDashboard: (params?: RouteParams<"/new_dashboard"> & QueryParams) => "/new_dashboard"
     editDashboard: (params?: RouteParams<"/dashboards/{id}/edit"> & QueryParams) => "/dashboards/{id}/edit"
     createDashboard: (params?: RouteParams<"/dashboards/create"> & QueryParams) => "/dashboards/create"
     copyDashboard: (params?: RouteParams<"/dashboards/create/{id}"> & QueryParams) => "/dashboards/create/{id}"

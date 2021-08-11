@@ -13,7 +13,7 @@ const Routes = () => {
   return (
     <Router>
       <Private unauthenticated="start">
-        <Route path="/dashboards/new" page={NewDashboardPage} name="newDashboard" />
+        <Route path="/new_dashboard" page={NewDashboardPage} name="newDashboard" />
         <Route path="/dashboards/{id}/edit" page={EditDashboardPage} name="editDashboard" />
       </Private>
 
