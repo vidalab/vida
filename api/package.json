@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@redwoodjs/api": "0.35.2",
-    "@redwoodjs/api-server": "0.35.2"
+    "@redwoodjs/api-server": "0.35.2",
+    "prisma": "^2.29.0"
   }
 }
