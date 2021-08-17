@@ -19,7 +19,9 @@ export const beforeQuery = (props) => {
   return { variables: props, fetchPolicy: 'cache-first' }
 }
 
-export const Loading = () => <div className={containerClassName + " text-center"}>Loading...</div>
+export const Loading = () => (
+  <div className={containerClassName + ' text-center'}>Loading...</div>
+)
 
 export const Empty = () => <div>Dashboard not found</div>
 

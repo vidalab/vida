@@ -2,7 +2,7 @@
 // to return a real user from your database, you could do something like:
 //
 //   export const getCurrentUser = async ({ email }) => {
-//     return await db.user.findOne({ where: { email } })
+//     return await db.user.findUnique({ where: { email } })
 //   }
 
 import { db } from 'src/lib/db'
@@ -14,7 +14,7 @@ export const getCurrentUser = async (jwt) => {
     throw new AuthenticationError('Authentication fails.')
   }
 
-  let user = await db.user.findOne({ where: { email } })
+  let user = await db.user.findUnique({ where: { email } })
   if (!user) {
     user = await db.user.create({ data: { email: email, auth0Id: jwt.sub } })
   }

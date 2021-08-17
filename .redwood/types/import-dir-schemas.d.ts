@@ -1,4 +1,2 @@
-
-          // @ts-expect-error
-          declare module 'src/graphql/**/*.{js,ts}';
-        
+// @ts-expect-error
+declare module 'src/graphql/**/*.{js,ts}';

@@ -1,40 +1,19 @@
+import '@redwoodjs/router'
 
-            declare module '@redwoodjs/router' {
-              interface AvailableRoutes {
-                createDashboard: () => "/dashboards/create"
-copyDashboard: () => "/dashboards/create/{id}"
-dashboard: () => "/dashboards/{id}"
-dashboards: () => "/dashboards"
-start: () => "/"
-home: () => "/home"
-about: () => "/about"
-newDashboard: () => "/dashboards/new"
-editDashboard: () => "/dashboards/{id}/edit"
-              }
-            }
+type ParamType<constraint> = constraint extends "Int" ? number : constraint extends "Boolean" ? boolean : constraint extends "Float" ? number : string;
+type RouteParams<Route> = Route extends `${string}/{${infer Param}:${infer Constraint}}/${infer Rest}` ? { [Entry in Param]: ParamType<Constraint> } & RouteParams<`/${Rest}`> : Route extends `${string}/{${infer Param}:${infer Constraint}}` ? { [Entry in Param]: ParamType<Constraint> } : Route extends `${string}/{${infer Param}}/${infer Rest}` ? { [Entry in Param]: string } & RouteParams<`/${Rest}`> : {}
+type QueryParams = Record<string | number, string | number | boolean>
 
-            import type AboutPageType from '/Users/phuocdo/Workspace/redwoodjs/vida/web/src/pages/AboutPage/AboutPage'
-import type CreateDashboardPageType from '/Users/phuocdo/Workspace/redwoodjs/vida/web/src/pages/CreateDashboardPage/CreateDashboardPage'
-import type DashboardPageType from '/Users/phuocdo/Workspace/redwoodjs/vida/web/src/pages/DashboardPage/DashboardPage'
-import type DashboardsPageType from '/Users/phuocdo/Workspace/redwoodjs/vida/web/src/pages/DashboardsPage/DashboardsPage'
-import type EditDashboardPageType from '/Users/phuocdo/Workspace/redwoodjs/vida/web/src/pages/EditDashboardPage/EditDashboardPage'
-import type FatalErrorPageType from '/Users/phuocdo/Workspace/redwoodjs/vida/web/src/pages/FatalErrorPage/FatalErrorPage'
-import type HomePageType from '/Users/phuocdo/Workspace/redwoodjs/vida/web/src/pages/HomePage/HomePage'
-import type NewDashboardPageType from '/Users/phuocdo/Workspace/redwoodjs/vida/web/src/pages/NewDashboardPage/NewDashboardPage'
-import type NotFoundPageType from '/Users/phuocdo/Workspace/redwoodjs/vida/web/src/pages/NotFoundPage/NotFoundPage'
-import type StartPageType from '/Users/phuocdo/Workspace/redwoodjs/vida/web/src/pages/StartPage/StartPage'
-import type UserHomePageType from '/Users/phuocdo/Workspace/redwoodjs/vida/web/src/pages/UserHomePage/UserHomePage'
-            declare global {
-              const AboutPage: typeof AboutPageType
-const CreateDashboardPage: typeof CreateDashboardPageType
-const DashboardPage: typeof DashboardPageType
-const DashboardsPage: typeof DashboardsPageType
-const EditDashboardPage: typeof EditDashboardPageType
-const FatalErrorPage: typeof FatalErrorPageType
-const HomePage: typeof HomePageType
-const NewDashboardPage: typeof NewDashboardPageType
-const NotFoundPage: typeof NotFoundPageType
-const StartPage: typeof StartPageType
-const UserHomePage: typeof UserHomePageType
-            }
-          
+declare module '@redwoodjs/router' {
+  interface AvailableRoutes {
+    createDashboard: (params?: RouteParams<"/dashboards/create"> & QueryParams) => "/dashboards/create"
+    copyDashboard: (params?: RouteParams<"/dashboards/create/{id}"> & QueryParams) => "/dashboards/create/{id}"
+    dashboard: (params?: RouteParams<"/dashboards/{id}"> & QueryParams) => "/dashboards/{id}"
+    dashboards: (params?: RouteParams<"/dashboards"> & QueryParams) => "/dashboards"
+    start: (params?: RouteParams<"/"> & QueryParams) => "/"
+    home: (params?: RouteParams<"/home"> & QueryParams) => "/home"
+    about: (params?: RouteParams<"/about"> & QueryParams) => "/about"
+    newDashboard: (params?: RouteParams<"/dashboards/new"> & QueryParams) => "/dashboards/new"
+    editDashboard: (params?: RouteParams<"/dashboards/{id}/edit"> & QueryParams) => "/dashboards/{id}/edit"
+  }
+}
