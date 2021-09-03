@@ -7,6 +7,8 @@
   ],
   "dependencies": {
     "@auth0/auth0-spa-js": "^1.9.0",
+    "@cubejs-client/core": "^0.28.25",
+    "@cubejs-client/react": "^0.28.25",
     "@fortawesome/fontawesome-svg-core": "^1.2.28",
     "@fortawesome/free-brands-svg-icons": "^5.13.0",
     "@fortawesome/free-solid-svg-icons": "^5.13.0",
